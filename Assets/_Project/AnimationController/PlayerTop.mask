@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PlayerTop
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: King
+    m_Weight: 0
+  - m_Path: King_Armature
+    m_Weight: 1
+  - m_Path: King_Armature/Hips
+    m_Weight: 1
+  - m_Path: King_Armature/Hips/LeftUpLeg
+    m_Weight: 0
+  - m_Path: King_Armature/Hips/LeftUpLeg/LeftLeg
+    m_Weight: 0
+  - m_Path: King_Armature/Hips/LeftUpLeg/LeftLeg/LeftFoot
+    m_Weight: 0
+  - m_Path: King_Armature/Hips/LeftUpLeg/LeftLeg/LeftFoot/LeftFoot_end
+    m_Weight: 0
+  - m_Path: King_Armature/Hips/RightUpLeg
+    m_Weight: 0
+  - m_Path: King_Armature/Hips/RightUpLeg/RightLeg
+    m_Weight: 0
+  - m_Path: King_Armature/Hips/RightUpLeg/RightLeg/RightFoot
+    m_Weight: 0
+  - m_Path: King_Armature/Hips/RightUpLeg/RightLeg/RightFoot/RightFoot_end
+    m_Weight: 0
+  - m_Path: King_Armature/Hips/Spine2
+    m_Weight: 1
+  - m_Path: King_Armature/Hips/Spine2/Neck
+    m_Weight: 1
+  - m_Path: King_Armature/Hips/Spine2/Neck/Neck_end
+    m_Weight: 1
+  - m_Path: King_Armature/Hips/Spine2/Quiver
+    m_Weight: 1
+  - m_Path: King_Armature/LeftShoulder
+    m_Weight: 1
+  - m_Path: King_Armature/LeftShoulder/LeftArm
+    m_Weight: 1
+  - m_Path: King_Armature/LeftShoulder/LeftArm/LeftArm.002
+    m_Weight: 1
+  - m_Path: King_Armature/LeftShoulder/LeftArm/LeftArm.002/LeftArm.002_end
+    m_Weight: 1
+  - m_Path: King_Armature/LeftShoulder/LeftArm/LeftArm.002/Point
+    m_Weight: 0
+  - m_Path: King_Armature/LeftShoulder/LeftArm/LeftArm.002/Point/Fire_Staff
+    m_Weight: 0
+  - m_Path: King_Armature/LeftShoulder/LeftArm/LeftArm.002/Point/Ice_Staff
+    m_Weight: 0
+  - m_Path: King_Armature/LeftShoulder/LeftArm/LeftArm.002/Point/Onion
+    m_Weight: 0
+  - m_Path: King_Armature/RightShoulder
+    m_Weight: 1
+  - m_Path: King_Armature/RightShoulder/RightArm
+    m_Weight: 1
+  - m_Path: King_Armature/RightShoulder/RightArm/RightForeArm
+    m_Weight: 1
+  - m_Path: King_Armature/RightShoulder/RightArm/RightForeArm/Arrow
+    m_Weight: 1
+  - m_Path: King_Armature/RightShoulder/RightArm/RightForeArm/RightForeArm_end
+    m_Weight: 1
+  - m_Path: "\u0421loak"
+    m_Weight: 0
