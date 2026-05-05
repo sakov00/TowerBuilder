@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Factories;
-using _Project.Scripts.GameObjects.Abstract;
-using _Project.Scripts.GameObjects.Abstract.Build;
+using _Project.Scripts.GameObjects;
 using UnityEngine;
 using VContainer;
 

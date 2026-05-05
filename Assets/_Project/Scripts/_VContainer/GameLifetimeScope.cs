@@ -20,10 +20,7 @@ namespace _Project.Scripts._VContainer
         [SerializeField] protected ApplicationEventsHandler _applicationEventsHandler;
         
         [Header("Configs")]
-        [SerializeField] protected LevelConfig _levelConfig;
-        [SerializeField] protected UnitPrefabConfig _unitPrefabConfig;
         [SerializeField] protected BuildingPrefabConfig _buildingPrefabConfig;
-        [SerializeField] protected ProjectilePrefabConfig _projectilePrefabConfig;
         [SerializeField] protected WindowsConfig _windowsConfig;
         
         protected override void Configure(IContainerBuilder builder)
@@ -62,30 +59,21 @@ namespace _Project.Scripts._VContainer
         {
             builder.Register<LiveRegistry>(Lifetime.Singleton).AsSelf();
             builder.Register<SaveRegistry>(Lifetime.Singleton).AsSelf();
-            builder.Register<ProjectileRegistry>(Lifetime.Singleton).AsSelf();
         }
         
         private void RegisterPools(IContainerBuilder builder)
         {
             builder.Register<BuildPool>(Lifetime.Singleton).AsSelf();
-            builder.Register<UnitPool>(Lifetime.Singleton).AsSelf();
-            builder.Register<ProjectilePool>(Lifetime.Singleton).AsSelf();
         }
         
         private void RegisterFactories(IContainerBuilder builder)
         {
             builder.Register<BuildFactory>(Lifetime.Singleton).AsSelf();
-            builder.Register<ProjectileFactory>(Lifetime.Singleton).AsSelf();
-            builder.Register<UnitFactory>(Lifetime.Singleton).AsSelf();
-            builder.Register<EnvironmentFactory>(Lifetime.Singleton).AsSelf();
         }
         
         private void RegisterSO(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_levelConfig).AsSelf();
-            builder.RegisterInstance(_unitPrefabConfig).AsSelf();
             builder.RegisterInstance(_buildingPrefabConfig).AsSelf();
-            builder.RegisterInstance(_projectilePrefabConfig).AsSelf();
             builder.RegisterInstance(_windowsConfig).AsSelf().As<IInitializable>();
         }
 
@@ -97,12 +85,10 @@ namespace _Project.Scripts._VContainer
             builder.Register<SaveLoadLevelService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
             
-            builder.Register<BlobShadowRotateService>(Lifetime.Singleton).AsSelf();
-            builder.Register<DetectionService>(Lifetime.Singleton).AsSelf();
-            builder.Register<MoveAllMovablesService>(Lifetime.Singleton).AsSelf();
-            builder.Register<PlayerMovementService>(Lifetime.Singleton).AsSelf();
-            builder.Register<AttackAllLiveService>(Lifetime.Singleton).AsSelf();
-            builder.Register<ProjectileAttackService>(Lifetime.Singleton).AsSelf();
+            builder.Register<BlockSwingService>(Lifetime.Singleton).AsSelf();
+            builder.Register<BlockDropService>(Lifetime.Singleton).AsSelf();
+            builder.Register<BlockPlacementService>(Lifetime.Singleton).AsSelf();
+            builder.Register<BlockSpawnService>(Lifetime.Singleton).AsSelf();
             
             builder.Register<TickScheduler>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }

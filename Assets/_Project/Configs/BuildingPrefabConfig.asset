@@ -12,11 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed31b3f9dc3a4787a65f7ccca0710fe7, type: 3}
   m_Name: BuildingPrefabConfig
   m_EditorClassIdentifier: 
-  buildZonePrefab: {fileID: 2050305323301566128, guid: 3461a685f65ebb74c8a455b782d3af71,
-    type: 3}
   allBuildPrefabs:
-  - {fileID: 5564529542053560057, guid: 19374f93ff3e28e48bf931394456c9eb, type: 3}
-  - {fileID: 4500152187228374450, guid: 4ee4b6611ae32984a82bed01488ff98a, type: 3}
-  - {fileID: 3108341575151675289, guid: 5bf0659b79bc5eb4887e48f46cc87c5a, type: 3}
-  - {fileID: 6081801006486538309, guid: 1f9b46091784a89409ec1fb1df400bd8, type: 3}
-  - {fileID: 4833467767796555782, guid: 15ec1a9ef6f6780409e52714041c0a38, type: 3}
+  - {fileID: 7936506851073723423, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}

@@ -1,7 +1,6 @@
 using _Project.Scripts._VContainer;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
-using _Project.Scripts.GameObjects.Additional.Projectiles;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
 using Cysharp.Threading.Tasks;
@@ -16,11 +15,6 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
     {
         protected new TModel Model => (TModel)base.Model;
         protected new TView View => (TView)base.View;
-
-        protected virtual void FixedUpdate()
-        {
-            // View.UpdateHealthBar(Model.CurrentHealth, Model.MaxHealth);
-        }
     }
 
     public abstract class ObjectController : MonoBehaviour, ISavableController, IPoolableDispose
@@ -35,7 +29,6 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         [SerializeReference, SubclassSelector]
         private ObjectView _view;
 
-        public WarSide WarSide => Model.WarSide;
         public bool IsVisible => View.IsVisible;
 
         public ObjectModel Model
@@ -75,23 +68,7 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
             _model.SaveRotation = transform.rotation;
             _model = (ObjectModel)savableModel;
         }
-        
-        public virtual void TakeDamage(float damageAmount, Vector3 forceDirection = default, float forceAmount = 0f)
-        {
-            Model.CurrentHealth -= damageAmount;
 
-            if (Model.CurrentHealth < 0)
-                Model.CurrentHealth = 0;
-
-            if (Model.CurrentHealth <= 0)
-            {
-                Killed(forceDirection, forceAmount).Forget();
-            }
-        }
-
-        public Vector3 GetOwnAttackPoint(Vector3 fromPosition) => View.GetAttackPoint(fromPosition);
-
-        public abstract UniTask Killed(Vector3 forceDirection = default, float forceAmount = 0f);
         public abstract void Dispose(bool returnToPool = true, bool clearFromRegistry = true);
     }
 }

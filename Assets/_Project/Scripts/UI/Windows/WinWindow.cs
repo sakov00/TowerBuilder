@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
-using _Project.Scripts.GameObjects.Additional.EnemyRoads;
 using _Project.Scripts.Registries;
 using _Project.Scripts.Services;
 using Cysharp.Threading.Tasks;
@@ -47,13 +46,6 @@ namespace _Project.Scripts.UI.Windows
         public override void Initialize()
         {
             base.Initialize();
-            
-            var spawns = _saveRegistry.GetAllByType<EnemyRoadController>();
-            _isLevelCompleted = spawns.Any(spawn => spawn.CountRounds == _appData.LevelData.CurrentRound);
-            if (_isLevelCompleted) 
-                _appData.User.CurrentLevel++;
-            else
-                _appData.LevelData.CurrentRound++;
         }
         
         private void HomeOnClick()
@@ -72,8 +64,6 @@ namespace _Project.Scripts.UI.Windows
             WindowsManager.HideFastWindow<WinWindow>();
             if (_isLevelCompleted)
                 await _gameManager.StartLevel(_appData.User.CurrentLevel);
-            else
-                await _gameManager.ResetRound();
             await WindowsManager.HideWindow<LoadingWindow>();
         }
     }

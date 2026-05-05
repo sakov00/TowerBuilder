@@ -1,53 +1,31 @@
 using System;
 using System.Collections.Generic;
-using _Project.Scripts.Factories;
-using _Project.Scripts.GameObjects.Abstract.Unit;
-using _Project.Scripts.GameObjects.Additional.EnemyRoads;
-using _Project.Scripts.GameObjects.Additional.LevelEnvironment.Terrain;
+using _Project.Scripts.GameObjects;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
 using Cysharp.Threading.Tasks;
 using VContainer;
-using BuildingZoneModel = _Project.Scripts.GameObjects.BuildingZoneModel;
-using BuildModel = _Project.Scripts.GameObjects.Abstract.Build.BuildModel;
-using FriendsGroupModel = _Project.Scripts.GameObjects.FriendsGroupModel;
 
 namespace _Project.Scripts.Services
 {
     public class SceneCreator 
     {
         [Inject] private BuildPool _buildPool;
-        [Inject] private UnitPool _unitPool;
-        [Inject] private UnitFactory _unitFactory;
-        [Inject] private EnvironmentFactory _environmentFactory;
         
         private static readonly Dictionary<Type, int> TypePriority = new()
         {
-            { typeof(EnemyRoadModel), 0 },
-            { typeof(UnitModel), 1 },
-            { typeof(BuildingZoneModel), 2 },
-            { typeof(FriendsGroupModel), 3 },
-            { typeof(BuildModel), 4 },
-            { typeof(TerrainModel), 5 },
+            { typeof(BuildModel), 0 },
         };
         
         public async UniTask InstantiateObjects<T>(List<T> objects, bool isInitialize = true) where T : ISavableModel
         {
-            SortSavableModels(objects);
+            // SortSavableModels(objects);
             foreach (var model in objects)
             {
                 ISavableController savableController = model switch
                 {
                     BuildModel buildModel => 
                         _buildPool.Get(buildModel.BuildType, buildModel.SavePosition, buildModel.SaveRotation),
-                    UnitModel unitModel => 
-                        _unitPool.Get(unitModel.UnitType, unitModel.SavePosition, unitModel.SaveRotation),
-                    FriendsGroupModel friendsGroupModel => 
-                        _unitFactory.CreateFriendsGroup(friendsGroupModel.UnitType, friendsGroupModel.SavePosition, friendsGroupModel.SaveRotation),
-                    TerrainModel terrainModel => 
-                        _environmentFactory.CreateTerrain(terrainModel.SavePosition, terrainModel.SaveRotation),
-                    EnemyRoadModel enemyRoadModel => 
-                        _environmentFactory.CreateRoads(enemyRoadModel.SavePosition, enemyRoadModel.SaveRotation),
                     _ => null
                 };
 

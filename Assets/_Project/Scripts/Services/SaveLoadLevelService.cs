@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using _Project.Scripts.AllAppData;
-using _Project.Scripts.Enums;
-using _Project.Scripts.GameObjects.Abstract;
-using _Project.Scripts.GameObjects.Abstract.Build;
 using _Project.Scripts.Registries;
 using Cysharp.Threading.Tasks;
 using K4os.Compression.LZ4;
@@ -21,8 +18,6 @@ namespace _Project.Scripts.Services
         [Inject] private AppData _appData;
         [Inject] private SaveRegistry _saveRegistry;
         
-        private Dictionary<BuildType, Func<BuildController>> _buildTypeToClass;
-        
         private static string GetDefaultSavePath(int index) 
             => Path.Combine(Application.streamingAssetsPath, $"level_{index}.dat");
         private static string GetProgressSavePath(int index) 
@@ -37,8 +32,8 @@ namespace _Project.Scripts.Services
         {
             if (File.Exists(GetProgressSavePath(index)))
                 await LoadLevelProgress(index);
-            else
-                await LoadLevelDefault(index);
+            // else
+            //     await LoadLevelDefault(index);
             await UniTask.Yield();
         }
 
