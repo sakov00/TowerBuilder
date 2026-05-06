@@ -20,7 +20,7 @@ namespace _Project.Scripts._VContainer
         [SerializeField] protected ApplicationEventsHandler _applicationEventsHandler;
         
         [Header("Configs")]
-        [SerializeField] protected BuildingPrefabConfig _buildingPrefabConfig;
+        [SerializeField] protected BuildingConfig _buildingConfig;
         [SerializeField] protected WindowsConfig _windowsConfig;
         
         protected override void Configure(IContainerBuilder builder)
@@ -73,7 +73,7 @@ namespace _Project.Scripts._VContainer
         
         private void RegisterSO(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_buildingPrefabConfig).AsSelf();
+            builder.RegisterInstance(_buildingConfig).AsSelf();
             builder.RegisterInstance(_windowsConfig).AsSelf().As<IInitializable>();
         }
 
@@ -89,7 +89,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<BlockDropService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockPlacementService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockSpawnService>(Lifetime.Singleton).AsSelf();
-            builder.Register<GameZoneFollowService>(Lifetime.Singleton).AsSelf();
+            builder.Register<CameraFollowService>(Lifetime.Singleton).AsSelf();
                 
             builder.Register<TickScheduler>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }

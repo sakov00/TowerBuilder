@@ -1,6 +1,7 @@
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
+using _Project.Scripts.ServicesGameplay;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,16 +13,10 @@ namespace _Project.Scripts.UI.Windows
     {
         [Inject] private AppData _appData;
         [Inject] private SettingsService _settingsService;
-        [Inject] private GameManager _gameManager;
+        [Inject] private BlockDropService _blockDropService;
 
         [SerializeField] private Button _pauseMenuButton;
-        [SerializeField] private RectTransform _spawnPoint;
-        [SerializeField] private RectTransform _spawnParent;
-        [SerializeField] private RectTransform _gameZone;
-        
-        public RectTransform SpawnPoint => _spawnPoint;
-        public RectTransform SpawnParent => _spawnParent;
-        public RectTransform GameZone => _gameZone;
+        [SerializeField] private Button _clickArea;
         
         protected override void Awake()
         {
@@ -32,6 +27,13 @@ namespace _Project.Scripts.UI.Windows
                 {
                     _settingsService.PlaySfx(SoundKey.ButtonClickSound);
                     WindowsManager.ShowWindow<PauseWindow>();
+                })
+                .AddTo(Disposables);
+            _clickArea.OnClickAsObservable()
+                .Subscribe(_ =>
+                {
+                    _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                    _blockDropService.DropBlock();
                 })
                 .AddTo(Disposables);
         }

@@ -1,25 +1,26 @@
 using System;
 using _Project.Scripts.UI.Info;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.GameObjects.Abstract.BaseObject
 {
     [Serializable]
     public abstract class ObjectView
     {
-        [SerializeField] protected RectTransform _rectTransform;
-        [SerializeField] protected Renderer _objRenderer;
+        [SerializeField] protected Transform _transform;
         [SerializeField] protected Collider2D _collider;
         [SerializeField] protected Rigidbody2D _rigidbody;
+        [SerializeField] protected SpriteRenderer _spriteRenderer;
         
-        public RectTransform RectTransform => _rectTransform;
+        public Transform Transform => _transform;
 
-        public bool IsVisible => _objRenderer.isVisible;
+        public bool IsVisible => _spriteRenderer.isVisible;
 
         public virtual void Initialize()
         {
-            _rectTransform.SetParent(null);
-            _rectTransform.gameObject.SetActive(true);
+            _transform.SetParent(null);
+            _transform.gameObject.SetActive(true);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace _Project.Scripts.ServicesGameplay
     {
         private readonly BlockSpawnService _spawn;
 
-        private float _tolerance = 150f;
+        private float _tolerance = 0.75f;
 
         public BlockPlacementService(BlockSpawnService spawn)
         {

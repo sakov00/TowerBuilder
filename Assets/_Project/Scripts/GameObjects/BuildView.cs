@@ -23,5 +23,11 @@ namespace _Project.Scripts.GameObjects
             if (_rigidbody != null)
                 _rigidbody.MovePosition(targetPos);
         }
+        
+        public void SetImage(Sprite sprite)
+        {
+            if (_spriteRenderer != null)
+                _spriteRenderer.sprite = sprite;
+        }
     }
 }

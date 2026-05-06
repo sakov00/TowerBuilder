@@ -11,11 +11,11 @@ namespace _Project.Scripts.Factories
     public class BuildFactory
     {
         [Inject] private IObjectResolver _resolver;
-        [Inject] private BuildingPrefabConfig _buildingPrefabConfig;
+        [Inject] private BuildingConfig _buildingConfig;
         
         public BuildController CreateBuild(BuildType buildType, Transform parent, Vector3 position = default, Quaternion rotation = default)
         {
-            var prefab = _buildingPrefabConfig.allBuildPrefabs
+            var prefab = _buildingConfig.allBuildPrefabs
                 .FirstOrDefault(p => p.BuildType == buildType);
 
             return prefab != null ? _resolver.Instantiate(prefab, position, rotation, parent) : null;

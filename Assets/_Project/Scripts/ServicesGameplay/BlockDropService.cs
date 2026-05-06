@@ -3,21 +3,18 @@ using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
+using _Project.Scripts.UI.Windows;
 using UnityEngine;
+using VContainer;
 using VContainer.Unity;
 
 namespace _Project.Scripts.ServicesGameplay
 {
-    public class BlockDropService : ITickable
+    public class BlockDropService
     {
-        private readonly LiveRegistry _liveRegistry;
-
-        public BlockDropService(LiveRegistry liveRegistry)
-        {
-            _liveRegistry = liveRegistry;
-        }
-
-        public void Tick()
+        [Inject] private LiveRegistry _liveRegistry;
+        
+        public void DropBlock()
         {
             var block = _liveRegistry.GetAllReactive()
                 .OfType<BuildController>()
@@ -26,11 +23,8 @@ namespace _Project.Scripts.ServicesGameplay
             if (block == null)
                 return;
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                block.SetState(BuildState.Dropped);
-                block.SetKinematicState(RigidbodyType2D.Dynamic);
-            }
+            block.SetState(BuildState.Dropped);
+            block.SetKinematicState(RigidbodyType2D.Dynamic);
         }
     }
 }

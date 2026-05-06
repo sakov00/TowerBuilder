@@ -7,11 +7,10 @@ public class TickScheduler : ITickable
     private readonly List<ITickable> _services;
     private int _index;
 
-    public TickScheduler(BlockDropService drop, BlockSwingService swing, GameZoneFollowService cameraFollow)
+    public TickScheduler(BlockSwingService swing, CameraFollowService cameraFollow)
     {
         _services = new()
         {
-            drop,
             swing,
             cameraFollow
         };

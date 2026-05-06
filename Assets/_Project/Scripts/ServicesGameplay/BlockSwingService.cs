@@ -12,8 +12,8 @@ namespace _Project.Scripts.ServicesGameplay
         private readonly LiveRegistry _liveRegistry;
 
         private float _time;
-        private float _range = 250f;
-        private float _speed = 10f;
+        private float _range = 1;
+        private float _speed = 5f;
 
         private BuildController _current;
         private float _startX;

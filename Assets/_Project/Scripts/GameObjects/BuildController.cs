@@ -16,10 +16,11 @@ namespace _Project.Scripts.GameObjects
 
         public int BuildPrice => Model.BuildPrice;
         public BuildType BuildType => Model.BuildType;
-        public RectTransform RectTransform => View.RectTransform;
+        public Transform Transform => View.Transform;
         
         public void SetKinematicState(RigidbodyType2D state) => View.SetKinematicState(state);
         public void MoveRigidbody(Vector3 targetPos) => View.MoveRigidbody(targetPos);
+        public void SetImage(Sprite sprite) => View.SetImage(sprite);
         public void SetState(BuildState state)
         {
             Model.State = state;
