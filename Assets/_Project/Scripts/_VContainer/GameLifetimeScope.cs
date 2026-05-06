@@ -89,7 +89,8 @@ namespace _Project.Scripts._VContainer
             builder.Register<BlockDropService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockPlacementService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockSpawnService>(Lifetime.Singleton).AsSelf();
-            
+            builder.Register<GameZoneFollowService>(Lifetime.Singleton).AsSelf();
+                
             builder.Register<TickScheduler>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }
     }

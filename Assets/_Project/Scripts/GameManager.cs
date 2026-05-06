@@ -79,13 +79,13 @@ namespace _Project.Scripts
         
         private void OnApplicationQuit()
         {
-            _saveLoadLevelService?.SaveLevelProgress(_appData.User.CurrentLevel).GetAwaiter().GetResult();
+            // _saveLoadLevelService?.SaveLevelProgress(_appData.User.CurrentLevel).GetAwaiter().GetResult();
         }
         
         private void OnApplicationPause(bool pause)
         {
-            if (pause)
-                _saveLoadLevelService?.SaveLevelProgress(_appData.User.CurrentLevel).GetAwaiter().GetResult();
+            // if (pause)
+            //     _saveLoadLevelService?.SaveLevelProgress(_appData.User.CurrentLevel).GetAwaiter().GetResult();
         }
         
         public void Dispose()

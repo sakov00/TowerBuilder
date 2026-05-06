@@ -22,7 +22,7 @@ namespace _Project.Scripts.Pools
         
         public List<BuildController> GetAvailableBuilds() => _availableBuilds;
         
-        public BuildController Get(BuildType buildType, Vector3 position = default, Quaternion rotation = default) 
+        public BuildController Get(BuildType buildType, Transform parent, Vector3 position = default, Quaternion rotation = default) 
         {
             var build = _availableBuilds.FirstOrDefault(c => c.BuildType == buildType);
             if (build != null)
@@ -34,10 +34,10 @@ namespace _Project.Scripts.Pools
             }
             else
             {
-                build = _buildFactory.CreateBuild(buildType, position, rotation);
+                build = _buildFactory.CreateBuild(buildType, parent, position, rotation);
             }
 
-            build.transform.SetParent(null);
+            build.transform.SetParent(parent);
             return build;
         }
 

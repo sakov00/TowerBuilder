@@ -12,8 +12,11 @@ namespace _Project.Scripts.ServicesGameplay
         private readonly LiveRegistry _liveRegistry;
 
         private float _time;
-        private float _range = 3f;
-        private float _speed = 5f;
+        private float _range = 250f;
+        private float _speed = 10f;
+
+        private BuildController _current;
+        private float _startX;
 
         public BlockSwingService(LiveRegistry liveRegistry)
         {
@@ -24,7 +27,6 @@ namespace _Project.Scripts.ServicesGameplay
         {
             var blocks = _liveRegistry.GetAllReactive();
 
-            // 🎯 берём текущий "качающийся" блок
             var block = blocks
                 .OfType<BuildController>()
                 .FirstOrDefault(b => b.Model.State == BuildState.Swinging);
@@ -32,12 +34,19 @@ namespace _Project.Scripts.ServicesGameplay
             if (block == null)
                 return;
 
+            if (_current != block)
+            {
+                _current = block;
+                _startX = block.transform.position.x;
+                _time = 0f;
+            }
+
             _time += Time.deltaTime * _speed;
 
-            float x = Mathf.Sin(_time) * _range;
+            float offset = Mathf.Sin(_time) * _range;
 
             var pos = block.transform.position;
-            pos.x += x;
+            pos.x = _startX + offset;
 
             block.transform.position = pos;
         }

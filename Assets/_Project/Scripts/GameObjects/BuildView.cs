@@ -17,5 +17,11 @@ namespace _Project.Scripts.GameObjects
             if (_rigidbody != null)
                 _rigidbody.bodyType = state;
         }
+        
+        public void MoveRigidbody(Vector3 targetPos)
+        {
+            if (_rigidbody != null)
+                _rigidbody.MovePosition(targetPos);
+        }
     }
 }

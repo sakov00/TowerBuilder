@@ -11,7 +11,7 @@ namespace _Project.Scripts.ServicesGameplay
     {
         private readonly BlockSpawnService _spawn;
 
-        private float _tolerance = 0.5f;
+        private float _tolerance = 150f;
 
         public BlockPlacementService(BlockSpawnService spawn)
         {
@@ -27,7 +27,7 @@ namespace _Project.Scripts.ServicesGameplay
 
             if (Mathf.Abs(offset) <= _tolerance)
             {
-                curPos.x = prevPos.x;
+                //curPos.x = prevPos.x;
                 current.transform.position = curPos;
 
                 current.SetState(BuildState.Placed);
@@ -35,15 +35,15 @@ namespace _Project.Scripts.ServicesGameplay
 
                 Debug.Log("Success");
 
-                _spawn.SpawnNext(curPos + Vector3.up);
+                _spawn.SpawnNext();
             }
             else
             {
                 current.SetState(BuildState.Failed);
-
+                current.DisposeDelayed().Forget();
                 Debug.Log("Failed");
 
-                _spawn.SpawnNext(curPos + Vector3.up);
+                _spawn.SpawnNext();
             }
         }
     }

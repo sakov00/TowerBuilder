@@ -16,16 +16,16 @@ namespace _Project.Scripts.GameObjects
 
         public int BuildPrice => Model.BuildPrice;
         public BuildType BuildType => Model.BuildType;
+        public RectTransform RectTransform => View.RectTransform;
         
-        public Transform Transform => transform;
         public void SetKinematicState(RigidbodyType2D state) => View.SetKinematicState(state);
-        
+        public void MoveRigidbody(Vector3 targetPos) => View.MoveRigidbody(targetPos);
         public void SetState(BuildState state)
         {
             Model.State = state;
         }
         
-        private void OnCollisionEnter(Collision collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
             if (Model.State != BuildState.Dropped)
                 return;

@@ -13,19 +13,21 @@ namespace _Project.Scripts
     public class InitializeGame : IInitializable, IAsyncStartable
     {
         [Inject] private WindowsManager _windowsManager;
+        [Inject] private GameManager _gameManager;
         [Inject] private SettingsService _settingsService;
         public void Initialize()
         {
-            Application.targetFrameRate = 240;
+            Application.targetFrameRate = 120;
         }
         
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            _windowsManager.ShowFastWindow<LoadingWindow>();
-            await _settingsService.PlayMusicAsync(SoundKey.MenuMusic);
-            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
-            _windowsManager.ShowFastWindow<MainMenuWindow>();
-            _windowsManager.HideWindow<LoadingWindow>();
+            // _windowsManager.ShowFastWindow<LoadingWindow>();
+            // await _settingsService.PlayMusicAsync(SoundKey.MenuMusic);
+            // await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
+            // _windowsManager.ShowFastWindow<MainMenuWindow>();
+            // _windowsManager.HideWindow<LoadingWindow>();
+            await _gameManager.StartLevel(0);
         }
     }
 }

@@ -13,12 +13,12 @@ namespace _Project.Scripts.Factories
         [Inject] private IObjectResolver _resolver;
         [Inject] private BuildingPrefabConfig _buildingPrefabConfig;
         
-        public BuildController CreateBuild(BuildType buildType, Vector3 position = default, Quaternion rotation = default)
+        public BuildController CreateBuild(BuildType buildType, Transform parent, Vector3 position = default, Quaternion rotation = default)
         {
             var prefab = _buildingPrefabConfig.allBuildPrefabs
                 .FirstOrDefault(p => p.BuildType == buildType);
 
-            return prefab != null ? _resolver.Instantiate(prefab, position, rotation) : null;
+            return prefab != null ? _resolver.Instantiate(prefab, position, rotation, parent) : null;
         }
     }
 }

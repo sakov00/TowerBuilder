@@ -70,5 +70,11 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         }
 
         public abstract void Dispose(bool returnToPool = true, bool clearFromRegistry = true);
+        
+        public async UniTaskVoid DisposeDelayed(bool returnToPool = true, bool clearFromRegistry = true)
+        {
+            await UniTask.Delay(2000);
+            Dispose(returnToPool, clearFromRegistry);
+        }
     }
 }

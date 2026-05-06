@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Project.Scripts.GameObjects;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Pools;
+using _Project.Scripts.UI.Windows;
 using Cysharp.Threading.Tasks;
 using VContainer;
 
@@ -11,6 +12,7 @@ namespace _Project.Scripts.Services
     public class SceneCreator 
     {
         [Inject] private BuildPool _buildPool;
+        [Inject] private WindowsManager _windowsManager;
         
         private static readonly Dictionary<Type, int> TypePriority = new()
         {
@@ -25,7 +27,7 @@ namespace _Project.Scripts.Services
                 ISavableController savableController = model switch
                 {
                     BuildModel buildModel => 
-                        _buildPool.Get(buildModel.BuildType, buildModel.SavePosition, buildModel.SaveRotation),
+                        _buildPool.Get(buildModel.BuildType, _windowsManager.GetWindow<GameWindow>().transform, buildModel.SavePosition, buildModel.SaveRotation),
                     _ => null
                 };
 

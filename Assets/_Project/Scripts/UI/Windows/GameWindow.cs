@@ -1,12 +1,6 @@
-using System.Linq;
-using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
-using _Project.Scripts.Registries;
 using _Project.Scripts.Services;
-using _Project.Scripts.UI.WindowElements;
-using Cysharp.Threading.Tasks;
-using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,9 +14,15 @@ namespace _Project.Scripts.UI.Windows
         [Inject] private SettingsService _settingsService;
         [Inject] private GameManager _gameManager;
 
-        [Header("Buttons")]
         [SerializeField] private Button _pauseMenuButton;
-
+        [SerializeField] private RectTransform _spawnPoint;
+        [SerializeField] private RectTransform _spawnParent;
+        [SerializeField] private RectTransform _gameZone;
+        
+        public RectTransform SpawnPoint => _spawnPoint;
+        public RectTransform SpawnParent => _spawnParent;
+        public RectTransform GameZone => _gameZone;
+        
         protected override void Awake()
         {
             base.Awake();
