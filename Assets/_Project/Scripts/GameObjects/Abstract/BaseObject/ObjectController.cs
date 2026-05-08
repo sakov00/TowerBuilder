@@ -4,6 +4,7 @@ using _Project.Scripts.Enums;
 using _Project.Scripts.Interfaces;
 using _Project.Scripts.Registries;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using VContainer;
 
@@ -73,7 +74,10 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         
         public async UniTaskVoid DisposeDelayed(bool returnToPool = true, bool clearFromRegistry = true)
         {
-            await UniTask.Delay(2000);
+            await UniTask.Delay(500); 
+            await transform
+                .DOScale(Vector3.zero, 0.5f)
+                .SetEase(Ease.InBack);
             Dispose(returnToPool, clearFromRegistry);
         }
     }

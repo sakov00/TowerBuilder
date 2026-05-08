@@ -145,37 +145,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1697098926264124925
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4037583449565147545}
-  m_Layer: 0
-  m_Name: ProojectilePool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4037583449565147545
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697098926264124925}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5783606656129890111}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2220814140645245624
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,14 +274,45 @@ MonoBehaviour:
   _sfxSource: {fileID: 5915975464597159628}
   _musicClips:
   - key: 0
-    clip: {fileID: 8300000, guid: 1ed310930bf27c84596878b98983024f, type: 3}
+    clip: {fileID: 8300000, guid: 09da061e1e6dc4c49b3a064901d4f89a, type: 3}
   - key: 1
-    clip: {fileID: 8300000, guid: b17d536018bae30438f1ef41f90d87e9, type: 3}
+    clip: {fileID: 8300000, guid: 09da061e1e6dc4c49b3a064901d4f89a, type: 3}
   - key: 2
-    clip: {fileID: 8300000, guid: b17d536018bae30438f1ef41f90d87e9, type: 3}
+    clip: {fileID: 8300000, guid: 09da061e1e6dc4c49b3a064901d4f89a, type: 3}
   _sfxClips:
   - key: 5
     clip: {fileID: 8300000, guid: dbd4da902887077419b5f3c56b1ef541, type: 3}
+--- !u!1 &2621446322017936268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1084518047625175889}
+  m_Layer: 0
+  m_Name: EffectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1084518047625175889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621446322017936268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5783606656129890111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3456779618153162678
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,13 +340,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3456779618153162678}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.9999725, z: 0, w: -0.0074176053}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5738615105510014227}
-  m_LocalEulerAnglesHint: {x: 0, y: -180.85, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &908287483260095829
 Camera:
   m_ObjectHideFlags: 0
@@ -356,8 +356,8 @@ Camera:
   m_GameObject: {fileID: 3456779618153162678}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -450,37 +450,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1 &4281021999295957063
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4083371799681727410}
-  m_Layer: 0
-  m_Name: CharacterPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4083371799681727410
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4281021999295957063}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5783606656129890111}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4940363715397202170
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,10 +754,9 @@ MonoBehaviour:
   _settingsService: {fileID: 4204396160017081864}
   _poolsManager: {fileID: 5053060504112252011}
   _applicationEventsHandler: {fileID: 5090804477363207933}
-  _levelConfig: {fileID: 11400000, guid: f69ef2b7f255c2047b2dfe2894252877, type: 2}
-  _unitPrefabConfig: {fileID: 11400000, guid: 9768599ec48076349993a7fe900a6ef2, type: 2}
-  _buildingPrefabConfig: {fileID: 11400000, guid: 4707147491c3e5b438d235a1093e9f5d, type: 2}
-  _projectilePrefabConfig: {fileID: 11400000, guid: 9c14b83fbb27999448d2c0fddf7c6d9a, type: 2}
+  _buildingConfig: {fileID: 11400000, guid: 4707147491c3e5b438d235a1093e9f5d, type: 2}
+  _effectsConfig: {fileID: 11400000, guid: f62f027c94b755b45abb69494d9f0249, type: 2}
+  _cameraConfig: {fileID: 11400000, guid: f59f002a28df03a4083ab0c47cec3e02, type: 2}
   _windowsConfig: {fileID: 11400000, guid: 6931a08c007573a4daef4c33f6de30af, type: 2}
 --- !u!1 &7608561609897601077
 GameObject:
@@ -1156,8 +1124,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5904157599483840452}
-  - {fileID: 4083371799681727410}
-  - {fileID: 4037583449565147545}
+  - {fileID: 1084518047625175889}
   m_Father: {fileID: 7937882727632113504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5053060504112252011
@@ -1173,8 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_General.Scripts.Services.PoolsManager
   _buildPoolContainer: {fileID: 5904157599483840452}
-  _characterPoolContainer: {fileID: 4083371799681727410}
-  _projectilePoolContainer: {fileID: 4037583449565147545}
+  _effectPoolContainer: {fileID: 1084518047625175889}
 --- !u!1 &9157503949949746825
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,8 +29,8 @@ namespace _Project.Scripts
 
         public virtual async UniTask RestartLevel()
         {
-            _saveLoadLevelService.RemoveProgress(_appData.User.CurrentLevel);
-            await StartLevel(_appData.User.CurrentLevel);
+            _saveLoadLevelService.RemoveProgress(0);
+            await StartLevel(0);
         }
 
         public virtual async UniTask StartLevel(int levelIndex)

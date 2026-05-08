@@ -1,50 +1,98 @@
-using System.Linq;
-using UnityEngine;
+using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects;
-using _Project.Scripts.Registries;
-using VContainer.Unity;
+using _Project.Scripts.Pools;
+using _Project.Scripts.SO;
+using UnityEngine;
+using Cysharp.Threading.Tasks;
+using VContainer;
 
 namespace _Project.Scripts.ServicesGameplay
 {
     public class BlockPlacementService
     {
-        private readonly BlockSpawnService _spawn;
-
-        private float _tolerance = 0.75f;
-
-        public BlockPlacementService(BlockSpawnService spawn)
-        {
-            _spawn = spawn;
-        }
+        [Inject] private AppData _appData;
+        [Inject] private EffectPool _effectPool;
+        [Inject] private BlockSpawnService _spawn;
+        [Inject] private BuildingConfig _buildingConfig;
+        [Inject] private GameplayFeedbackService _feedbackService;
 
         public void Resolve(BuildController current, BuildController previous)
         {
-            Vector3 curPos = current.transform.position;
-            Vector3 prevPos = previous.transform.position;
+            float offset =
+                current.transform.position.x -
+                previous.transform.position.x;
 
-            float offset = curPos.x - prevPos.x;
+            float absOffset = Mathf.Abs(offset);
 
-            if (Mathf.Abs(offset) <= _tolerance)
+            if (absOffset > _buildingConfig.PlacementTolerance)
             {
-                //curPos.x = prevPos.x;
-                current.transform.position = curPos;
-
-                current.SetState(BuildState.Placed);
-                current.SetKinematicState(RigidbodyType2D.Static);
-
-                Debug.Log("Success");
-
-                _spawn.SpawnNext();
+                Fail(current);
+                return;
             }
-            else
+
+            Place(current);
+
+            if (absOffset <= _buildingConfig.PerfectPlacementTolerance)
             {
-                current.SetState(BuildState.Failed);
-                current.DisposeDelayed().Forget();
-                Debug.Log("Failed");
-
-                _spawn.SpawnNext();
+                HandlePerfectPlacement(current);
+                return;
             }
+
+            if (absOffset >= _buildingConfig.NearFailPlacementTolerance)
+            {
+                HandleNearMissPlacement();
+                return;
+            }
+
+            HandleNormalPlacement();
+        }
+
+        private void Place(BuildController block)
+        {
+            _appData.LevelData.PlacedBlocksCount += 1;
+
+            block.SetState(BuildState.Placed);
+            block.SetKinematicState(RigidbodyType2D.Static);
+
+            Debug.Log("Success");
+
+            _spawn.SpawnNext().Forget();
+        }
+
+        private void Fail(BuildController block)
+        {
+            block.SetState(BuildState.Failed);
+            block.DisposeDelayed().Forget();
+
+            Debug.Log("Failed");
+
+            _spawn.SpawnNext().Forget();
+        }
+
+        private void HandlePerfectPlacement(BuildController current)
+        {
+            _appData.LevelData.PerfectMultiplier += 1;
+            _appData.LevelData.LevelScore += 5 * _appData.LevelData.PerfectMultiplier;
+
+            _effectPool.Get(EffectType.Perfect, null, current.transform.position + new Vector3(0, _buildingConfig.BlockHeight / 2, 0));
+            _feedbackService.ShowPerfect();
+        }
+
+        private void HandleNearMissPlacement()
+        {
+            _appData.LevelData.LevelScore += 1;
+            _appData.LevelData.NearFailMultiplier += 1;
+
+            _feedbackService.ShowNearMiss();
+        }
+
+        private void HandleNormalPlacement()
+        {
+            _appData.LevelData.LevelScore += 1;
+
+            _appData.LevelData.PerfectMultiplier = 0;
+            _appData.LevelData.NearFailMultiplier = 0;
         }
     }
 }

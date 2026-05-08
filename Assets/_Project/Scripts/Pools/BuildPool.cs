@@ -24,7 +24,7 @@ namespace _Project.Scripts.Pools
         
         public BuildController Get(BuildType buildType, Transform parent, Vector3 position = default, Quaternion rotation = default) 
         {
-            var build = _availableBuilds.FirstOrDefault(c => c.BuildType == buildType);
+            var build = _availableBuilds.FirstOrDefault(c => c.Model.BuildType == buildType);
             if (build != null)
             {
                 _availableBuilds.Remove(build);

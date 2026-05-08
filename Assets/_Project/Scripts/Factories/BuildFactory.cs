@@ -16,7 +16,7 @@ namespace _Project.Scripts.Factories
         public BuildController CreateBuild(BuildType buildType, Transform parent, Vector3 position = default, Quaternion rotation = default)
         {
             var prefab = _buildingConfig.allBuildPrefabs
-                .FirstOrDefault(p => p.BuildType == buildType);
+                .FirstOrDefault(p => p.Model.BuildType == buildType);
 
             return prefab != null ? _resolver.Instantiate(prefab, position, rotation, parent) : null;
         }

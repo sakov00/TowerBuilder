@@ -45,6 +45,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 2863636939
+    locked: 0
+  - name: Environment
+    uniqueID: 832125065
+    locked: 0
+  - name: EffectBG
+    uniqueID: 3650323609
+    locked: 0
+  - name: EffectMain
+    uniqueID: 901331477
+    locked: 0
+  - name: Blocks
+    uniqueID: 2379072063
+    locked: 0
   m_RenderingLayers:
   - Default
   - Screen

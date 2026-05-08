@@ -1,6 +1,7 @@
 using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Factories;
+using _Project.Scripts.GameObjects;
 using _Project.Scripts.Pools;
 using _Project.Scripts.Registries;
 using _Project.Scripts.Services;
@@ -18,9 +19,10 @@ namespace _Project.Scripts._VContainer
         [SerializeField] protected SettingsService _settingsService;
         [SerializeField] protected PoolsManager _poolsManager;
         [SerializeField] protected ApplicationEventsHandler _applicationEventsHandler;
-        
         [Header("Configs")]
         [SerializeField] protected BuildingConfig _buildingConfig;
+        [SerializeField] protected EffectsConfig _effectsConfig;
+        [SerializeField] protected CameraConfig _cameraConfig;
         [SerializeField] protected WindowsConfig _windowsConfig;
         
         protected override void Configure(IContainerBuilder builder)
@@ -64,16 +66,20 @@ namespace _Project.Scripts._VContainer
         private void RegisterPools(IContainerBuilder builder)
         {
             builder.Register<BuildPool>(Lifetime.Singleton).AsSelf();
+            builder.Register<EffectPool>(Lifetime.Singleton).AsSelf();
         }
         
         private void RegisterFactories(IContainerBuilder builder)
         {
             builder.Register<BuildFactory>(Lifetime.Singleton).AsSelf();
+            builder.Register<EffectFactory>(Lifetime.Singleton).AsSelf();
         }
         
         private void RegisterSO(IContainerBuilder builder)
         {
             builder.RegisterInstance(_buildingConfig).AsSelf();
+            builder.RegisterInstance(_effectsConfig).AsSelf();
+            builder.RegisterInstance(_cameraConfig).AsSelf();
             builder.RegisterInstance(_windowsConfig).AsSelf().As<IInitializable>();
         }
 
@@ -82,6 +88,7 @@ namespace _Project.Scripts._VContainer
             builder.RegisterInstance(_settingsService).As<IInitializable>().AsSelf();
             builder.RegisterInstance(_poolsManager).AsSelf();
             builder.RegisterInstance(_applicationEventsHandler).AsSelf();
+            
             builder.Register<SaveLoadLevelService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
             
@@ -90,6 +97,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<BlockPlacementService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockSpawnService>(Lifetime.Singleton).AsSelf();
             builder.Register<CameraFollowService>(Lifetime.Singleton).AsSelf();
+            builder.Register<GameplayFeedbackService>(Lifetime.Singleton).AsSelf();
                 
             builder.Register<TickScheduler>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }

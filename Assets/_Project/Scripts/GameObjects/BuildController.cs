@@ -14,8 +14,6 @@ namespace _Project.Scripts.GameObjects
         public new BuildModel Model => base.Model;
         public new BuildView View => base.View;
 
-        public int BuildPrice => Model.BuildPrice;
-        public BuildType BuildType => Model.BuildType;
         public Transform Transform => View.Transform;
         
         public void SetKinematicState(RigidbodyType2D state) => View.SetKinematicState(state);

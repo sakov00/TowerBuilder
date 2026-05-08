@@ -10,14 +10,20 @@ namespace _Project.Scripts.GameObjects
     [MemoryPackable]
     public partial class BuildModel : ObjectModel
     {
-        [field: Header("Object Default Data")] 
-        [MemoryPackInclude][field: SerializeField] public BuildType BuildType { get; protected set; }
-        [MemoryPackInclude][field: SerializeField] public BuildState State { get; set; } = BuildState.Swinging;
-        [MemoryPackInclude][SerializeField] protected int _buildPriceDefault = 10;
-
-        [field: Header("Object Changeable Data")]
-        [MemoryPackInclude][field:SerializeField] public int BuildPriceBonus { get; set; } = 1;
+        [Header("Object Default Data")]
+        [MemoryPackInclude][SerializeField] private BuildType _buildType;
+        [MemoryPackInclude][SerializeField] private BuildState _state = BuildState.Swinging;
         
-        public virtual int BuildPrice => _buildPriceDefault * BuildPriceBonus;
+        public BuildType BuildType
+        {
+            get => _buildType;
+            set => _buildType = value;
+        }
+
+        public BuildState State
+        {
+            get => _state;
+            set => _state = value;
+        }
     }
 }

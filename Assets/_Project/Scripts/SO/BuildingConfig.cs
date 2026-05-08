@@ -9,5 +9,13 @@ namespace _Project.Scripts.SO
     {
         public List<BuildController> allBuildPrefabs;
         public List<Sprite> allBlockImages;
+        
+        [field:SerializeField] public float BlockHeight { get; private set; } = 1.5f;
+        [field:SerializeField] public float SwingSpeed { get; private set; } = 5f;
+        [field:SerializeField] public float SwingRange { get; private set; } = 1.5f;
+        [field:SerializeField] public float PlacementTolerance { get; private set; } = 0.75f;
+        [field:SerializeField] public float PerfectPlacementTolerance { get; private set; } = 0.05f;
+        [field:SerializeField] public float NearFailPlacementTolerance { get; private set; } = 0.70f;
+        [field:SerializeField] public Vector2 LimitMoveX { get; private set; } = new (-1.5f, 1.5f);
     }
 }

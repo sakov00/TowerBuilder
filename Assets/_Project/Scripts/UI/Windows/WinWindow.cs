@@ -63,7 +63,7 @@ namespace _Project.Scripts.UI.Windows
             await WindowsManager.ShowWindow<LoadingWindow>();
             WindowsManager.HideFastWindow<WinWindow>();
             if (_isLevelCompleted)
-                await _gameManager.StartLevel(_appData.User.CurrentLevel);
+                await _gameManager.StartLevel(0);
             await WindowsManager.HideWindow<LoadingWindow>();
         }
     }
