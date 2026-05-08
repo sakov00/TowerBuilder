@@ -32,21 +32,21 @@ namespace _Project.Scripts.UI.Windows
             _playButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _gameManager.StartLevel(0).Forget();
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
             }).AddTo(Disposables);
             _upgradeButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 // WindowsManager.ShowWindow<UpgradeWindow>();
             }).AddTo(Disposables);
             _settingsButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 // WindowsManager.ShowWindow<SettingsWindow>();
             }).AddTo(Disposables);
             _exitButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 Application.Quit();
             }).AddTo(Disposables);
             

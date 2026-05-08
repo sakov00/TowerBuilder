@@ -26,13 +26,13 @@ namespace _Project.Scripts.UI.Windows
             base.Initialize();
             _resumeButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 WindowsManager.HideWindow<PauseWindow>();
             }).AddTo(Disposables);
             
             _restartButton.OnClickAsObservable().Subscribe(async _ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 await WindowsManager.ShowWindow<LoadingWindow>();
                 WindowsManager.HideFastWindow<PauseWindow>();
                 _gameManager.RestartLevel().Forget();
@@ -40,14 +40,14 @@ namespace _Project.Scripts.UI.Windows
             
             _settingsButton.OnClickAsObservable().Subscribe(async _ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 await WindowsManager.HideWindow<PauseWindow>();
                 await WindowsManager.ShowWindow<SettingsWindow>();
             }).AddTo(Disposables);
             
             _mainMenuButton.OnClickAsObservable().Subscribe(async _ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 await WindowsManager.ShowWindow<LoadingWindow>();
                 WindowsManager.HideFastWindow<GameWindow>();
                 WindowsManager.HideFastWindow<PauseWindow>();

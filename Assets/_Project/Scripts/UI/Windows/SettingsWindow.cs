@@ -39,33 +39,33 @@ namespace _Project.Scripts.UI.Windows
 
             _musicButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 SetMusicValue(!_appData.User.MusicIsActive);
             }).AddTo(Disposables);
             _soundButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 SetSoundValue(!_appData.User.SoundIsActive);
             }).AddTo(Disposables);
             _vibroButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 SetVibroValue(!_appData.User.VibroIsActive);
             }).AddTo(Disposables);
             
             _privacyButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 WindowsManager.HideWindow<SettingsWindow>();
             }).AddTo(Disposables);
             _termsButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 WindowsManager.HideWindow<SettingsWindow>();
             }).AddTo(Disposables);
             _backButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                _settingsService.PlaySfx(SoundKey.ButtonClick);
                 WindowsManager.HideWindow<SettingsWindow>();
             }).AddTo(Disposables);
         }

@@ -80,7 +80,7 @@ PlayerSettings:
   androidFullscreenMode: 1
   androidAutoRotationBehavior: 1
   androidPredictiveBackSupport: 0
-  androidApplicationEntry: 2
+  androidApplicationEntry: 1
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 1
@@ -360,7 +360,7 @@ PlayerSettings:
   clonedFromGUID: 25d942d79439af74f90fe7f671958252
   templatePackageId: com.unity.template.urp-sample@17.1.4
   templateDefaultScene: Assets/Scenes/Terminal/TerminalScene.unity
-  useCustomMainManifest: 0
+  useCustomMainManifest: 1
   useCustomLauncherManifest: 0
   useCustomMainGradleTemplate: 0
   useCustomLauncherGradleManifest: 0

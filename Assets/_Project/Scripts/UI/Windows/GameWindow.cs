@@ -30,14 +30,14 @@ namespace _Project.Scripts.UI.Windows
             _pauseMenuButton.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
-                    _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                    _settingsService.PlaySfx(SoundKey.ButtonClick);
                     WindowsManager.ShowWindow<PauseWindow>();
                 })
                 .AddTo(Disposables);
             _clickArea.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
-                    _settingsService.PlaySfx(SoundKey.ButtonClickSound);
+                    _settingsService.PlaySfx(SoundKey.ButtonClick);
                     _blockDropService.DropBlock();
                 })
                 .AddTo(Disposables);

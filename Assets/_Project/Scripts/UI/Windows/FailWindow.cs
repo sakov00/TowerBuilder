@@ -24,11 +24,11 @@ namespace _Project.Scripts.UI.Windows
             base.Awake();
             
             _homeButton.OnClickAsObservable()
-                .Subscribe(_ => _settingsService.PlaySfx(SoundKey.ButtonClickSound))
+                .Subscribe(_ => _settingsService.PlaySfx(SoundKey.ButtonClick))
                 .AddTo(Disposables);
 
             _restartButton.OnClickAsObservable()
-                .Subscribe(_ => _settingsService.PlaySfx(SoundKey.ButtonClickSound))
+                .Subscribe(_ => _settingsService.PlaySfx(SoundKey.ButtonClick))
                 .AddTo(Disposables);
         }
 

@@ -29,10 +29,16 @@ namespace _Project.Scripts.GameObjects
             if (Model.State != BuildState.Dropped)
                 return;
 
-            if (collision.gameObject.TryGetComponent<BuildController>(out var other))
-            {
-                _placementService.Resolve(this, other);
-            }
+            _placementService.Resolve(this);
+            
+        }
+        
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (Model.State != BuildState.Dropped)
+                return;
+
+            _placementService.Resolve(this);
         }
         
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)

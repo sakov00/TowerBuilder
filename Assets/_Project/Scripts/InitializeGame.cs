@@ -27,6 +27,7 @@ namespace _Project.Scripts
             // await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
             // _windowsManager.ShowFastWindow<MainMenuWindow>();
             // _windowsManager.HideWindow<LoadingWindow>();
+            Vibration.Init();
             await _gameManager.StartLevel(0);
         }
     }
