@@ -1,12 +1,16 @@
 using System;
+using System.Linq;
 using System.Threading;
 using _Project.Scripts.Enums;
+using _Project.Scripts.GameObjects;
+using _Project.Scripts.Interfaces;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI.Windows;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using Object = UnityEngine.Object;
 
 namespace _Project.Scripts
 {
@@ -28,6 +32,8 @@ namespace _Project.Scripts
             // _windowsManager.ShowFastWindow<MainMenuWindow>();
             // _windowsManager.HideWindow<LoadingWindow>();
             Vibration.Init();
+            var buildControllers = Object.FindObjectsByType<BuildController>(FindObjectsSortMode.None).ToList();
+            buildControllers.ForEach(controller => controller.Initialize());
             await _gameManager.StartLevel(0);
         }
     }

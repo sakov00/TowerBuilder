@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 200010668960566116, guid: 47f7081215405884cb69170d19cf5837, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7937882727632113504, guid: 47f7081215405884cb69170d19cf5837, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -532,10 +536,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 259596050856813147, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.75
-      objectReference: {fileID: 0}
     - target: {fileID: 1298866982948862917, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
       propertyPath: managedReferences[7035305567743639694]._state
       value: 1
@@ -553,28 +553,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5810849369526620187, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: cd9a030571a7686429bfd6a1d6a50a6a, type: 3}
-    - target: {fileID: 5810849369526620187, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5810849369526620187, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
       propertyPath: m_SortingLayerID
       value: -1915895233
       objectReference: {fileID: 0}
-    - target: {fileID: 5810849369526620187, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
-      propertyPath: m_SpriteSortPoint
+    - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
+      propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6195654731290460740, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
-      propertyPath: m_BodyType
-      value: 2
+    - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -728,9 +728,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5810849369526620187, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810849369526620187, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1915895233
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8581739997793615136, guid: 02d37facfd0e67943a83aa32d4b7232a, type: 3}
       propertyPath: m_LocalPosition.y

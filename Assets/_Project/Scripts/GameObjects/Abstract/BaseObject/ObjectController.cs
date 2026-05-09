@@ -47,7 +47,6 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
         protected virtual void Awake()
         {
             InjectManager.Inject(this);
-            Initialize();
         }
         
         public virtual void Initialize()

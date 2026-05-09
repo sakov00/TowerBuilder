@@ -14,9 +14,12 @@ namespace _Project.Scripts.ServicesGameplay
         [Inject] private LiveRegistry _liveRegistry;
         [Inject] private BuildingConfig _buildingConfig;
 
-        private float _time;
         private BuildController _current;
+
+        private float _time;
         private float _direction;
+        
+        private Vector3 _center;
 
         public void Tick()
         {
@@ -32,27 +35,63 @@ namespace _Project.Scripts.ServicesGameplay
 
             if (_current != block)
             {
-                _current = block;
-                float offset = block.transform.position.x;
-                _direction = Random.value < 0.5f ? -1 : 1;
-                _time = Mathf.Asin(
-                    Mathf.Clamp(offset / _buildingConfig.SwingRange, -1f, 1f)
-                );
+                InitBlock(block);
             }
-            
+
+            Move(block);
+        }
+
+        private void InitBlock(BuildController block)
+        {
+            _current = block;
+
+            _direction = Random.value < 0.5f
+                ? -1f
+                : 1f;
+
+            // Центр маятника над блоком
+            _center = block.transform.position +
+                      Vector3.up * _buildingConfig.SwingHeight;
+
+            // Начальный угол
+            _time = _direction > 0
+                ? -Mathf.PI * 0.5f
+                : Mathf.PI * 0.5f;
+        }
+
+        private void Move(BuildController block)
+        {
             _time += Time.deltaTime * _buildingConfig.SwingSpeed * _direction;
-            float offsetX = Mathf.Sin(_time) * _buildingConfig.SwingRange;
-            float x = offsetX;
+            _time = Mathf.Clamp(_time, -Mathf.PI * 0.5f, Mathf.PI * 0.5f);
+            
+            float radius = _buildingConfig.SwingRangeX;
+            float x = Mathf.Sin(_time) * radius;
+            float y = -Mathf.Cos(_time) * radius;
 
-            x = Mathf.Clamp(
-                x,
-                _buildingConfig.LimitMoveX.x,
-                _buildingConfig.LimitMoveX.y
-            );
+            Vector3 pos = _center + new Vector3(x, y, 0f);
 
-            var pos = block.transform.position;
-            pos.x = x;
             block.transform.position = pos;
+
+            if (_time >= Mathf.PI * 0.5f)
+            {
+                _direction = -1f;
+            }
+            else if (_time <= -Mathf.PI * 0.5f)
+            {
+                _direction = 1f;
+            }
+
+            Rotate(block);
+        }
+
+        private void Rotate(BuildController block)
+        {
+            float tilt =
+                Mathf.Sin(_time) *
+                _buildingConfig.SwingTilt;
+
+            block.transform.rotation =
+                Quaternion.Euler(0f, 0f, -tilt);
         }
     }
 }

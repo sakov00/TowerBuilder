@@ -37,9 +37,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d110509ee42bf3e40be40d3c09ede433, type: 3}
   - {fileID: 21300000, guid: 8136e9a4e34242543921bf8edf595825, type: 3}
   - {fileID: 21300000, guid: f69eaaf52700a2d4da080f508a3c6471, type: 3}
-  <SwingSpeed>k__BackingField: 5
-  <SwingRange>k__BackingField: 1.5
-  <PlacementTolerance>k__BackingField: 0.75
-  <PerfectPlacementTolerance>k__BackingField: 0.075
-  <NearFailPlacementTolerance>k__BackingField: 0.675
+  <BlockHeight>k__BackingField: 1
+  <SwingSpeed>k__BackingField: 3
+  <SwingTilt>k__BackingField: -20
+  <SwingRangeX>k__BackingField: 1.5
+  <SwingHeight>k__BackingField: 2
+  <OffsetSpawnY>k__BackingField: 3
+  <PlacementTolerance>k__BackingField: 0.5
+  <PerfectPlacementTolerance>k__BackingField: 0.05
+  <NearFailPlacementTolerance>k__BackingField: 0.45
   <LimitMoveX>k__BackingField: {x: -1.5, y: 1.5}

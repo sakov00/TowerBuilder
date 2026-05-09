@@ -19,8 +19,6 @@ namespace _Project.Scripts.GameObjects.Abstract.BaseObject
 
         public virtual void Initialize()
         {
-            _transform.SetParent(null);
-            _transform.gameObject.SetActive(true);
         }
     }
 }

@@ -8,6 +8,7 @@ using _Project.Scripts.Services;
 using _Project.Scripts.SO;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using VContainer;
 
 namespace _Project.Scripts.ServicesGameplay
@@ -47,11 +48,11 @@ namespace _Project.Scripts.ServicesGameplay
                 return;
             }
 
-            Place(current);
+            Place(current, highest);
 
             if (absOffset <= _buildingConfig.PerfectPlacementTolerance)
             {
-                HandlePerfectPlacement(current);
+                HandlePerfectPlacement(current, highest);
                 return;
             }
 
@@ -64,12 +65,15 @@ namespace _Project.Scripts.ServicesGameplay
             HandleNormalPlacement();
         }
 
-        private void Place(BuildController block)
+        private void Place(BuildController current, BuildController highest)
         {
             _appData.LevelData.PlacedBlocksCount += 1;
 
-            block.SetState(BuildState.Placed);
-            block.SetKinematicState(RigidbodyType2D.Static);
+            var fixedPos = new Vector3(current.transform.position.x, Mathf.Round(highest.transform.position.y + _buildingConfig.BlockHeight), highest.transform.position.z);
+            current.transform.DOMove(fixedPos, 0.25f);
+            current.transform.DORotate(Vector3.zero, 0.25f);
+            current.SetState(BuildState.Placed);
+            current.SetKinematicState(RigidbodyType2D.Static);
             
             _settingsService.PlaySfx(SoundKey.BlockPlaced);
             Debug.Log("Success");
@@ -89,11 +93,13 @@ namespace _Project.Scripts.ServicesGameplay
             _spawn.SpawnNext().Forget();
         }
 
-        private void HandlePerfectPlacement(BuildController current)
+        private void HandlePerfectPlacement(BuildController current, BuildController highest)
         {
             _appData.LevelData.PerfectMultiplier += 1;
             _appData.LevelData.LevelScore += 5 * _appData.LevelData.PerfectMultiplier;
-            
+
+            var fixedPos = new Vector3(highest.transform.position.x, Mathf.Round(highest.transform.position.y + _buildingConfig.BlockHeight), highest.transform.position.z);
+            current.transform.DOMove(fixedPos, 0.25f);
             _effectPool.Get(EffectType.Perfect, null, current.transform.position + new Vector3(0, _buildingConfig.BlockHeight / 2, 0));
             _feedbackService.ShowPerfect();
         }
