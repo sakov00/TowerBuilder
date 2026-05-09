@@ -44,19 +44,9 @@ namespace _Project.Scripts.ServicesGameplay
         private void InitBlock(BuildController block)
         {
             _current = block;
-
-            _direction = Random.value < 0.5f
-                ? -1f
-                : 1f;
-
-            // Центр маятника над блоком
-            _center = block.transform.position +
-                      Vector3.up * _buildingConfig.SwingHeight;
-
-            // Начальный угол
-            _time = _direction > 0
-                ? -Mathf.PI * 0.5f
-                : Mathf.PI * 0.5f;
+            _direction = Random.value < 0.5f ? -1f : 1f;
+            _center = block.transform.position + Vector3.up * _buildingConfig.SwingHeight;
+            _time = _direction > 0 ? -Mathf.PI * 0.5f : Mathf.PI * 0.5f;
         }
 
         private void Move(BuildController block)
@@ -64,9 +54,8 @@ namespace _Project.Scripts.ServicesGameplay
             _time += Time.deltaTime * _buildingConfig.SwingSpeed * _direction;
             _time = Mathf.Clamp(_time, -Mathf.PI * 0.5f, Mathf.PI * 0.5f);
             
-            float radius = _buildingConfig.SwingRangeX;
-            float x = Mathf.Sin(_time) * radius;
-            float y = -Mathf.Cos(_time) * radius;
+            float x = Mathf.Sin(_time) * _buildingConfig.SwingRange.x;
+            float y = -Mathf.Cos(_time) * _buildingConfig.SwingRange.y;
 
             Vector3 pos = _center + new Vector3(x, y, 0f);
 

@@ -3,6 +3,7 @@ using System.Linq;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Registries;
 using _Project.Scripts.Services;
+using _Project.Scripts.ServicesGameplay;
 using _Project.Scripts.UI.Windows;
 using Cysharp.Threading.Tasks;
 using UniRx;
@@ -21,6 +22,7 @@ namespace _Project.Scripts
         [Inject] private SaveRegistry _saveRegistry;
         [Inject] private ApplicationEventsHandler _applicationEventsHandler;
         [Inject] private LiveRegistry _liveRegistry;
+        [Inject] private BlockSpawnService _blockSpawnService;
         
         private CompositeDisposable _disposables;
         
@@ -48,6 +50,8 @@ namespace _Project.Scripts
             _applicationEventsHandler.OnApplicationPaused += OnApplicationPause;
 
             Time.timeScale = 1;
+
+            await _blockSpawnService.SpawnNext();
             
             _windowsManager.ShowFastWindow<GameWindow>();
             await _windowsManager.HideWindow<LoadingWindow>();

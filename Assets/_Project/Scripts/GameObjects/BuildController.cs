@@ -2,6 +2,7 @@ using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects.Abstract.BaseObject;
 using _Project.Scripts.Pools;
 using _Project.Scripts.ServicesGameplay;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
@@ -29,7 +30,7 @@ namespace _Project.Scripts.GameObjects
             if (Model.State != BuildState.Dropped)
                 return;
 
-            _placementService.Resolve(this);
+            _placementService.Resolve(this).Forget();
             
         }
         
@@ -38,7 +39,7 @@ namespace _Project.Scripts.GameObjects
             if (Model.State != BuildState.Dropped)
                 return;
 
-            _placementService.Resolve(this);
+            _placementService.Resolve(this).Forget();
         }
         
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)

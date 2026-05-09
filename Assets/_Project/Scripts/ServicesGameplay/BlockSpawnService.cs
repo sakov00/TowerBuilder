@@ -42,7 +42,7 @@ namespace _Project.Scripts.ServicesGameplay
                 _targetY = highest.Transform.position.y + _cameraConfig.OffsetMoveY;
             }
             
-            var block = _pool.Get(BuildType.StartBlock, null, new Vector3(0, _targetY + _buildingConfig.BlockHeight, 0));
+            var block = _pool.Get(BuildType.StartBlock, null, new Vector3(0, _targetY, 0));
             block.transform.localScale = Vector3.zero;
             
             var randomIndex = Random.Range(0, _buildingConfig.allBlockImages.Count);
@@ -52,14 +52,12 @@ namespace _Project.Scripts.ServicesGameplay
             block.SetImage(randomSprite);
             block.SetState(BuildState.Swinging);
             block.SetKinematicState(RigidbodyType2D.Static);
-
+            
+            await UniTask.Yield();
+            await UniTask.Yield();
             await UniTask.Yield();
             
-            block.gameObject.SetActive(true);
-
-            block.transform
-                .DOScale(Vector3.one, 0.25f)
-                .SetEase(Ease.OutBack);
+            block.transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
 
             return block;
         }

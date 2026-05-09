@@ -3,7 +3,6 @@ using System.Linq;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Factories;
 using _Project.Scripts.GameObjects;
-using DG.Tweening;
 using UnityEngine;
 using VContainer;
 
@@ -29,9 +28,9 @@ namespace _Project.Scripts.Pools
             if (build != null)
             {
                 _availableBuilds.Remove(build);
-                build.transform.DOKill();
                 build.transform.position = position;
                 build.transform.rotation = rotation;
+                build.gameObject.SetActive(true);
             }
             else
             {

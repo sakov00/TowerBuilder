@@ -1,4 +1,5 @@
 using System.Linq;
+using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects;
@@ -20,10 +21,11 @@ namespace _Project.Scripts.ServicesGameplay
         [Inject] private SettingsService _settingsService;
         [Inject] private BlockSpawnService _spawn;
         [Inject] private BuildingConfig _buildingConfig;
+        [Inject] private BlocksContainer _blocksContainer;
         [Inject] private GameplayFeedbackService _feedbackService;
         [Inject] private LiveRegistry _liveRegistry;
 
-        public void Resolve(BuildController current)
+        public async UniTask Resolve(BuildController current)
         {
             var blocks = _liveRegistry.GetAllReactive();
 
@@ -69,11 +71,17 @@ namespace _Project.Scripts.ServicesGameplay
         {
             _appData.LevelData.PlacedBlocksCount += 1;
 
-            var fixedPos = new Vector3(current.transform.position.x, Mathf.Round(highest.transform.position.y + _buildingConfig.BlockHeight), highest.transform.position.z);
-            current.transform.DOMove(fixedPos, 0.25f);
-            current.transform.DORotate(Vector3.zero, 0.25f);
+            current.transform.SetParent(_blocksContainer.transform);
             current.SetState(BuildState.Placed);
             current.SetKinematicState(RigidbodyType2D.Static);
+            
+            var targetLocalPos = new Vector3(
+                current.transform.localPosition.x,
+                Mathf.Round(highest.transform.localPosition.y + _buildingConfig.BlockHeight),
+                current.transform.localPosition.z);
+            
+            current.transform.DOLocalMove(targetLocalPos, 0.25f);
+            current.transform.DOLocalRotate(Vector3.zero, 0.25f);
             
             _settingsService.PlaySfx(SoundKey.BlockPlaced);
             Debug.Log("Success");
@@ -86,6 +94,7 @@ namespace _Project.Scripts.ServicesGameplay
             block.SetState(BuildState.Failed);
             block.DisposeDelayed().Forget();
             
+            GlobalObjects.Camera.DOShakePosition(0.2f, 0.3f, 20, 90f);
             Vibration.VibrateAndroid(200);
             _settingsService.PlaySfx(SoundKey.BlockFailed);
             Debug.Log("Failed");
@@ -98,9 +107,15 @@ namespace _Project.Scripts.ServicesGameplay
             _appData.LevelData.PerfectMultiplier += 1;
             _appData.LevelData.LevelScore += 5 * _appData.LevelData.PerfectMultiplier;
 
-            var fixedPos = new Vector3(highest.transform.position.x, Mathf.Round(highest.transform.position.y + _buildingConfig.BlockHeight), highest.transform.position.z);
-            current.transform.DOMove(fixedPos, 0.25f);
-            _effectPool.Get(EffectType.Perfect, null, current.transform.position + new Vector3(0, _buildingConfig.BlockHeight / 2, 0));
+            var targetLocalPos = new Vector3(
+                highest.transform.localPosition.x,
+                Mathf.Round(highest.transform.localPosition.y + _buildingConfig.BlockHeight),
+                highest.transform.localPosition.z);
+
+            current.transform.DOLocalMove(targetLocalPos, 0.25f);
+            _effectPool.Get(EffectType.Perfect, current.transform, 
+                current.transform.position + new Vector3(0, _buildingConfig.BlockHeight / 2, 0));
+
             _feedbackService.ShowPerfect();
         }
 

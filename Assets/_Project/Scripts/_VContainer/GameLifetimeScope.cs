@@ -19,6 +19,8 @@ namespace _Project.Scripts._VContainer
         [SerializeField] protected SettingsService _settingsService;
         [SerializeField] protected PoolsManager _poolsManager;
         [SerializeField] protected ApplicationEventsHandler _applicationEventsHandler;
+        [SerializeField] protected BlocksContainer _blocksContainer;
+        
         [Header("Configs")]
         [SerializeField] protected BuildingConfig _buildingConfig;
         [SerializeField] protected EffectsConfig _effectsConfig;
@@ -88,6 +90,7 @@ namespace _Project.Scripts._VContainer
             builder.RegisterInstance(_settingsService).As<IInitializable>().AsSelf();
             builder.RegisterInstance(_poolsManager).AsSelf();
             builder.RegisterInstance(_applicationEventsHandler).AsSelf();
+            builder.RegisterInstance(_blocksContainer).AsSelf();
             
             builder.Register<SaveLoadLevelService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
@@ -96,6 +99,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<BlockDropService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockPlacementService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockSpawnService>(Lifetime.Singleton).AsSelf();
+            builder.Register<TowerSwayService>(Lifetime.Singleton).AsSelf();
             builder.Register<CameraFollowService>(Lifetime.Singleton).AsSelf();
             builder.Register<GameplayFeedbackService>(Lifetime.Singleton).AsSelf();
                 
