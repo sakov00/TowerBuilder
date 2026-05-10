@@ -48,6 +48,9 @@ TagManager:
   - name: BG
     uniqueID: 2863636939
     locked: 0
+  - name: BGLine
+    uniqueID: 1532612669
+    locked: 0
   - name: Environment
     uniqueID: 832125065
     locked: 0

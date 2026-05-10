@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CameraConfig
   m_EditorClassIdentifier: 
   <SmoothSpeed>k__BackingField: 5
-  <OffsetMoveY>k__BackingField: 1.5
+  <OffsetMoveY>k__BackingField: 2
   <MinY>k__BackingField: 5
   <MaxY>k__BackingField: 300

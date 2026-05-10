@@ -1,5 +1,6 @@
 using System.Linq;
 using _Project.Scripts._GlobalLogic;
+using _Project.Scripts.AllAppData;
 using UnityEngine;
 using _Project.Scripts.GameObjects;
 using _Project.Scripts.Registries;
@@ -14,12 +15,13 @@ namespace _Project.Scripts.ServicesGameplay
     {
         [Inject] private LiveRegistry _liveRegistry;
         [Inject] private CameraConfig _cameraConfig;
-
-        private float _targetY;
-        private BuildController _lastHighest;
-
+        [Inject] private AppData _appData;
+        
         public void Tick()
         {
+            if(_appData.LevelData.GameDisabled)
+                return;
+            
             var blocks = _liveRegistry.GetAllReactive();
 
             var highest = blocks
@@ -31,17 +33,21 @@ namespace _Project.Scripts.ServicesGameplay
             if (highest == null)
                 return;
 
-            if (_lastHighest != highest)
+            if (_appData.LevelData.HighestBlock != highest)
             {
-                _lastHighest = highest;
-                _targetY = highest.Transform.position.y + _cameraConfig.OffsetMoveY;
+                _appData.LevelData.HighestBlock = highest;
             }
             
             Vector3 pos = GlobalObjects.Camera.transform.position;
             
-            pos.y = Mathf.Lerp(pos.y, _targetY + 0.5f, Time.deltaTime * _cameraConfig.SmoothSpeed);
+            pos.y = Mathf.Lerp(pos.y, highest.Transform.position.y + _cameraConfig.OffsetMoveY, Time.deltaTime * _cameraConfig.SmoothSpeed);
             pos.y = Mathf.Clamp(pos.y, _cameraConfig.MinY, _cameraConfig.MaxY);
             GlobalObjects.Camera.transform.position = pos;
+        }
+
+        public void Reset()
+        {
+            GlobalObjects.Camera.transform.position = new Vector3(0, _cameraConfig.MinY, -10);
         }
     }
 }

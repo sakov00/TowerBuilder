@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using _Project.Scripts._GlobalLogic;
+using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects;
 using _Project.Scripts.Pools;
@@ -10,6 +12,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using VContainer;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.ServicesGameplay
 {
@@ -18,10 +21,24 @@ namespace _Project.Scripts.ServicesGameplay
         [Inject] private BuildPool _pool;
         [Inject] private LiveRegistry _liveRegistry;
         [Inject] private BuildingConfig _buildingConfig;
+        [Inject] private BlocksContainer _blocksContainer;
         [Inject] private CameraConfig _cameraConfig;
+        [Inject] private AppData _appData;
         
-        private float _targetY;
-        private BuildController _lastHighest;
+        public async UniTask<BuildController> SpawnStartBlock()
+        {
+            var block = _pool.Get(BuildType.StartBlock, _blocksContainer.transform);
+            
+            var randomIndex = Random.Range(0, _buildingConfig.allBlockImages.Count);
+            var randomSprite = _buildingConfig.allBlockImages[randomIndex];
+
+            block.Initialize();
+            block.SetImage(randomSprite);
+            block.SetState(BuildState.Placed);
+            block.SetKinematicState(RigidbodyType2D.Static);
+
+            return block;
+        }
 
         public async UniTask<BuildController> SpawnNext()
         {
@@ -36,13 +53,13 @@ namespace _Project.Scripts.ServicesGameplay
             if (highest == null)
                 return null;
 
-            if (_lastHighest != highest)
+            if (_appData.LevelData.HighestBlock != highest)
             {
-                _lastHighest = highest;
-                _targetY = highest.Transform.position.y + _cameraConfig.OffsetMoveY;
+                _appData.LevelData.HighestBlock = highest;
             }
             
-            var block = _pool.Get(BuildType.StartBlock, null, new Vector3(0, _targetY, 0));
+            var block = _pool.Get(BuildType.StartBlock, null, 
+                new Vector3(0, _appData.LevelData.HighestBlock.Transform.position.y + _cameraConfig.OffsetMoveY, 0));
             block.transform.localScale = Vector3.zero;
             
             var randomIndex = Random.Range(0, _buildingConfig.allBlockImages.Count);

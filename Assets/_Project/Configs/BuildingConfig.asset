@@ -44,8 +44,10 @@ MonoBehaviour:
   <PlacementTolerance>k__BackingField: 0.5
   <PerfectPlacementTolerance>k__BackingField: 0.05
   <NearFailPlacementTolerance>k__BackingField: 0.45
+  <DestroyAmplitude>k__BackingField: 2
+  <SwaySpeed>k__BackingField: 2
+  <SwaySensitivityImbalance>k__BackingField: 0.2
   <SwayAmplitude>k__BackingField: {x: 0, y: 1}
-  <SwaySpeed>k__BackingField: 1.1
-  <StartSwayFrom>k__BackingField: 10
-  <MaxSwayFrom>k__BackingField: 20
+  <StartSwayFrom>k__BackingField: 5
+  <MaxSwayFrom>k__BackingField: 500
   <BlockHeight>k__BackingField: 1

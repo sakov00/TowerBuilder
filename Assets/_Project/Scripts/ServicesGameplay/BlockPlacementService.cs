@@ -20,10 +20,12 @@ namespace _Project.Scripts.ServicesGameplay
         [Inject] private EffectPool _effectPool;
         [Inject] private SettingsService _settingsService;
         [Inject] private BlockSpawnService _spawn;
+        [Inject] private TowerSwayService _towerSway;
         [Inject] private BuildingConfig _buildingConfig;
         [Inject] private BlocksContainer _blocksContainer;
         [Inject] private GameplayFeedbackService _feedbackService;
         [Inject] private LiveRegistry _liveRegistry;
+        [Inject] private GameManager _gameManager;
 
         public async UniTask Resolve(BuildController current)
         {
@@ -49,7 +51,7 @@ namespace _Project.Scripts.ServicesGameplay
                 Fail(current);
                 return;
             }
-
+            
             Place(current, highest);
 
             if (absOffset <= _buildingConfig.PerfectPlacementTolerance)
@@ -70,7 +72,7 @@ namespace _Project.Scripts.ServicesGameplay
         private void Place(BuildController current, BuildController highest)
         {
             _appData.LevelData.PlacedBlocksCount += 1;
-
+            
             current.transform.SetParent(_blocksContainer.transform);
             current.SetState(BuildState.Placed);
             current.SetKinematicState(RigidbodyType2D.Static);
@@ -80,11 +82,18 @@ namespace _Project.Scripts.ServicesGameplay
                 Mathf.Round(highest.transform.localPosition.y + _buildingConfig.BlockHeight),
                 current.transform.localPosition.z);
             
+            _towerSway.RegisterPlacementError(current.transform.localPosition.x);
             current.transform.DOLocalMove(targetLocalPos, 0.25f);
             current.transform.DOLocalRotate(Vector3.zero, 0.25f);
             
             _settingsService.PlaySfx(SoundKey.BlockPlaced);
             Debug.Log("Success");
+            
+            if (Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalance)
+            {
+                _gameManager.FailHandle().Forget();
+                return;
+            }
 
             _spawn.SpawnNext().Forget();
         }

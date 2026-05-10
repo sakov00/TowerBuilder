@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using _Project.Scripts.AllAppData;
 using UnityEngine;
 using _Project.Scripts.Enums;
 using _Project.Scripts.GameObjects;
@@ -6,6 +8,7 @@ using _Project.Scripts.Registries;
 using _Project.Scripts.SO;
 using VContainer;
 using VContainer.Unity;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.ServicesGameplay
 {
@@ -13,16 +16,19 @@ namespace _Project.Scripts.ServicesGameplay
     {
         [Inject] private LiveRegistry _liveRegistry;
         [Inject] private BuildingConfig _buildingConfig;
+        [Inject] private AppData _appData;
 
         private BuildController _current;
 
         private float _time;
         private float _direction;
-        
         private Vector3 _center;
 
         public void Tick()
         {
+            if(_appData.LevelData.GameDisabled)
+                return;
+            
             var block = _liveRegistry.GetAllReactive()
                 .OfType<BuildController>()
                 .FirstOrDefault(b => b.Model.State == BuildState.Swinging);

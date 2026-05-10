@@ -22,8 +22,10 @@ namespace _Project.Scripts.SO
         [field:SerializeField] public float NearFailPlacementTolerance { get; private set; } = 0.70f;
         
         [field: Header("SwayData")]
-        [field:SerializeField] public Vector2 SwayAmplitude { get; private set; } = new (-1, 1);
+        [field:SerializeField] public float DestroyImbalance { get; private set; } = 10f;
         [field:SerializeField] public float SwaySpeed { get; private set; } = 1f;
+        [field:SerializeField] public float SwaySensitivityImbalance { get; private set; } = 1.1f;
+        [field:SerializeField] public Vector2 SwayAmplitude { get; private set; } = new (-1, 1);
         [field:SerializeField] public int StartSwayFrom { get; private set; } = 10;
         [field:SerializeField] public int MaxSwayFrom { get; private set; } = 20;
         

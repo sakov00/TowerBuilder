@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
+using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
+using _Project.Scripts.GameObjects;
 using _Project.Scripts.Registries;
 using _Project.Scripts.Services;
 using _Project.Scripts.ServicesGameplay;
@@ -23,11 +25,8 @@ namespace _Project.Scripts
         [Inject] private ApplicationEventsHandler _applicationEventsHandler;
         [Inject] private LiveRegistry _liveRegistry;
         [Inject] private BlockSpawnService _blockSpawnService;
-        
-        private CompositeDisposable _disposables;
-        
-        public event Func<UniTaskVoid> WinEvent;
-        public event Func<UniTaskVoid> FailEvent;
+        [Inject] private CameraFollowService _cameraFollowService;
+        [Inject] private BlocksContainer _blocksContainer;
 
         public virtual async UniTask RestartLevel()
         {
@@ -44,13 +43,12 @@ namespace _Project.Scripts
             
             // await LoadLevel(levelIndex);
             
-            WinEvent += WinHandle;
-            FailEvent += FailHandle;
             _applicationEventsHandler.OnApplicationQuited += OnApplicationQuit;
             _applicationEventsHandler.OnApplicationPaused += OnApplicationPause;
 
             Time.timeScale = 1;
-
+            
+            await _blockSpawnService.SpawnStartBlock();
             await _blockSpawnService.SpawnNext();
             
             _windowsManager.ShowFastWindow<GameWindow>();
@@ -69,37 +67,44 @@ namespace _Project.Scripts
             await _sceneCreator.InstantiateObjects(_appData.LevelData.SavableModels, isInitialize);
         }
         
-        private async UniTaskVoid WinHandle()
+        public async UniTaskVoid WinHandle()
         {
             await _windowsManager.ShowWindow<WinWindow>();
             _windowsManager.HideFastWindow<GameWindow>();
         }
 
-        private async UniTaskVoid FailHandle()
+        public async UniTaskVoid FailHandle()
         {
-            await _windowsManager.ShowWindow<FailWindow>();
-            _windowsManager.HideFastWindow<GameWindow>();
+            _appData.LevelData.GameDisabled = true;
+            foreach (var buildController in _liveRegistry.GetAllReactive().OfType<BuildController>())
+            {
+                buildController.SetKinematicState(RigidbodyType2D.Dynamic);
+            }
+            await UniTask.Delay(2000);
+            await StartLevel(0);
+            // await _windowsManager.ShowWindow<FailWindow>();
+            // _windowsManager.HideFastWindow<GameWindow>();
         }
-        
+
+        public void Dispose()
+        {
+            _applicationEventsHandler.OnApplicationQuited -= OnApplicationQuit;
+            _applicationEventsHandler.OnApplicationPaused -= OnApplicationPause;
+            _liveRegistry.GetAllReactive().ToList().ForEach(x => x.Dispose());
+            _cameraFollowService.Reset();
+            _appData.LevelData = new LevelData();
+            _blocksContainer.Reset();
+        }
+
         private void OnApplicationQuit()
         {
             // _saveLoadLevelService?.SaveLevelProgress(_appData.User.CurrentLevel).GetAwaiter().GetResult();
         }
-        
+
         private void OnApplicationPause(bool pause)
         {
             // if (pause)
             //     _saveLoadLevelService?.SaveLevelProgress(_appData.User.CurrentLevel).GetAwaiter().GetResult();
-        }
-        
-        public void Dispose()
-        {
-            _disposables?.Dispose();
-            WinEvent -= WinHandle;
-            FailEvent -= FailHandle;
-            _applicationEventsHandler.OnApplicationQuited -= OnApplicationQuit;
-            _applicationEventsHandler.OnApplicationPaused -= OnApplicationPause;
-            _disposables = new CompositeDisposable();
         }
     }
 }

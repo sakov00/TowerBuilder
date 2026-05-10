@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.GameObjects;
 using _Project.Scripts.SO;
@@ -14,39 +15,30 @@ namespace _Project.Scripts.ServicesGameplay
         [Inject] private AppData _appData;
 
         private float _time;
-        private Vector3 _startPosition;
 
-        private float _currentAmplitude;
-        private float _currentSpeed;
-
-        [Inject]
-        private void Construct()
+        public void RegisterPlacementError(float offset)
         {
-            _startPosition = _blocksContainer.transform.position;
-            _currentAmplitude = _buildingConfig.SwayAmplitude.x;
-            _currentSpeed = _buildingConfig.SwaySpeed;
+            _appData.LevelData.TotalSwayImbalance += offset;
         }
 
         public void Tick()
         {
+            if(_appData.LevelData.GameDisabled)
+                return;
+            
             int blocksCount = _appData.LevelData.PlacedBlocksCount;
 
-            if (blocksCount <= _buildingConfig.StartSwayFrom)
-            {
-                _blocksContainer.transform.position = _startPosition;
-                return;
-            }
-
             float t = Mathf.Clamp01((blocksCount - _buildingConfig.StartSwayFrom) / (float)_buildingConfig.MaxSwayFrom);
-            float targetAmplitude = Mathf.Lerp(_buildingConfig.SwayAmplitude.x, _buildingConfig.SwayAmplitude.y, t);
-            float targetSpeed = Mathf.Lerp(_buildingConfig.SwaySpeed, _buildingConfig.SwaySpeed * 2f, t);
+            float baseAmplitude = Mathf.Lerp(_buildingConfig.SwayAmplitude.y, _buildingConfig.SwayAmplitude.x, t);
+            float targetAmplitude = baseAmplitude;
+            float targetSpeed = _buildingConfig.SwaySpeed + Mathf.Abs(_appData.LevelData.TotalSwayImbalance) * _buildingConfig.SwaySensitivityImbalance;
 
-            _currentAmplitude = Mathf.Lerp(_currentAmplitude, targetAmplitude, Time.deltaTime * 3f);
-            _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, Time.deltaTime * 3f);
-            
-            _time += Time.deltaTime * _currentSpeed;
-            float offsetX = Mathf.Cos(_time) * _currentAmplitude;
-            _blocksContainer.transform.position = _startPosition + new Vector3(offsetX, 0f, 0f);
+            _appData.LevelData.CurrentSwayAmplitude = Mathf.Lerp(_appData.LevelData.CurrentSwayAmplitude, targetAmplitude, Time.deltaTime);
+            _appData.LevelData.CurrentSwaySpeed = Mathf.Lerp(_appData.LevelData.CurrentSwaySpeed, targetSpeed, Time.deltaTime);
+    
+            _time += Time.deltaTime * _appData.LevelData.CurrentSwaySpeed;
+            float angleZ = Mathf.Cos(_time) * _appData.LevelData.CurrentSwayAmplitude;
+            _blocksContainer.transform.rotation = Quaternion.Euler(0, 0, angleZ);
         }
     }
 }
