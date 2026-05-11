@@ -37,17 +37,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d110509ee42bf3e40be40d3c09ede433, type: 3}
   - {fileID: 21300000, guid: 8136e9a4e34242543921bf8edf595825, type: 3}
   - {fileID: 21300000, guid: f69eaaf52700a2d4da080f508a3c6471, type: 3}
-  <SwingSpeed>k__BackingField: 4
+  <SwingSpeed>k__BackingField: 2
   <SwingTilt>k__BackingField: -20
   <SwingRange>k__BackingField: {x: 1.75, y: 1.25}
   <SwingHeight>k__BackingField: 3
   <PlacementTolerance>k__BackingField: 0.5
   <PerfectPlacementTolerance>k__BackingField: 0.05
   <NearFailPlacementTolerance>k__BackingField: 0.45
-  <DestroyAmplitude>k__BackingField: 2
-  <SwaySpeed>k__BackingField: 2
+  <DestroyImbalance>k__BackingField: 10
+  <SwaySpeed>k__BackingField: 1
   <SwaySensitivityImbalance>k__BackingField: 0.2
-  <SwayAmplitude>k__BackingField: {x: 0, y: 1}
+  <SwayAmplitude>k__BackingField: {x: 0, y: 1.25}
   <StartSwayFrom>k__BackingField: 5
   <MaxSwayFrom>k__BackingField: 500
   <BlockHeight>k__BackingField: 1

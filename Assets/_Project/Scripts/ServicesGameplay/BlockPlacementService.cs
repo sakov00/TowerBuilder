@@ -7,6 +7,7 @@ using _Project.Scripts.Pools;
 using _Project.Scripts.Registries;
 using _Project.Scripts.Services;
 using _Project.Scripts.SO;
+using _Project.Scripts.UI.Windows;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -26,6 +27,7 @@ namespace _Project.Scripts.ServicesGameplay
         [Inject] private GameplayFeedbackService _feedbackService;
         [Inject] private LiveRegistry _liveRegistry;
         [Inject] private GameManager _gameManager;
+        [Inject] private WindowsManager _windowsManager;
 
         public async UniTask Resolve(BuildController current)
         {
@@ -88,6 +90,11 @@ namespace _Project.Scripts.ServicesGameplay
             
             _settingsService.PlaySfx(SoundKey.BlockPlaced);
             Debug.Log("Success");
+            
+            if (_appData.LevelData.PlacedBlocksCount > _buildingConfig.StartSwayFrom)
+            {
+                _windowsManager.GetWindow<GameWindow>().ShowBalancePanel();
+            }
             
             if (Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalance)
             {

@@ -2,6 +2,7 @@ using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
 using _Project.Scripts.ServicesGameplay;
+using _Project.Scripts.SO;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
@@ -17,9 +18,12 @@ namespace _Project.Scripts.UI.Windows
         [Inject] private AppData _appData;
         [Inject] private SettingsService _settingsService;
         [Inject] private BlockDropService _blockDropService;
+        [Inject] private BuildingConfig _buildingConfig;
 
         [SerializeField] private Button _pauseMenuButton;
         [SerializeField] private Button _clickArea;
+        [SerializeField] private RectTransform _panelBalance;
+        [SerializeField] private RectTransform _arrowBalance;
         [SerializeField] private TextMeshProUGUI _textFeedback;
         [SerializeField] private TextMeshProUGUI _textScore;
         
@@ -44,11 +48,26 @@ namespace _Project.Scripts.UI.Windows
             _appData.LevelData.LevelScoreReactive
                 .Subscribe(value => _textScore.text = $"Score: {value}")
                 .AddTo(Disposables);
+            _appData.LevelData.TotalSwayImbalanceReactive
+                .Subscribe(value =>
+                {
+                    float normalized = value / _buildingConfig.DestroyImbalance;
+                    normalized = Mathf.Clamp(normalized, -1f, 1f);
+                    float maxAngle = 90f;
+                    float angle = normalized * maxAngle;
+                    _arrowBalance.rotation = Quaternion.Euler(0f, 0f, -angle);
+                })
+                .AddTo(Disposables);
         }
 
         public override void Initialize()
         {
             base.Initialize();
+        }
+
+        public void Reset()
+        {
+            _panelBalance.anchoredPosition = new Vector2(0, -_panelBalance.rect.height);
         }
 
         public void ShowText(string text, Color color)
@@ -62,6 +81,11 @@ namespace _Project.Scripts.UI.Windows
             sequence.AppendInterval(0.5f);
             sequence.Append(_textFeedback.transform.DOScale(0, 0.5f).SetEase(Ease.InBack));
             sequence.AppendCallback(() => _textFeedback.text = string.Empty);
+        }
+        
+        public void ShowBalancePanel()
+        {
+            _panelBalance.DOAnchorPos(new Vector2(0, 50), 0.25f).SetEase(Ease.OutBack);
         }
     }
 }

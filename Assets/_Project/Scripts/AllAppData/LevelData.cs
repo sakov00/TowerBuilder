@@ -96,6 +96,10 @@ namespace _Project.Scripts.AllAppData
             LevelScoreReactive.Value = levelData.LevelScore;
             PerfectMultiplierReactive.Value = levelData.PerfectMultiplier;
             NearFailMultiplierReactive.Value = levelData.NearFailMultiplier;
+            CurrentSwayAmplitudeReactive.Value = levelData.CurrentSwayAmplitude;
+            CurrentSwaySpeedReactive.Value = levelData.CurrentSwaySpeed;
+            TotalSwayImbalanceReactive.Value = levelData.TotalSwayImbalance;
+            HighestBlock = null;
         }
     }
 }

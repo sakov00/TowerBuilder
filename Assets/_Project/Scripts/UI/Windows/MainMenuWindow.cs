@@ -42,7 +42,7 @@ namespace _Project.Scripts.UI.Windows
             _settingsButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _settingsService.PlaySfx(SoundKey.ButtonClick);
-                // WindowsManager.ShowWindow<SettingsWindow>();
+                WindowsManager.ShowWindow<SettingsWindow>();
             }).AddTo(Disposables);
             _exitButton.OnClickAsObservable().Subscribe(_ =>
             {

@@ -21,20 +21,18 @@ namespace _Project.Scripts
         [Inject] private SettingsService _settingsService;
         public void Initialize()
         {
-            Application.targetFrameRate = 120;
+            Application.targetFrameRate = 60;
         }
         
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            // _windowsManager.ShowFastWindow<LoadingWindow>();
-            // await _settingsService.PlayMusicAsync(SoundKey.MenuMusic);
-            // await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
-            // _windowsManager.ShowFastWindow<MainMenuWindow>();
-            // _windowsManager.HideWindow<LoadingWindow>();
+            _windowsManager.ShowFastWindow<LoadingWindow>();
+            await _settingsService.PlayMusicAsync(SoundKey.MenuMusic);
+            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
             Vibration.Init();
-            var buildControllers = Object.FindObjectsByType<BuildController>(FindObjectsSortMode.None).ToList();
-            buildControllers.ForEach(controller => controller.Initialize());
-            await _gameManager.StartLevel(0);
+            _windowsManager.ShowFastWindow<MainMenuWindow>();
+            _windowsManager.HideWindow<LoadingWindow>();
+            // await _gameManager.StartLevel(0);
         }
     }
 }

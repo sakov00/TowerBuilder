@@ -19,13 +19,6 @@ public class TickScheduler : ITickable
 
     public void Tick()
     {
-        if (_services.Count == 0)
-            return;
-
-        _services[_index].Tick();
-
-        _index++;
-        if (_index >= _services.Count)
-            _index = 0;
+        _services.ForEach(x => x.Tick());
     }
 }

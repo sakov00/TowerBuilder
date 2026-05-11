@@ -50,8 +50,11 @@ namespace _Project.Scripts
             
             await _blockSpawnService.SpawnStartBlock();
             await _blockSpawnService.SpawnNext();
+            _appData.LevelData.GameDisabled = false;
             
             _windowsManager.ShowFastWindow<GameWindow>();
+            var gameWindow = _windowsManager.GetWindow<GameWindow>();
+            gameWindow.Reset();
             await _windowsManager.HideWindow<LoadingWindow>();
         }
         
@@ -92,7 +95,7 @@ namespace _Project.Scripts
             _applicationEventsHandler.OnApplicationPaused -= OnApplicationPause;
             _liveRegistry.GetAllReactive().ToList().ForEach(x => x.Dispose());
             _cameraFollowService.Reset();
-            _appData.LevelData = new LevelData();
+            _appData.LevelData.SetData(new LevelData());
             _blocksContainer.Reset();
         }
 
