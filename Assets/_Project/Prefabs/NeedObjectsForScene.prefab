@@ -173,7 +173,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -5.5, z: 10}
-  m_LocalScale: {x: 10, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6220521580244470161}
@@ -220,7 +220,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1915895233
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -889,6 +889,9 @@ MonoBehaviour:
   _settingsService: {fileID: 4204396160017081864}
   _poolsManager: {fileID: 5053060504112252011}
   _applicationEventsHandler: {fileID: 5090804477363207933}
+  _blocksContainer: {fileID: 0}
+  _playerConfig: {fileID: 11400000, guid: 837e8d7f829659749a29037f295ed6aa, type: 2}
+  _imagesConfig: {fileID: 11400000, guid: 9f8036da0d8648549a499facbf3c6c28, type: 2}
   _buildingConfig: {fileID: 11400000, guid: 4707147491c3e5b438d235a1093e9f5d, type: 2}
   _effectsConfig: {fileID: 11400000, guid: f62f027c94b755b45abb69494d9f0249, type: 2}
   _cameraConfig: {fileID: 11400000, guid: f59f002a28df03a4083ab0c47cec3e02, type: 2}
@@ -986,7 +989,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -22,6 +22,8 @@ namespace _Project.Scripts._VContainer
         [SerializeField] protected BlocksContainer _blocksContainer;
         
         [Header("Configs")]
+        [SerializeField] protected PlayerConfig _playerConfig;
+        [SerializeField] protected ImagesConfig _imagesConfig;
         [SerializeField] protected BuildingConfig _buildingConfig;
         [SerializeField] protected EffectsConfig _effectsConfig;
         [SerializeField] protected CameraConfig _cameraConfig;
@@ -67,6 +69,7 @@ namespace _Project.Scripts._VContainer
         
         private void RegisterPools(IContainerBuilder builder)
         {
+            builder.RegisterComponent(_poolsManager).As<IStartable>().AsSelf();
             builder.Register<BuildPool>(Lifetime.Singleton).AsSelf();
             builder.Register<EffectPool>(Lifetime.Singleton).AsSelf();
         }
@@ -79,6 +82,8 @@ namespace _Project.Scripts._VContainer
         
         private void RegisterSO(IContainerBuilder builder)
         {
+            builder.RegisterInstance(_playerConfig).AsSelf();
+            builder.RegisterInstance(_imagesConfig).AsSelf();
             builder.RegisterInstance(_buildingConfig).AsSelf();
             builder.RegisterInstance(_effectsConfig).AsSelf();
             builder.RegisterInstance(_cameraConfig).AsSelf();
@@ -88,7 +93,6 @@ namespace _Project.Scripts._VContainer
         private void RegisterServices(IContainerBuilder builder)
         {
             builder.RegisterInstance(_settingsService).As<IInitializable>().AsSelf();
-            builder.RegisterInstance(_poolsManager).AsSelf();
             builder.RegisterInstance(_applicationEventsHandler).AsSelf();
             builder.RegisterInstance(_blocksContainer).AsSelf();
             

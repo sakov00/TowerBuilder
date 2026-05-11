@@ -14,9 +14,11 @@ namespace _Project.Scripts.AllAppData
     public partial class LevelData
     {
         [Inject] private BuildingConfig _buildingConfig;
+        [Inject] private PlayerConfig _playerConfig;
         public List<ISavableModel> SavableModels { get; set; } = new();
 
         [MemoryPackIgnore] public readonly BoolReactiveProperty GameDisabledReactive;
+        [MemoryPackIgnore] public readonly IntReactiveProperty HealthReactive;
         [MemoryPackIgnore] public readonly IntReactiveProperty PlacedBlocksCountReactive;
         [MemoryPackIgnore] public readonly IntReactiveProperty LevelScoreReactive;
         [MemoryPackIgnore] public readonly IntReactiveProperty PerfectMultiplierReactive;
@@ -29,6 +31,12 @@ namespace _Project.Scripts.AllAppData
         {
             get => GameDisabledReactive.Value;
             set => GameDisabledReactive.Value = value;
+        }
+        
+        public int Health
+        {
+            get => HealthReactive.Value;
+            set => HealthReactive.Value = value;
         }
         
         public int PlacedBlocksCount
@@ -79,7 +87,8 @@ namespace _Project.Scripts.AllAppData
         {
             InjectManager.Inject(this);
             GameDisabledReactive = new BoolReactiveProperty(false);
-            PlacedBlocksCountReactive = new IntReactiveProperty(0);
+            HealthReactive = new IntReactiveProperty(_playerConfig.MaxHealth);
+            PlacedBlocksCountReactive = new IntReactiveProperty(1);
             LevelScoreReactive = new IntReactiveProperty(0);
             PerfectMultiplierReactive = new IntReactiveProperty(0);
             NearFailMultiplierReactive = new IntReactiveProperty(0);
@@ -92,6 +101,7 @@ namespace _Project.Scripts.AllAppData
         public void SetData(LevelData levelData)
         {
             SavableModels = levelData.SavableModels;
+            HealthReactive.Value = levelData.Health;
             PlacedBlocksCountReactive.Value = levelData.PlacedBlocksCount;
             LevelScoreReactive.Value = levelData.LevelScore;
             PerfectMultiplierReactive.Value = levelData.PerfectMultiplier;

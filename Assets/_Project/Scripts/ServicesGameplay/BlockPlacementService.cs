@@ -115,6 +115,13 @@ namespace _Project.Scripts.ServicesGameplay
             _settingsService.PlaySfx(SoundKey.BlockFailed);
             Debug.Log("Failed");
 
+            _appData.LevelData.Health--;
+            if (_appData.LevelData.Health <= 0)
+            {
+                _gameManager.FailHandle().Forget();
+                return;
+            }
+
             _spawn.SpawnNext().Forget();
         }
 

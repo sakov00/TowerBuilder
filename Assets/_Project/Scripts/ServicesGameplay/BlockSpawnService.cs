@@ -28,6 +28,7 @@ namespace _Project.Scripts.ServicesGameplay
         public async UniTask<BuildController> SpawnStartBlock()
         {
             var block = _pool.Get(BuildType.StartBlock, _blocksContainer.transform);
+            block.transform.localScale = Vector3.one;
             
             var randomIndex = Random.Range(0, _buildingConfig.allBlockImages.Count);
             var randomSprite = _buildingConfig.allBlockImages[randomIndex];

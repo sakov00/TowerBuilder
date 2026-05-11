@@ -2,10 +2,11 @@ using _Project.Scripts._VContainer;
 using _Project.Scripts.Pools;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace _Project.Scripts.Services
 {
-    public class PoolsManager : MonoBehaviour
+    public class PoolsManager : MonoBehaviour, IStartable
     {
         [SerializeField] private Transform _buildPoolContainer;
         [SerializeField] private Transform _effectPoolContainer;
@@ -13,9 +14,8 @@ namespace _Project.Scripts.Services
         [Inject] private BuildPool _buildPool;
         [Inject] private EffectPool _effectPool;
 
-        private void Start()
+        public void Start()
         {
-            InjectManager.Inject(this);
             _buildPool.SetContainer(_buildPoolContainer);
             _effectPool.SetContainer(_effectPoolContainer);
         }

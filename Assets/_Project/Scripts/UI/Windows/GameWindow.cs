@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
@@ -19,11 +20,14 @@ namespace _Project.Scripts.UI.Windows
         [Inject] private SettingsService _settingsService;
         [Inject] private BlockDropService _blockDropService;
         [Inject] private BuildingConfig _buildingConfig;
+        [Inject] private ImagesConfig _imagesConfig;
 
         [SerializeField] private Button _pauseMenuButton;
+        [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _clickArea;
         [SerializeField] private RectTransform _panelBalance;
         [SerializeField] private RectTransform _arrowBalance;
+        [SerializeField] private List<Image> _healthImages;
         [SerializeField] private TextMeshProUGUI _textFeedback;
         [SerializeField] private TextMeshProUGUI _textScore;
         
@@ -38,6 +42,13 @@ namespace _Project.Scripts.UI.Windows
                     WindowsManager.ShowWindow<PauseWindow>();
                 })
                 .AddTo(Disposables);
+            _settingsButton.OnClickAsObservable()
+                .Subscribe(_ =>
+                {
+                    _settingsService.PlaySfx(SoundKey.ButtonClick);
+                    WindowsManager.ShowWindow<SettingsWindow>();
+                })
+                .AddTo(Disposables);
             _clickArea.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
@@ -47,6 +58,13 @@ namespace _Project.Scripts.UI.Windows
                 .AddTo(Disposables);
             _appData.LevelData.LevelScoreReactive
                 .Subscribe(value => _textScore.text = $"Score: {value}")
+                .AddTo(Disposables);
+            _appData.LevelData.HealthReactive
+                .Subscribe(value =>
+                {
+                    for (int i = 0; i < _healthImages.Count; i++)
+                        _healthImages[i].sprite = i < value ? _imagesConfig.HeartFull : _imagesConfig.HeartEmpty;
+                })
                 .AddTo(Disposables);
             _appData.LevelData.TotalSwayImbalanceReactive
                 .Subscribe(value =>
@@ -68,6 +86,7 @@ namespace _Project.Scripts.UI.Windows
         public void Reset()
         {
             _panelBalance.anchoredPosition = new Vector2(0, -_panelBalance.rect.height);
+            _healthImages.ForEach(x => x.sprite = _imagesConfig.HeartFull);
         }
 
         public void ShowText(string text, Color color)
@@ -85,7 +104,7 @@ namespace _Project.Scripts.UI.Windows
         
         public void ShowBalancePanel()
         {
-            _panelBalance.DOAnchorPos(new Vector2(0, 50), 0.25f).SetEase(Ease.OutBack);
+            _panelBalance.DOAnchorPos(Vector2.zero, 0.5f).SetEase(Ease.OutBack);
         }
     }
 }

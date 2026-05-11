@@ -36,10 +36,12 @@ namespace _Project.Scripts
 
         public virtual async UniTask StartLevel(int levelIndex)
         {
-            Dispose();
             await _windowsManager.ShowWindow<LoadingWindow>();
             _windowsManager.HideFastWindow<MainMenuWindow>();
+            
             Time.timeScale = 0;
+            
+            Dispose();
             
             // await LoadLevel(levelIndex);
             
