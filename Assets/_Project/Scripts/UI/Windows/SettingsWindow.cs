@@ -15,19 +15,13 @@ namespace _Project.Scripts.UI.Windows
         
         [Header("UI Elements")]
         [SerializeField] private Button _musicButton;
-        [SerializeField] private Image _musicImage;
-        [SerializeField] private Sprite _musicOnSprite;
-        [SerializeField] private Sprite _musicOffSprite;
+        [SerializeField] private GameObject _musicCross;
         
         [SerializeField] private Button _soundButton;
-        [SerializeField] private Image _soundImage;
-        [SerializeField] private Sprite _soundOnSprite;
-        [SerializeField] private Sprite _soundOffSprite;
+        [SerializeField] private GameObject _soundCross;
         
         [SerializeField] private Button _vibroButton;
-        [SerializeField] private Image _vibroImage;
-        [SerializeField] private Sprite _vibroOnSprite;
-        [SerializeField] private Sprite _vibroOffSprite;
+        [SerializeField] private GameObject _vibroCross;
         
         [SerializeField] private Button _privacyButton;
         [SerializeField] private Button _termsButton;
@@ -56,12 +50,13 @@ namespace _Project.Scripts.UI.Windows
             _privacyButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _settingsService.PlaySfx(SoundKey.ButtonClick);
-                WindowsManager.HideWindow<SettingsWindow>();
+                Application.OpenURL("https://sakov00.github.io/Privacy-Policy-Terms-Of-Use/privacy-policy.html");
             }).AddTo(Disposables);
             _termsButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _settingsService.PlaySfx(SoundKey.ButtonClick);
                 WindowsManager.HideWindow<SettingsWindow>();
+                Application.OpenURL("https://sakov00.github.io/Privacy-Policy-Terms-Of-Use/terms-of-use.html");
             }).AddTo(Disposables);
             _backButton.OnClickAsObservable().Subscribe(_ =>
             {
@@ -80,19 +75,19 @@ namespace _Project.Scripts.UI.Windows
 
         private void SetMusicValue(bool value)
         {
-            _musicImage.sprite = value ? _musicOnSprite : _musicOffSprite;
+            _musicCross.SetActive(value);
             _appData.User.MusicIsActive = value;
         }
 
         private void SetSoundValue(bool value)
         {
-            _soundImage.sprite = value ? _soundOnSprite : _soundOffSprite;
+            _soundCross.SetActive(value);
             _appData.User.SoundIsActive = value;
         }
 
         private void SetVibroValue(bool value)
         {
-            _vibroImage.sprite = value ? _vibroOnSprite : _vibroOffSprite;
+            _vibroCross.SetActive(value);
             _appData.User.VibroIsActive = value;
         }
     }

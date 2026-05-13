@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 2018a4eca8a0612409495a924609825e
+guid: 976da89bb49413a4ab6c61c117855a6b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -343353298957084511
-    second: ButtonMiniSettings_0
+      213: 6280926382116586516
+    second: IconSound_0
+  - first:
+      213: -6458369134058735522
+    second: IconSound_1
+  - first:
+      213: -3340828473168014612
+    second: IconSound_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,14 +52,14 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ButtonMiniSettings_0
+      name: IconSound_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 0
-        width: 590
-        height: 596
+        width: 154
+        height: 173
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +147,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1a854376ef92c3bf0800000000000000
-      internalID: -343353298957084511
+      spriteID: 414407a44455a2750800000000000000
+      internalID: 6280926382116586516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconSound_1
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 34
+        width: 38
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58f4109d734f56a0800000000000000
+      internalID: -6458369134058735522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconSound_2
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 15
+        width: 44
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce25f41443ef2a1d0800000000000000
+      internalID: -3340828473168014612
       vertices: []
       indices: 
       edges: []
@@ -151,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +211,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ButtonMiniSettings_0: -343353298957084511
+      IconSound_0: 6280926382116586516
+      IconSound_1: -6458369134058735522
+      IconSound_2: -3340828473168014612
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

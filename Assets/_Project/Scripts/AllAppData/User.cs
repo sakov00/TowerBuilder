@@ -23,6 +23,7 @@ namespace _Project.Scripts.AllAppData
             {
                 _crystals.Value = value;
                 PlayerPrefs.SetInt(GameConstants.PrefKeys.Crystals, Crystals);
+                PlayerPrefs.Save();
             }
         }
         
@@ -33,6 +34,7 @@ namespace _Project.Scripts.AllAppData
             {
                 _soundIsActive.Value = value;
                 PlayerPrefs.SetInt(GameConstants.PrefKeys.SoundIsActive, SoundIsActive ? 1 : 0);
+                PlayerPrefs.Save();
             }
         }
 
@@ -43,6 +45,7 @@ namespace _Project.Scripts.AllAppData
             {
                 _musicIsActive.Value = value;
                 PlayerPrefs.SetInt(GameConstants.PrefKeys.MusicIsActive, MusicIsActive ? 1 : 0);
+                PlayerPrefs.Save();
             }
         }
         
@@ -53,6 +56,7 @@ namespace _Project.Scripts.AllAppData
             {
                 _vibroIsActive.Value = value;
                 PlayerPrefs.SetInt(GameConstants.PrefKeys.VibroIsActive, VibroIsActive ? 1 : 0);
+                PlayerPrefs.Save();
             }
         }
 
