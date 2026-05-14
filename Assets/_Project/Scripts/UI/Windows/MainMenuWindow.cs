@@ -9,6 +9,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
+using YG;
 
 namespace _Project.Scripts.UI.Windows
 {
@@ -17,6 +18,8 @@ namespace _Project.Scripts.UI.Windows
         [Inject] private AppData _appData;
         [Inject] private GameManager _gameManager;
         [Inject] private SettingsService _settingsService;
+        [Inject] private AdsService _adsService;
+        [Inject] private AnalyticService _analyticService;
         
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _upgradeButton;
@@ -31,8 +34,9 @@ namespace _Project.Scripts.UI.Windows
             base.Awake();
             _playButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _gameManager.StartLevel(0).Forget();
+                _analyticService.SendMessage("PlayClicked");
                 _settingsService.PlaySfx(SoundKey.ButtonClick);
+                _adsService.UseInter(() => _gameManager.StartLevel(0).Forget());
             }).AddTo(Disposables);
             _upgradeButton.OnClickAsObservable().Subscribe(_ =>
             {

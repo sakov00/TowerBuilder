@@ -33,7 +33,7 @@ namespace _Project.Scripts._VContainer
         {
             builder.RegisterBuildCallback(InjectManager.Initialize);
             
-            builder.Register<GameTimer>(Lifetime.Singleton).As<GameTimer, ITickable>();
+            builder.Register<GameTimer>(Lifetime.Singleton).AsSelf().As<ITickable>();
             
             RegisterGame(builder);
             RegisterAppData(builder);
@@ -98,6 +98,8 @@ namespace _Project.Scripts._VContainer
             
             builder.Register<SaveLoadLevelService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
+            builder.Register<AdsService>(Lifetime.Singleton).AsSelf();
+            builder.Register<AnalyticService>(Lifetime.Singleton).AsSelf();
             
             builder.Register<BlockSwingService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockDropService>(Lifetime.Singleton).AsSelf();

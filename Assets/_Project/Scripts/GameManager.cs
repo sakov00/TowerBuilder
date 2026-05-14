@@ -16,17 +16,36 @@ namespace _Project.Scripts
 {
     public class GameManager : IDisposable
     {
-        [Inject] private SettingsService _settingsService;
-        [Inject] private AppData _appData;
-        [Inject] private SaveLoadLevelService _saveLoadLevelService;
-        [Inject] private SceneCreator _sceneCreator;
-        [Inject] private WindowsManager _windowsManager;
-        [Inject] private SaveRegistry _saveRegistry;
-        [Inject] private ApplicationEventsHandler _applicationEventsHandler;
-        [Inject] private LiveRegistry _liveRegistry;
-        [Inject] private BlockSpawnService _blockSpawnService;
-        [Inject] private CameraFollowService _cameraFollowService;
-        [Inject] private BlocksContainer _blocksContainer;
+        private AppData _appData;
+        private SaveLoadLevelService _saveLoadLevelService;
+        private SceneCreator _sceneCreator;
+        private WindowsManager _windowsManager;
+        private SaveRegistry _saveRegistry;
+        private ApplicationEventsHandler _applicationEventsHandler;
+        private LiveRegistry _liveRegistry;
+        private BlockSpawnService _blockSpawnService;
+        private CameraFollowService _cameraFollowService;
+        private BlocksContainer _blocksContainer;
+        private AnalyticService _analyticService;
+        
+        [Inject]
+        public GameManager(AppData appData, SaveLoadLevelService saveLoadLevelService, SceneCreator sceneCreator,
+            WindowsManager windowsManager, SaveRegistry saveRegistry, ApplicationEventsHandler applicationEventsHandler, 
+            LiveRegistry liveRegistry, BlocksContainer blocksContainer, BlockSpawnService blockSpawnService, 
+            CameraFollowService cameraFollowService, AnalyticService analyticService)
+        {
+            _appData = appData;
+            _saveLoadLevelService = saveLoadLevelService;
+            _sceneCreator = sceneCreator;
+            _windowsManager = windowsManager;
+            _saveRegistry = saveRegistry;
+            _applicationEventsHandler = applicationEventsHandler;
+            _liveRegistry = liveRegistry;
+            _blockSpawnService = blockSpawnService;
+            _cameraFollowService = cameraFollowService;
+            _blocksContainer = blocksContainer;
+            _analyticService = analyticService;
+        }
 
         public virtual async UniTask RestartLevel()
         {
@@ -80,6 +99,7 @@ namespace _Project.Scripts
 
         public async UniTaskVoid FailHandle()
         {
+            _analyticService.SendMessage("Fail");
             _appData.LevelData.GameDisabled = true;
             foreach (var buildController in _liveRegistry.GetAllReactive().OfType<BuildController>())
             {

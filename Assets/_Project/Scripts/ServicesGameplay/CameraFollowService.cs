@@ -12,11 +12,19 @@ using VContainer.Unity;
 namespace _Project.Scripts.ServicesGameplay
 {
     public class CameraFollowService : ITickable
-    {
-        [Inject] private LiveRegistry _liveRegistry;
-        [Inject] private CameraConfig _cameraConfig;
-        [Inject] private AppData _appData;
-        
+    { 
+        private readonly LiveRegistry _liveRegistry;
+        private readonly CameraConfig _cameraConfig;
+        private readonly AppData _appData;
+
+        [Inject]
+        public CameraFollowService(LiveRegistry liveRegistry, CameraConfig cameraConfig, AppData appData)
+        {
+            _liveRegistry = liveRegistry;
+            _cameraConfig = cameraConfig;
+            _appData = appData;
+        }
+
         public void Tick()
         {
             if(_appData.LevelData.GameDisabled)

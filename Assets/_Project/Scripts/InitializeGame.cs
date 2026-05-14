@@ -10,15 +10,23 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using YG;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts
 {
     public class InitializeGame : IInitializable, IAsyncStartable
     {
-        [Inject] private WindowsManager _windowsManager;
-        [Inject] private GameManager _gameManager;
-        [Inject] private SettingsService _settingsService;
+        private WindowsManager _windowsManager;
+        private SettingsService _settingsService;
+        
+        [Inject]
+        public InitializeGame(WindowsManager windowsManager, SettingsService settingsService)
+        {
+            _windowsManager = windowsManager;
+            _settingsService = settingsService;
+        }
+        
         public void Initialize()
         {
             Application.targetFrameRate = 60;
@@ -27,9 +35,11 @@ namespace _Project.Scripts
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
             _windowsManager.ShowFastWindow<LoadingWindow>();
+            
             await _settingsService.PlayMusicAsync(SoundKey.MenuMusic);
             await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
             Vibration.Init();
+                
             _windowsManager.ShowFastWindow<MainMenuWindow>();
             _windowsManager.HideWindow<LoadingWindow>();
             // await _gameManager.StartLevel(0);

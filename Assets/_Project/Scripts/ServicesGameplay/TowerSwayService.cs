@@ -10,11 +10,19 @@ namespace _Project.Scripts.ServicesGameplay
 {
     public class TowerSwayService : ITickable
     {
-        [Inject] private BlocksContainer _blocksContainer;
-        [Inject] private BuildingConfig _buildingConfig;
-        [Inject] private AppData _appData;
+        private readonly BlocksContainer _blocksContainer;
+        private readonly BuildingConfig _buildingConfig;
+        private readonly AppData _appData;
 
         private float _time;
+
+        [Inject]
+        public TowerSwayService(BlocksContainer blocksContainer, BuildingConfig buildingConfig, AppData appData)
+        {
+            _blocksContainer = blocksContainer;
+            _buildingConfig = buildingConfig;
+            _appData = appData;
+        }
 
         public void RegisterPlacementError(float offset)
         {

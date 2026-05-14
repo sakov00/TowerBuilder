@@ -14,15 +14,23 @@ namespace _Project.Scripts.ServicesGameplay
 {
     public class BlockSwingService : ITickable
     {
-        [Inject] private LiveRegistry _liveRegistry;
-        [Inject] private BuildingConfig _buildingConfig;
-        [Inject] private AppData _appData;
+        private readonly LiveRegistry _liveRegistry;
+        private readonly BuildingConfig _buildingConfig;
+        private readonly AppData _appData;
 
         private BuildController _current;
 
         private float _time;
         private float _direction;
         private Vector3 _center;
+
+        [Inject]
+        public BlockSwingService(LiveRegistry liveRegistry, BuildingConfig buildingConfig, AppData appData)
+        {
+            _liveRegistry = liveRegistry;
+            _buildingConfig = buildingConfig;
+            _appData = appData;
+        }
 
         public void Tick()
         {

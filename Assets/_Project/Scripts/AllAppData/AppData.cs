@@ -1,5 +1,6 @@
 using _Project.Scripts._VContainer;
 using _Project.Scripts.Enums;
+using VContainer;
 using VContainer.Unity;
 
 namespace _Project.Scripts.AllAppData
@@ -8,6 +9,9 @@ namespace _Project.Scripts.AllAppData
     {
         public User User { get; private set; }
         public LevelData LevelData { get; set; }
+        
+        [Inject]
+        public AppData() {}
 
         public void Initialize()
         {

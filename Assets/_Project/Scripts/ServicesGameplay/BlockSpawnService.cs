@@ -18,13 +18,25 @@ namespace _Project.Scripts.ServicesGameplay
 {
     public class BlockSpawnService
     {
-        [Inject] private BuildPool _pool;
-        [Inject] private LiveRegistry _liveRegistry;
-        [Inject] private BuildingConfig _buildingConfig;
-        [Inject] private BlocksContainer _blocksContainer;
-        [Inject] private CameraConfig _cameraConfig;
-        [Inject] private AppData _appData;
-        
+        private readonly BuildPool _pool;
+        private readonly LiveRegistry _liveRegistry;
+        private readonly BuildingConfig _buildingConfig;
+        private readonly BlocksContainer _blocksContainer;
+        private readonly CameraConfig _cameraConfig;
+        private readonly AppData _appData;
+
+        [Inject] 
+        public BlockSpawnService(BuildPool pool, LiveRegistry liveRegistry, BuildingConfig buildingConfig,
+            BlocksContainer blocksContainer, CameraConfig cameraConfig, AppData appData)
+        {
+            _pool = pool;
+            _liveRegistry = liveRegistry;
+            _buildingConfig = buildingConfig;
+            _blocksContainer = blocksContainer;
+            _cameraConfig = cameraConfig;
+            _appData = appData;
+        }
+
         public async UniTask<BuildController> SpawnStartBlock()
         {
             var block = _pool.Get(BuildType.StartBlock, _blocksContainer.transform);

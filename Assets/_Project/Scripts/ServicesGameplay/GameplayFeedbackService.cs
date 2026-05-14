@@ -7,8 +7,15 @@ namespace _Project.Scripts.ServicesGameplay
 {
     public class GameplayFeedbackService
     {
-        [Inject] private AppData _appData;
-        [Inject] private WindowsManager _windowsManager;
+        private readonly AppData _appData;
+        private readonly WindowsManager _windowsManager;
+
+        [Inject]
+        public GameplayFeedbackService(AppData appData, WindowsManager windowsManager)
+        {
+            _appData = appData;
+            _windowsManager = windowsManager;
+        }
 
         public void ShowPerfect()
         {

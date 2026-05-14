@@ -1257,7 +1257,7 @@ GameObject:
   - component: {fileID: 8398251269578659159}
   - component: {fileID: 7850836831027551440}
   - component: {fileID: 452541200589491553}
-  - component: {fileID: 7680946901999635769}
+  - component: {fileID: 3522499934365124886}
   m_Layer: 0
   m_Name: BG
   m_TagString: Untagged
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 256501fb891b1f34893e305924b50fcf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32acdd68417a5684b9766e621aefbba9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7680946901999635769
+--- !u!114 &3522499934365124886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 4
-  m_AspectRatio: 0.42871094
+  m_AspectRatio: 1.5900621
 --- !u!1 &4526926196338714955
 GameObject:
   m_ObjectHideFlags: 0

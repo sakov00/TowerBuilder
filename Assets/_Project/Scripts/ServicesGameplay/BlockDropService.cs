@@ -12,7 +12,13 @@ namespace _Project.Scripts.ServicesGameplay
 {
     public class BlockDropService
     {
-        [Inject] private LiveRegistry _liveRegistry;
+        private readonly LiveRegistry _liveRegistry;
+        
+        [Inject]
+        public BlockDropService(LiveRegistry liveRegistry)
+        {
+            _liveRegistry = liveRegistry;
+        }
         
         public void DropBlock()
         {

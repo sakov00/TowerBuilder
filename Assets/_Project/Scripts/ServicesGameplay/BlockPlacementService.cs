@@ -17,17 +17,36 @@ namespace _Project.Scripts.ServicesGameplay
 {
     public class BlockPlacementService
     {
-        [Inject] private AppData _appData;
-        [Inject] private EffectPool _effectPool;
-        [Inject] private SettingsService _settingsService;
-        [Inject] private BlockSpawnService _spawn;
-        [Inject] private TowerSwayService _towerSway;
-        [Inject] private BuildingConfig _buildingConfig;
-        [Inject] private BlocksContainer _blocksContainer;
-        [Inject] private GameplayFeedbackService _feedbackService;
-        [Inject] private LiveRegistry _liveRegistry;
-        [Inject] private GameManager _gameManager;
-        [Inject] private WindowsManager _windowsManager;
+        private readonly AppData _appData;
+        private readonly EffectPool _effectPool;
+        private readonly SettingsService _settingsService;
+        private readonly BlockSpawnService _spawn;
+        private readonly TowerSwayService _towerSway;
+        private readonly BuildingConfig _buildingConfig;
+        private readonly BlocksContainer _blocksContainer;
+        private readonly GameplayFeedbackService _feedbackService;
+        private readonly LiveRegistry _liveRegistry;
+        private readonly GameManager _gameManager;
+        private readonly WindowsManager _windowsManager;
+
+        [Inject]
+        public BlockPlacementService(AppData appData, EffectPool effectPool, SettingsService settingsService,
+            BlockSpawnService spawn, TowerSwayService towerSway, BuildingConfig buildingConfig,
+            BlocksContainer blocksContainer, GameplayFeedbackService feedbackService,
+            LiveRegistry liveRegistry, GameManager gameManager, WindowsManager windowsManager)
+        {
+            _appData = appData;
+            _effectPool = effectPool;
+            _settingsService = settingsService;
+            _spawn = spawn;
+            _towerSway = towerSway;
+            _buildingConfig = buildingConfig;
+            _blocksContainer = blocksContainer;
+            _feedbackService = feedbackService;
+            _liveRegistry = liveRegistry;
+            _gameManager = gameManager;
+            _windowsManager = windowsManager;
+        }
 
         public async UniTask Resolve(BuildController current)
         {
@@ -111,7 +130,7 @@ namespace _Project.Scripts.ServicesGameplay
             block.DisposeDelayed().Forget();
             
             GlobalObjects.Camera.DOShakePosition(0.2f, 0.3f, 20, 90f);
-            Vibration.VibrateAndroid(200);
+            Vibration.VibratePop();
             _settingsService.PlaySfx(SoundKey.BlockFailed);
             Debug.Log("Failed");
 

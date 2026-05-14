@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using VContainer;
 using VContainer.Unity;
 
 namespace _Project.Scripts._GlobalLogic
@@ -15,6 +16,12 @@ namespace _Project.Scripts._GlobalLogic
         }
 
         private readonly List<TimerData> _timers = new(8);
+
+        [Inject]
+        public GameTimer()
+        {
+            
+        }
         
         public void Subscribe(float interval, Action callback)
         {
