@@ -256,7 +256,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 3734123911021335450}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e221fe2c59a77449871160bf2eb4a27, type: 2}
   m_sharedMaterial: {fileID: -6498001106534310198, guid: 6e221fe2c59a77449871160bf2eb4a27, type: 2}
@@ -834,7 +834,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 127420514035043451}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1413,7 +1413,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 827, y: 925}
+  m_SizeDelta: {x: 827, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6482647022221957356
 CanvasRenderer:
@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back
+  m_text: "\u041D\u0430\u0437\u0430\u0434"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e221fe2c59a77449871160bf2eb4a27, type: 2}
   m_sharedMaterial: {fileID: -6498001106534310198, guid: 6e221fe2c59a77449871160bf2eb4a27, type: 2}
@@ -1833,7 +1833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3206768166733579134
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2060,7 +2060,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 663415361500986758}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2326,7 +2326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &792895226823017588
 RectTransform:
   m_ObjectHideFlags: 0

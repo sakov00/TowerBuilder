@@ -28,6 +28,7 @@ namespace _Project.Scripts._VContainer
         [SerializeField] protected EffectsConfig _effectsConfig;
         [SerializeField] protected CameraConfig _cameraConfig;
         [SerializeField] protected WindowsConfig _windowsConfig;
+        [SerializeField] protected SoundConfig _soundConfig;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -88,11 +89,12 @@ namespace _Project.Scripts._VContainer
             builder.RegisterInstance(_effectsConfig).AsSelf();
             builder.RegisterInstance(_cameraConfig).AsSelf();
             builder.RegisterInstance(_windowsConfig).AsSelf().As<IInitializable>();
+            builder.RegisterInstance(_soundConfig).AsSelf();
         }
 
         private void RegisterServices(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_settingsService).As<IInitializable>().AsSelf();
+            builder.RegisterInstance(_settingsService).AsSelf();
             builder.RegisterInstance(_applicationEventsHandler).AsSelf();
             builder.RegisterInstance(_blocksContainer).AsSelf();
             

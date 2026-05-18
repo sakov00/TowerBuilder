@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SettingsYG2
   m_EditorClassIdentifier: 
   InterstitialAdv:
-    showFirstAdv: 1
+    showFirstAdv: 0
     interAdvInterval: 60
     postponeCallByFail: 0
     postponeCallTimer: 10
@@ -40,13 +40,13 @@ MonoBehaviour:
     loadSceneIfSDKLate: 0
     loadSceneIndex: 0
     initDelaySimulation: 0
-    buildNumber: 7
+    buildNumber: 11
   Simulation:
     device: 1
     language: ru
     enableInterAdv: 1
     advIntervalSimulation: 60
-    durationAdv: 0.5
+    durationAdv: 3
     loadAdv: 0
     testFailAds: 0
     pauseOnFocusGame: 0
@@ -83,12 +83,12 @@ MonoBehaviour:
   platformInfo:
     ownHost: 0
   platformToggles:
-    showFirstAdv: 0
-    interAdvInterval: 0
+    showFirstAdv: 1
+    interAdvInterval: 1
     postponeCallByFail: 0
-    useYandexMetrica: 0
-    metricaCounterID: 0
-    skipInterAdvAfterReward: 0
+    useYandexMetrica: 1
+    metricaCounterID: 1
+    skipInterAdvAfterReward: 1
     autoPauseGame: 0
     selectWebGLTemplate: 1
     runInBackground: 1

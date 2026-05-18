@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using _Project.Scripts.GameObjects;
 using UnityEngine;
 
 namespace _Project.Scripts.SO

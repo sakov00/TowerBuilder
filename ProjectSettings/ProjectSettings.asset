@@ -979,24 +979,24 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
+    Android: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
     Kepler: DOTWEEN
-    LinuxHeadlessSimulation: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
-    Nintendo Switch: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
+    LinuxHeadlessSimulation: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
+    Nintendo Switch: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
     Nintendo Switch 2: DOTWEEN
-    PS4: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
-    PS5: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
+    PS4: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
+    PS5: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
     QNX: DOTWEEN
-    Standalone: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
+    Standalone: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
     VisionOS: DOTWEEN
-    WebGL: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
-    Windows Store Apps: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
-    XboxOne: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
-    iPhone: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
-    tvOS: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg
+    WebGL: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
+    Windows Store Apps: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
+    XboxOne: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
+    iPhone: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
+    tvOS: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -1009,6 +1009,7 @@ PlayerSettings:
   il2cppStacktraceInformation: {}
   managedStrippingLevel:
     Android: 1
+    Standalone: 4
     WebGL: 4
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1

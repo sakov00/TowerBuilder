@@ -57,7 +57,7 @@ namespace _Project.Scripts.UI.Windows
                 })
                 .AddTo(Disposables);
             _appData.LevelData.LevelScoreReactive
-                .Subscribe(value => _textScore.text = $"Score: {value}")
+                .Subscribe(value => _textScore.text = $"Счет: {value}")
                 .AddTo(Disposables);
             _appData.LevelData.HealthReactive
                 .Subscribe(value =>

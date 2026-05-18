@@ -6,6 +6,7 @@ namespace _Project.Scripts.GameObjects
     {
         public void Reset()
         {
+            if (this == null) return;
             transform.rotation = Quaternion.identity;
         }
     }

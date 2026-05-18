@@ -34,14 +34,10 @@ namespace _Project.Scripts
         
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            _windowsManager.ShowFastWindow<LoadingWindow>();
-            
-            await _settingsService.PlayMusicAsync(SoundKey.MenuMusic);
-            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: cancellation);
+            Debug.Log(YG2.infoYG.Metrica.metricaCounterID);
             Vibration.Init();
-                
+            _settingsService.PlayMusicAsync(SoundKey.MenuMusic).Forget();
             _windowsManager.ShowFastWindow<MainMenuWindow>();
-            _windowsManager.HideWindow<LoadingWindow>();
             // await _gameManager.StartLevel(0);
         }
     }

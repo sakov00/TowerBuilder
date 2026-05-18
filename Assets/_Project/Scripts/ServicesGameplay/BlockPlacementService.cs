@@ -130,7 +130,7 @@ namespace _Project.Scripts.ServicesGameplay
             block.DisposeDelayed().Forget();
             
             GlobalObjects.Camera.DOShakePosition(0.2f, 0.3f, 20, 90f);
-            Vibration.VibratePop();
+            _settingsService.PlayVibrationPop();
             _settingsService.PlaySfx(SoundKey.BlockFailed);
             Debug.Log("Failed");
 

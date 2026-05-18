@@ -1,6 +1,7 @@
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -75,19 +76,23 @@ namespace _Project.Scripts.UI.Windows
 
         private void SetMusicValue(bool value)
         {
-            _musicCross.SetActive(value);
+            _musicCross.SetActive(!value);
             _appData.User.MusicIsActive = value;
+            if (value)
+                _settingsService.PlayMusicAsync(SoundKey.MenuMusic).Forget();
+            else
+                _settingsService.StopMusic();
         }
 
         private void SetSoundValue(bool value)
         {
-            _soundCross.SetActive(value);
+            _soundCross.SetActive(!value);
             _appData.User.SoundIsActive = value;
         }
 
         private void SetVibroValue(bool value)
         {
-            _vibroCross.SetActive(value);
+            _vibroCross.SetActive(!value);
             _appData.User.VibroIsActive = value;
         }
     }

@@ -63,9 +63,9 @@ namespace _Project.Scripts.AllAppData
         public User()
         {
             Crystals = PlayerPrefs.GetInt(GameConstants.PrefKeys.Crystals, 0);
-            SoundIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.SoundIsActive, 0) == 1;
-            MusicIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.MusicIsActive, 0) == 1;
-            VibroIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.VibroIsActive, 0) == 1;
+            SoundIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.SoundIsActive, 1) == 1;
+            MusicIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.MusicIsActive, 1) == 1;
+            VibroIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.VibroIsActive, 1) == 1;
         }
     }
 }

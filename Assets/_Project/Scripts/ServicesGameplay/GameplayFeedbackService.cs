@@ -21,14 +21,14 @@ namespace _Project.Scripts.ServicesGameplay
         {
             var gameWindow = _windowsManager.GetWindow<GameWindow>();
             var additionInfo = _appData.LevelData.PerfectMultiplier == 1 ? "" : _appData.LevelData.PerfectMultiplier.ToString() + "x";
-            gameWindow.ShowText($"PERFECT! {additionInfo}", Color.yellow);
+            gameWindow.ShowText($"ИДЕАЛЬНО! {additionInfo}", Color.yellow);
         }
 
         public void ShowNearMiss()
         {
             var gameWindow = _windowsManager.GetWindow<GameWindow>();
             var additionInfo = _appData.LevelData.NearFailMultiplier == 1 ? "" : _appData.LevelData.NearFailMultiplier.ToString() + "x";
-            gameWindow.ShowText($"LUCKY! {additionInfo}", Color.cyan);
+            gameWindow.ShowText($"УДАЧНО! {additionInfo}", Color.cyan);
         }
     }
 }

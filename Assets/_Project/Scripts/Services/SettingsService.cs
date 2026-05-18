@@ -1,123 +1,103 @@
-using System.Collections.Generic;
-using System.Threading;
+using System;
+using _Project.Scripts._VContainer;
+using DG.Tweening;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
+using _Project.Scripts.SO;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
 namespace _Project.Scripts.Services
 {
-    public class SettingsService : MonoBehaviour, IInitializable
+    public class SettingsService : MonoBehaviour
     {
+        [Inject] private SoundConfig _soundConfig;
         [Inject] private AppData _appData;
-        
-        [System.Serializable]
-        public class Sound
-        {
-            public SoundKey key;
-            public AudioClip clip;
-        }
 
         [Header("Audio Sources")]
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private AudioSource _sfxSource;
 
-        [Header("Sounds")]
-        [SerializeField] private List<Sound> _musicClips = new();
-        [SerializeField] private List<Sound> _sfxClips = new();
+        [Header("Music Fade")]
+        [SerializeField] private float _fadeDuration = 1f;
 
-        private readonly Dictionary<SoundKey, AudioClip> _music = new();
-        private readonly Dictionary<SoundKey, AudioClip> _sfx = new();
+        private Tween _musicTween;
 
-        private CancellationTokenSource _fadeCts;
-        private float _targetMusicVolume = 1f;
-
-        public void Initialize()
+        private void Awake()
         {
-            foreach (var s in _musicClips)
-                _music[s.key] = s.clip;
-
-            foreach (var s in _sfxClips)
-                _sfx[s.key] = s.clip;
-
-            _musicSource.volume = 0f;
+            InjectManager.Inject(this);
         }
-        
-        public async UniTask PlayMusicAsync(SoundKey key, float fadeDuration = 1f, bool loop = true)
+
+        public async UniTask PlayMusicAsync(SoundKey key, bool loop = true)
         {
-            if (!_music.TryGetValue(key, out var newClip))
+            if (_appData.User.MusicIsActive == false)
+                return;
+
+            var music = _soundConfig.MusicClips.Find(x => x.key == key);
+
+            if (music == null)
             {
                 Debug.LogWarning($"Музыка '{key}' не найдена.");
                 return;
             }
 
-            if (_musicSource.clip == newClip && _musicSource.isPlaying)
+            if (_musicSource.clip == music.clip &&
+                _musicSource.isPlaying)
                 return;
 
-            CancelFade();
+            _musicTween?.Kill();
 
-            _fadeCts = new CancellationTokenSource();
-            var token = _fadeCts.Token;
-
-            float previousVolume = _musicSource.volume;
-
+            // Fade Out
             if (_musicSource.isPlaying)
             {
-                await FadeVolumeAsync(_musicSource, previousVolume, 0f, fadeDuration * 0.5f, token);
-                _musicSource.Stop();
+                await _musicSource
+                    .DOFade(0f, _fadeDuration)
+                    .SetEase(Ease.Linear)
+                    .AsyncWaitForCompletion();
             }
-            
-            _musicSource.clip = newClip;
+
+            _musicSource.Stop();
+
+            _musicSource.clip = music.clip;
             _musicSource.loop = loop;
             _musicSource.volume = 0f;
+
             _musicSource.Play();
 
-            await FadeVolumeAsync(_musicSource, 0f, _targetMusicVolume, fadeDuration * 0.5f, token);
+            // Fade In
+            _musicTween = _musicSource
+                .DOFade(1f, _fadeDuration)
+                .SetEase(Ease.Linear);
+
+            await _musicTween.AsyncWaitForCompletion();
+        }
+
+        public void StopMusic()
+        {
+            _musicTween?.Kill();
+            _musicSource.Stop();
         }
 
         public void PlaySfx(SoundKey key)
         {
-            if (_sfx.TryGetValue(key, out var clip))
-                _sfxSource.PlayOneShot(clip);
+            if (_appData.User.SoundIsActive == false)
+                return;
+
+            var sfx = _soundConfig.SfxClips.Find(x => x.key == key);
+
+            if (sfx != null)
+                _sfxSource.PlayOneShot(sfx.clip);
             else
                 Debug.LogWarning($"SFX '{key}' не найден.");
         }
 
-        private async UniTask FadeVolumeAsync(AudioSource source, float start, float end, float duration, CancellationToken token)
+        public void PlayVibrationPop()
         {
-            if (duration <= 0f)
-            {
-                source.volume = end;
+            if (_appData.User.VibroIsActive == false)
                 return;
-            }
 
-            float startTime = Time.time;
-            while (true)
-            {
-                if (token.IsCancellationRequested)
-                    return;
-
-                float t = (Time.time - startTime) / duration;
-                if (t >= 1f)
-                    break;
-
-                source.volume = Mathf.Lerp(start, end, t);
-                await UniTask.Yield(PlayerLoopTiming.Update, token);
-            }
-
-            source.volume = end;
-        }
-
-        private void CancelFade()
-        {
-            if (_fadeCts != null)
-            {
-                _fadeCts.Cancel();
-                _fadeCts.Dispose();
-                _fadeCts = null;
-            }
+            Vibration.VibratePop();
         }
     }
 }

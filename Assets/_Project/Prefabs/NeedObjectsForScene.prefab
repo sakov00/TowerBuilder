@@ -406,16 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_General.Scripts.Services.SoundManager
   _musicSource: {fileID: 7152970836860541487}
   _sfxSource: {fileID: 5915975464597159628}
-  _musicClips:
-  - key: 0
-    clip: {fileID: 8300000, guid: 09da061e1e6dc4c49b3a064901d4f89a, type: 3}
-  _sfxClips:
-  - key: 1
-    clip: {fileID: 8300000, guid: 51fe904ea2e3bc24799bdf1e11fa95ec, type: 3}
-  - key: 2
-    clip: {fileID: 8300000, guid: e32fa1643df8923428f8a693988a3d24, type: 3}
-  - key: 3
-    clip: {fileID: 8300000, guid: fa962195fef69bb4ab3d357ec0197df8, type: 3}
+  _fadeDuration: 1
 --- !u!1 &2621446322017936268
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,6 +887,7 @@ MonoBehaviour:
   _effectsConfig: {fileID: 11400000, guid: f62f027c94b755b45abb69494d9f0249, type: 2}
   _cameraConfig: {fileID: 11400000, guid: f59f002a28df03a4083ab0c47cec3e02, type: 2}
   _windowsConfig: {fileID: 11400000, guid: 6931a08c007573a4daef4c33f6de30af, type: 2}
+  _soundConfig: {fileID: 11400000, guid: ccb7a7dce109e1e41ae06f1c113e1cd8, type: 2}
 --- !u!1 &7608561609897601077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,7 +1146,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1080, y: 2340}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
