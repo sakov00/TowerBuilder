@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 8341257602305791442}
   - component: {fileID: 7582402452328775437}
   - component: {fileID: 609856424351594998}
+  - component: {fileID: 7195139550486018444}
   m_Layer: 0
   m_Name: Loading
   m_TagString: Untagged
@@ -372,3 +373,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7195139550486018444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9070006577309322026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f90164c50de43388275d4feff8fc497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 609856424351594998}
+  _translation:
+    English: Loading
+    Russian: "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430"

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Interfaces;
-using Unity.VisualScripting;
 
 namespace _Project.Scripts.Registries
 {
@@ -12,11 +11,6 @@ namespace _Project.Scripts.Registries
         public void Register(ISavableController obj)
         {
             _savableControllers.Add(obj);
-        }
-        
-        public void RegisterRange(List<ISavableController> obj)
-        {
-            _savableControllers.AddRange(obj);
         }
 
         public void Unregister(ISavableController obj)

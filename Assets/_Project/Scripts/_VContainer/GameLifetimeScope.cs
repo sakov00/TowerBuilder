@@ -102,6 +102,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
             builder.Register<AdsService>(Lifetime.Singleton).AsSelf();
             builder.Register<AnalyticService>(Lifetime.Singleton).AsSelf();
+            builder.Register<LanguageService>(Lifetime.Singleton).AsSelf();
             
             builder.Register<BlockSwingService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockDropService>(Lifetime.Singleton).AsSelf();

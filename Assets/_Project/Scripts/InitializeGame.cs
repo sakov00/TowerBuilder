@@ -19,12 +19,14 @@ namespace _Project.Scripts
     {
         private WindowsManager _windowsManager;
         private SettingsService _settingsService;
+        private LanguageService _languageService;
         
         [Inject]
-        public InitializeGame(WindowsManager windowsManager, SettingsService settingsService)
+        public InitializeGame(WindowsManager windowsManager, SettingsService settingsService, LanguageService languageService)
         {
             _windowsManager = windowsManager;
             _settingsService = settingsService;
+            _languageService = languageService;
         }
         
         public void Initialize()
@@ -36,6 +38,8 @@ namespace _Project.Scripts
         {
             Debug.Log(YG2.infoYG.Metrica.metricaCounterID);
             Vibration.Init();
+            YG2.GetLanguage();
+            _languageService.SetPlatformLanguage();
             _settingsService.PlayMusicAsync(SoundKey.MenuMusic).Forget();
             _windowsManager.ShowFastWindow<MainMenuWindow>();
             // await _gameManager.StartLevel(0);

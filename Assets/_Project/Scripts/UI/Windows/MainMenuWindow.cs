@@ -24,7 +24,6 @@ namespace _Project.Scripts.UI.Windows
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _upgradeButton;
         [SerializeField] private Button _settingsButton;
-        [SerializeField] private Button _exitButton;
         
         [SerializeField] private TMP_Text _levelText;
         [SerializeField] private TMP_Text _crystalsText;
@@ -47,11 +46,6 @@ namespace _Project.Scripts.UI.Windows
             {
                 _settingsService.PlaySfx(SoundKey.ButtonClick);
                 WindowsManager.ShowWindow<SettingsWindow>();
-            }).AddTo(Disposables);
-            _exitButton.OnClickAsObservable().Subscribe(_ =>
-            {
-                _settingsService.PlaySfx(SoundKey.ButtonClick);
-                Application.Quit();
             }).AddTo(Disposables);
             
             _appData.User.CrystalsReactive

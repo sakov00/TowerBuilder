@@ -17,6 +17,7 @@ MonoBehaviour:
     showFirstAdv: 0
     interAdvInterval: 60
     postponeCallByFail: 0
+    setLanguageMod: 1
     useYandexMetrica: 1
     metricaCounterID: 109198014
     skipInterAdvAfterReward: 1
@@ -27,7 +28,7 @@ MonoBehaviour:
     compressionFormat: 0
     decompressionFallback: 0
     autoGraphicsAPI: 1
-    managedStrippingLevel: 4
+    managedStrippingLevel: 3
     dataCaching: 1
     colorSpace: 0
     archivingBuild: 1

@@ -18,6 +18,8 @@ MonoBehaviour:
     postponeCallByFail: 0
     postponeCallTimer: 10
     labelAdvSimLabel: 0
+  Localization:
+    setLanguageMod: 1
   Metrica:
     enable: 1
     metricaCounterID: 109198014
@@ -40,13 +42,13 @@ MonoBehaviour:
     loadSceneIfSDKLate: 0
     loadSceneIndex: 0
     initDelaySimulation: 0
-    buildNumber: 11
+    buildNumber: 26
   Simulation:
-    device: 1
-    language: ru
+    device: 0
+    language: en
     enableInterAdv: 1
     advIntervalSimulation: 60
-    durationAdv: 3
+    durationAdv: 5
     loadAdv: 0
     testFailAds: 0
     pauseOnFocusGame: 0
@@ -58,7 +60,7 @@ MonoBehaviour:
       angleInclination: 140
       color1: {r: 1, g: 0.831, b: 0.149, a: 1}
       color2: {r: 0.36, g: 0.09, b: 1, a: 1}
-    customProgressBar: 1
+    customProgressBar: 0
     progressBarSettigs:
       round: 1
       roundAngle: 10
@@ -86,10 +88,11 @@ MonoBehaviour:
     showFirstAdv: 1
     interAdvInterval: 1
     postponeCallByFail: 0
+    setLanguageMod: 1
     useYandexMetrica: 1
     metricaCounterID: 1
     skipInterAdvAfterReward: 1
-    autoPauseGame: 0
+    autoPauseGame: 1
     selectWebGLTemplate: 1
     runInBackground: 1
     enableExceptions: 1

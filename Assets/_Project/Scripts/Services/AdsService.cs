@@ -7,7 +7,7 @@ namespace _Project.Scripts.Services
     {
         public void UseInter(Action action)
         {
-            if (YG2.isTimerAdvCompleted)
+            if (YG2.isTimerAdvCompleted && YG2.isSDKEnabled)
             {
                 void OnClose(bool wasShown)
                 {

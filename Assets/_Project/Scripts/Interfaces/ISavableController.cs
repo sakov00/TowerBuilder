@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using VContainer.Unity;
 
 namespace _Project.Scripts.Interfaces
 {

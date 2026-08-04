@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
@@ -57,7 +58,11 @@ namespace _Project.Scripts.UI.Windows
                 })
                 .AddTo(Disposables);
             _appData.LevelData.LevelScoreReactive
-                .Subscribe(value => _textScore.text = $"Счет: {value}")
+                .Subscribe(value =>
+                    {
+                        _textScore.text = Regex.Replace(_textScore.text, @"\d", "");
+                        _textScore.text += value;
+                    })
                 .AddTo(Disposables);
             _appData.LevelData.HealthReactive
                 .Subscribe(value =>

@@ -10,7 +10,6 @@ namespace _Project.Scripts.UI.Windows
         [SerializeField] private TMP_Text _loadingText;
         
         [Header("Load Tween Settings")]
-        [SerializeField] private string _baseText = "Loading";
         [SerializeField] private float _interval = 0.3f;
         private int _dotsCount = 0;
         
@@ -33,7 +32,8 @@ namespace _Project.Scripts.UI.Windows
         private void UpdateText()
         {
             _dotsCount = (_dotsCount + 1) % 4;
-            _loadingText.text = _baseText + new string('.', _dotsCount);
+            _loadingText.text = _loadingText.text.Replace(".", "");
+            _loadingText.text += new string('.', _dotsCount);
         }
 
         public override Tween Show()
