@@ -27,12 +27,13 @@ namespace _Project.Scripts
         private CameraFollowService _cameraFollowService;
         private BlocksContainer _blocksContainer;
         private AnalyticService _analyticService;
+        private AdsService _adsService;
         
         [Inject]
         public GameManager(AppData appData, SaveLoadLevelService saveLoadLevelService, SceneCreator sceneCreator,
             WindowsManager windowsManager, SaveRegistry saveRegistry, ApplicationEventsHandler applicationEventsHandler, 
             LiveRegistry liveRegistry, BlocksContainer blocksContainer, BlockSpawnService blockSpawnService, 
-            CameraFollowService cameraFollowService, AnalyticService analyticService)
+            CameraFollowService cameraFollowService, AnalyticService analyticService, AdsService adsService)
         {
             _appData = appData;
             _saveLoadLevelService = saveLoadLevelService;
@@ -45,6 +46,7 @@ namespace _Project.Scripts
             _cameraFollowService = cameraFollowService;
             _blocksContainer = blocksContainer;
             _analyticService = analyticService;
+            _adsService = adsService;
         }
 
         public virtual async UniTask RestartLevel()
@@ -106,7 +108,7 @@ namespace _Project.Scripts
                 buildController.SetKinematicState(RigidbodyType2D.Dynamic);
             }
             await UniTask.Delay(2000);
-            await StartLevel(0);
+            _adsService.UseInter(() => StartLevel(0).Forget());
             // await _windowsManager.ShowWindow<FailWindow>();
             // _windowsManager.HideFastWindow<GameWindow>();
         }

@@ -43,6 +43,7 @@ namespace _Project.Scripts
             _settingsService.PlayMusicAsync(SoundKey.MenuMusic).Forget();
             _windowsManager.ShowFastWindow<MainMenuWindow>();
             // await _gameManager.StartLevel(0);
+            YG2.GameReadyAPI();
         }
     }
 }
