@@ -17,14 +17,14 @@ namespace _Project.Scripts
 {
     public class InitializeGame : IInitializable, IAsyncStartable
     {
-        private WindowsManager _windowsManager;
+        private GameManager _gameManager;
         private SettingsService _settingsService;
         private LanguageService _languageService;
-        
+
         [Inject]
-        public InitializeGame(WindowsManager windowsManager, SettingsService settingsService, LanguageService languageService)
+        public InitializeGame(GameManager gameManager, SettingsService settingsService, LanguageService languageService)
         {
-            _windowsManager = windowsManager;
+            _gameManager = gameManager;
             _settingsService = settingsService;
             _languageService = languageService;
         }
@@ -36,14 +36,11 @@ namespace _Project.Scripts
         
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            Debug.Log(YG2.infoYG.Metrica.metricaCounterID);
             Vibration.Init();
             YG2.GetLanguage();
-            _languageService.SetPlatformLanguage();
+            await _gameManager.StartLevel(0, false);
+            // YG2.GameReadyAPI();
             _settingsService.PlayMusicAsync(SoundKey.MenuMusic).Forget();
-            _windowsManager.ShowFastWindow<MainMenuWindow>();
-            // await _gameManager.StartLevel(0);
-            YG2.GameReadyAPI();
         }
     }
 }

@@ -266,9 +266,9 @@ RectTransform:
   - {fileID: 8290685678806574341}
   m_Father: {fileID: 6736072383301826834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 225}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -345}
   m_SizeDelta: {x: 450, y: 150}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4988368636342600633
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f3684fdf080f0284cafdae8278d251ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b0104d3d13706b45bcb1c8ca2198180, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1362,8 +1362,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8997518998002165274}
-  - {fileID: 792895226823017588}
   - {fileID: 4230821620108303361}
+  - {fileID: 792895226823017588}
   - {fileID: 4526741521744828037}
   - {fileID: 7928733307923016200}
   m_Father: {fileID: 6849643860490214181}
@@ -1371,7 +1371,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 560, y: 745}
+  m_SizeDelta: {x: 560, y: 560}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6482647022221957356
 CanvasRenderer:
@@ -1696,7 +1696,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0418\u0433\u0440\u0430\u0442\u044C"
+  m_text: "\u041D\u0430\u0437\u0430\u0434"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e221fe2c59a77449871160bf2eb4a27, type: 2}
   m_sharedMaterial: {fileID: -6498001106534310198, guid: 6e221fe2c59a77449871160bf2eb4a27, type: 2}
@@ -1782,8 +1782,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 3981120100503530377}
   _translation:
-    English: Play
-    Russian: "\u0418\u0433\u0440\u0430\u0442\u044C"
+    English: Back
+    Russian: "\u041D\u0430\u0437\u0430\u0434"
 --- !u!1 &8863374408399212972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,7 +1803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7928733307923016200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1962,9 +1962,9 @@ RectTransform:
   - {fileID: 4997335211579773543}
   m_Father: {fileID: 6736072383301826834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 400}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -520}
   m_SizeDelta: {x: 450, y: 150}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8300954256751145596

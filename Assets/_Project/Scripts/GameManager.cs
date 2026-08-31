@@ -55,10 +55,10 @@ namespace _Project.Scripts
             await StartLevel(0);
         }
 
-        public virtual async UniTask StartLevel(int levelIndex)
+        public virtual async UniTask StartLevel(int levelIndex, bool useLoadingScreen = true)
         {
-            await _windowsManager.ShowWindow<LoadingWindow>();
-            _windowsManager.HideFastWindow<MainMenuWindow>();
+            if (useLoadingScreen)
+                await _windowsManager.ShowWindow<LoadingWindow>();
             
             Time.timeScale = 0;
             
@@ -78,7 +78,9 @@ namespace _Project.Scripts
             _windowsManager.ShowFastWindow<GameWindow>();
             var gameWindow = _windowsManager.GetWindow<GameWindow>();
             gameWindow.Reset();
-            await _windowsManager.HideWindow<LoadingWindow>();
+            
+            if (useLoadingScreen)
+                await _windowsManager.HideWindow<LoadingWindow>();
         }
         
         public virtual async UniTask LoadLevel(int levelIndex, bool isInitialize = true)

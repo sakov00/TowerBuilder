@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Factories;
@@ -102,7 +103,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<SceneCreator>(Lifetime.Singleton).AsSelf();
             builder.Register<AdsService>(Lifetime.Singleton).AsSelf();
             builder.Register<AnalyticService>(Lifetime.Singleton).AsSelf();
-            builder.Register<LanguageService>(Lifetime.Singleton).AsSelf();
+            builder.Register<LanguageService>(Lifetime.Singleton).AsSelf().As<IInitializable, IDisposable>();
             
             builder.Register<BlockSwingService>(Lifetime.Singleton).AsSelf();
             builder.Register<BlockDropService>(Lifetime.Singleton).AsSelf();

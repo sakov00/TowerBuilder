@@ -19,17 +19,17 @@ MonoBehaviour:
     postponeCallByFail: 0
     setLanguageMod: 1
     useYandexMetrica: 1
-    metricaCounterID: 109198014
+    metricaCounterID: 111037883
     skipInterAdvAfterReward: 1
     autoPauseGame: 1
     selectWebGLTemplate: 1
     runInBackground: 0
-    enableExceptions: 2
+    enableExceptions: 1
     compressionFormat: 0
     decompressionFallback: 0
     autoGraphicsAPI: 1
-    managedStrippingLevel: 3
+    managedStrippingLevel: 2
     dataCaching: 1
-    colorSpace: 0
+    colorSpace: 1
     archivingBuild: 1
-    syncInitSDK: 0
+    syncInitSDK: 1

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UniRx;
 using VContainer.Unity;
@@ -25,7 +26,7 @@ namespace _Project.Scripts.Services
         NearMiss
     }
 
-    public class LanguageService
+    public class LanguageService : IInitializable, IDisposable
     {
         private readonly ReactiveProperty<Language> _currentLanguage = new(Language.Russian);
         public IReadOnlyReactiveProperty<Language> CurrentLanguage => _currentLanguage;
@@ -36,7 +37,13 @@ namespace _Project.Scripts.Services
             { TextKey.NearMiss, ("LUCKY!", "УДАЧНО!") },
         };
 
-        public void SetPlatformLanguage()
+        public void Initialize()
+        {
+            YG2.onSwitchLang += SetPlatformLanguage;
+            YG2.onCorrectLang += SetPlatformLanguage;
+        }
+        
+        public void SetPlatformLanguage(string language = null)
         {
             _currentLanguage.Value = GetPlatformLanguage();
         }
@@ -74,6 +81,12 @@ namespace _Project.Scripts.Services
                 "kk" => Language.Kazakh,
                 _ => Language.Russian
             };
+        }
+
+        public void Dispose()
+        {
+            YG2.onSwitchLang -= SetPlatformLanguage;
+            YG2.onCorrectLang -= SetPlatformLanguage;
         }
     }
 }

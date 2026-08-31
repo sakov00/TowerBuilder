@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9342bceffdc889c4181306dfec82e0fb
+guid: 28c6b6a2d99991d4388a13fa913ad31a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8669221532660849216
-    second: Ellipse_144px_0
+      213: 5043726804271044299
+    second: Ray_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,9 +49,9 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 7
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -75,9 +75,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -127,7 +127,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ellipse_144px_0
+      name: Ray_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 144
-        height: 144
+        width: 50
+        height: 351
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04ada6d6d034f4870800000000000000
-      internalID: 8669221532660849216
+      spriteID: bc611b04ecaeef540800000000000000
+      internalID: 5043726804271044299
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ellipse_144px_0: 8669221532660849216
+      Ray_0: 5043726804271044299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

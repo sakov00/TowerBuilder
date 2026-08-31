@@ -951,7 +951,7 @@ PlayerSettings:
   blurSplashScreenBackground: 1
   spritePackerPolicy: 
   webGLMemorySize: 16
-  webGLExceptionSupport: 2
+  webGLExceptionSupport: 1
   webGLNameFilesAsHashes: 0
   webGLShowDiagnostics: 0
   webGLDataCaching: 1
@@ -966,7 +966,7 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  webGLInitialMemorySize: 32
+  webGLInitialMemorySize: 256
   webGLMaximumMemorySize: 2048
   webGLMemoryGrowthMode: 2
   webGLMemoryLinearGrowthStep: 16
@@ -979,24 +979,24 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
+    Android: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
     Kepler: DOTWEEN
-    LinuxHeadlessSimulation: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
-    Nintendo Switch: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
+    LinuxHeadlessSimulation: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
+    Nintendo Switch: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
     Nintendo Switch 2: DOTWEEN
-    PS4: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
-    PS5: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
+    PS4: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
+    PS5: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
     QNX: DOTWEEN
-    Standalone: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
+    Standalone: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
     VisionOS: DOTWEEN
-    WebGL: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
-    Windows Store Apps: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
-    XboxOne: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
-    iPhone: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
-    tvOS: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;YandexGamesPlatform_yg;Localization_yg;EnvirData_yg
+    WebGL: DOTWEEN;VCONTAINER_UNITASK_INTEGRATION;UNITASK_DOTWEEN_SUPPORT;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
+    Windows Store Apps: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
+    XboxOne: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
+    iPhone: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
+    tvOS: DOTWEEN;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Metrica_yg;StickyAdv_yg;NJSON_YG2;Localization_yg;EnvirData_yg;YandexGamesPlatform_yg
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -1010,7 +1010,7 @@ PlayerSettings:
   managedStrippingLevel:
     Android: 1
     Standalone: 4
-    WebGL: 3
+    WebGL: 2
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
@@ -1101,7 +1101,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 2
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
   cloudProjectId: cca9de84-8868-418b-b83c-5b3745eb820d
   framebufferDepthMemorylessMode: 0
