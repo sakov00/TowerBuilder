@@ -39,13 +39,21 @@ namespace _Project.Scripts.Services
 
         public void Initialize()
         {
+            YG2.onGetSDKData += OnGetSDKData;
             YG2.onSwitchLang += SetPlatformLanguage;
-            YG2.onCorrectLang += SetPlatformLanguage;
+        }
+
+        private void OnGetSDKData()
+        {
+            YG2.GetLanguage();
         }
         
-        public void SetPlatformLanguage(string language = null)
+        public void SetPlatformLanguage(string language = "ru")
         {
-            _currentLanguage.Value = GetPlatformLanguage();
+            if (string.IsNullOrEmpty(language))
+                language = "ru";
+            
+            _currentLanguage.Value = FromCode(language);
         }
         
         public string Get(TextKey key)
@@ -58,11 +66,6 @@ namespace _Project.Scripts.Services
                 Language.Russian => text.ru,
                 _ => text.ru,
             };
-        }
-
-        private Language GetPlatformLanguage()
-        {
-            return FromCode(YG2.lang);
         }
 
         private static Language FromCode(string code)
@@ -85,8 +88,8 @@ namespace _Project.Scripts.Services
 
         public void Dispose()
         {
+            YG2.onGetSDKData -= OnGetSDKData;
             YG2.onSwitchLang -= SetPlatformLanguage;
-            YG2.onCorrectLang -= SetPlatformLanguage;
         }
     }
 }

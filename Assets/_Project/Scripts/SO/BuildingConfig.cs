@@ -23,6 +23,8 @@ namespace _Project.Scripts.SO
         
         [field: Header("SwayData")]
         [field:SerializeField] public float DestroyImbalance { get; private set; } = 10f;
+        [field:SerializeField] public float DestroyImbalanceYellow { get; private set; } = 7f;
+        [field:SerializeField] public float DestroyImbalanceRed { get; private set; } = 3f;
         [field:SerializeField] public float SwaySpeed { get; private set; } = 1f;
         [field:SerializeField] public float SwaySensitivityImbalance { get; private set; } = 1.1f;
         [field:SerializeField] public Vector2 SwayAmplitude { get; private set; } = new (-1, 1);

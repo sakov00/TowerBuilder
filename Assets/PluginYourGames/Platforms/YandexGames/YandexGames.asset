@@ -24,11 +24,11 @@ MonoBehaviour:
     autoPauseGame: 1
     selectWebGLTemplate: 1
     runInBackground: 0
-    enableExceptions: 1
+    enableExceptions: 0
     compressionFormat: 0
     decompressionFallback: 0
     autoGraphicsAPI: 1
-    managedStrippingLevel: 2
+    managedStrippingLevel: 3
     dataCaching: 1
     colorSpace: 1
     archivingBuild: 1

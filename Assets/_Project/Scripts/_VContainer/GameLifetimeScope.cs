@@ -112,6 +112,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<TowerSwayService>(Lifetime.Singleton).AsSelf();
             builder.Register<CameraFollowService>(Lifetime.Singleton).AsSelf();
             builder.Register<GameplayFeedbackService>(Lifetime.Singleton).AsSelf();
+            builder.Register<BoosterService>(Lifetime.Singleton).AsSelf();
                 
             builder.Register<TickScheduler>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }

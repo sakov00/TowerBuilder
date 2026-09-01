@@ -37,9 +37,8 @@ namespace _Project.Scripts
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
             Vibration.Init();
-            YG2.GetLanguage();
             await _gameManager.StartLevel(0, false);
-            // YG2.GameReadyAPI();
+            YG2.GameReadyAPI();
             _settingsService.PlayMusicAsync(SoundKey.MenuMusic).Forget();
         }
     }

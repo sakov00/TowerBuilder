@@ -34,14 +34,6 @@ namespace _Project.Scripts.GameObjects
             
         }
         
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (Model.State != BuildState.Dropped)
-                return;
-
-            _placementService.Resolve(this).Forget();
-        }
-        
         public override void Dispose(bool returnToPool = true, bool clearFromRegistry = true)
         {
             if(returnToPool) BuildPool.Return(this);

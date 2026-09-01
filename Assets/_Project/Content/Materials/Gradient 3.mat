@@ -142,7 +142,7 @@ Material:
     - Color_915234e14bf14936b1378dc25286f6b1: {r: 1, g: 1, b: 1, a: 0}
     - Color_99004139a61f42ba99cb363b9369becd: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BottomColor: {r: 0, g: 0.12156863, b: 0.1882353, a: 0}
+    - _BottomColor: {r: 0.49411765, g: 0.4745098, b: 0.23921569, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0, g: 0, b: 0, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 1}

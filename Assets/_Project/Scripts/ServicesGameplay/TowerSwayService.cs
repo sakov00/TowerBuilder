@@ -2,6 +2,8 @@ using System;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.GameObjects;
 using _Project.Scripts.SO;
+using _Project.Scripts.UI.Windows;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -13,20 +15,30 @@ namespace _Project.Scripts.ServicesGameplay
         private readonly BlocksContainer _blocksContainer;
         private readonly BuildingConfig _buildingConfig;
         private readonly AppData _appData;
+        private readonly WindowsManager _windowsManager;
 
         private float _time;
 
         [Inject]
-        public TowerSwayService(BlocksContainer blocksContainer, BuildingConfig buildingConfig, AppData appData)
+        public TowerSwayService(BlocksContainer blocksContainer, BuildingConfig buildingConfig, AppData appData, WindowsManager windowsManager)
         {
             _blocksContainer = blocksContainer;
             _buildingConfig = buildingConfig;
             _appData = appData;
+            _windowsManager = windowsManager;
         }
 
         public void RegisterPlacementError(float offset)
         {
             _appData.LevelData.TotalSwayImbalance += offset;
+            
+            var gameWindow = _windowsManager.GetWindow<GameWindow>();
+            if(Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalanceRed)
+                gameWindow.SetBackLightBalance(true, Color.red).Forget();
+            else if(Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalanceYellow)
+                gameWindow.SetBackLightBalance(true, Color.yellow).Forget();
+            else
+                gameWindow.SetBackLightBalance(false, Color.clear).Forget();
         }
 
         public void Tick()

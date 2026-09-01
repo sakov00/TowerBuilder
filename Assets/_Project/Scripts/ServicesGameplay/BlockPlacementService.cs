@@ -146,8 +146,9 @@ namespace _Project.Scripts.ServicesGameplay
 
         private void HandlePerfectPlacement(BuildController current, BuildController highest)
         {
-            _appData.LevelData.PerfectMultiplier += 1;
-            _appData.LevelData.LevelScore += 5 * _appData.LevelData.PerfectMultiplier;
+            _appData.LevelData.PerfectComboValue += 1;
+            _appData.LevelData.LevelScore += _appData.LevelData.AddScoreValue *
+                                             _appData.LevelData.PerfectMultiplier * _appData.LevelData.PerfectComboValue;
 
             var targetLocalPos = new Vector3(
                 highest.transform.localPosition.x,
@@ -163,18 +164,18 @@ namespace _Project.Scripts.ServicesGameplay
 
         private void HandleNearMissPlacement()
         {
-            _appData.LevelData.LevelScore += 1;
-            _appData.LevelData.NearFailMultiplier += 1;
+            _appData.LevelData.LevelScore += _appData.LevelData.AddScoreValue;
+            _appData.LevelData.NearFailComboValue += 1;
 
             _feedbackService.ShowNearMiss();
         }
 
         private void HandleNormalPlacement()
         {
-            _appData.LevelData.LevelScore += 1;
+            _appData.LevelData.LevelScore += _appData.LevelData.AddScoreValue;
 
-            _appData.LevelData.PerfectMultiplier = 0;
-            _appData.LevelData.NearFailMultiplier = 0;
+            _appData.LevelData.PerfectComboValue = 0;
+            _appData.LevelData.NearFailComboValue = 0;
         }
     }
 }

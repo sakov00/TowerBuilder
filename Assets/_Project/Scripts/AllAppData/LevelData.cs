@@ -21,8 +21,6 @@ namespace _Project.Scripts.AllAppData
         [MemoryPackIgnore] public readonly IntReactiveProperty HealthReactive;
         [MemoryPackIgnore] public readonly IntReactiveProperty PlacedBlocksCountReactive;
         [MemoryPackIgnore] public readonly IntReactiveProperty LevelScoreReactive;
-        [MemoryPackIgnore] public readonly IntReactiveProperty PerfectMultiplierReactive;
-        [MemoryPackIgnore] public readonly IntReactiveProperty NearFailMultiplierReactive;
         [MemoryPackIgnore] public readonly FloatReactiveProperty CurrentSwayAmplitudeReactive;
         [MemoryPackIgnore] public readonly FloatReactiveProperty CurrentSwaySpeedReactive;
         [MemoryPackIgnore] public readonly FloatReactiveProperty TotalSwayImbalanceReactive;
@@ -50,18 +48,14 @@ namespace _Project.Scripts.AllAppData
             get => LevelScoreReactive.Value;
             set => LevelScoreReactive.Value = value;
         }
+
+        public int AddScoreValue { get; set; } = 1;
         
-        public int PerfectMultiplier
-        {
-            get => PerfectMultiplierReactive.Value;
-            set => PerfectMultiplierReactive.Value = value;
-        }
+        public int PerfectComboValue { get;set; }
+        public int PerfectMultiplier { get; set; } = 5;
         
-        public int NearFailMultiplier
-        {
-            get => NearFailMultiplierReactive.Value;
-            set => NearFailMultiplierReactive.Value = value;
-        }
+        public int NearFailComboValue { get;set; }
+        public int NearFailMultiplier { get; set; } = 1;
         
         public float CurrentSwayAmplitude
         {
@@ -89,9 +83,14 @@ namespace _Project.Scripts.AllAppData
             GameDisabledReactive = new BoolReactiveProperty(false);
             HealthReactive = new IntReactiveProperty(_playerConfig.MaxHealth);
             PlacedBlocksCountReactive = new IntReactiveProperty(1);
+            
             LevelScoreReactive = new IntReactiveProperty(0);
-            PerfectMultiplierReactive = new IntReactiveProperty(0);
-            NearFailMultiplierReactive = new IntReactiveProperty(0);
+            AddScoreValue = 1;
+            PerfectComboValue = 0;
+            PerfectMultiplier = 5;
+            NearFailComboValue = 0;
+            NearFailMultiplier = 1;
+        
             CurrentSwayAmplitudeReactive = new FloatReactiveProperty(_buildingConfig.SwayAmplitude.x);
             CurrentSwaySpeedReactive = new FloatReactiveProperty(_buildingConfig.SwaySpeed);
             TotalSwayImbalanceReactive = new FloatReactiveProperty(0);
@@ -103,9 +102,14 @@ namespace _Project.Scripts.AllAppData
             SavableModels = levelData.SavableModels;
             HealthReactive.Value = levelData.Health;
             PlacedBlocksCountReactive.Value = levelData.PlacedBlocksCount;
+            
             LevelScoreReactive.Value = levelData.LevelScore;
-            PerfectMultiplierReactive.Value = levelData.PerfectMultiplier;
-            NearFailMultiplierReactive.Value = levelData.NearFailMultiplier;
+            AddScoreValue = levelData.AddScoreValue;
+            PerfectComboValue = levelData.PerfectComboValue;
+            PerfectMultiplier = levelData.PerfectMultiplier;
+            NearFailComboValue = levelData.NearFailComboValue;
+            NearFailMultiplier = levelData.NearFailMultiplier;
+            
             CurrentSwayAmplitudeReactive.Value = levelData.CurrentSwayAmplitude;
             CurrentSwaySpeedReactive.Value = levelData.CurrentSwaySpeed;
             TotalSwayImbalanceReactive.Value = levelData.TotalSwayImbalance;

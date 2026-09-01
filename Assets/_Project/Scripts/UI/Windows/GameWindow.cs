@@ -22,15 +22,21 @@ namespace _Project.Scripts.UI.Windows
         [Inject] private BlockDropService _blockDropService;
         [Inject] private BuildingConfig _buildingConfig;
         [Inject] private ImagesConfig _imagesConfig;
+        [Inject] private AdsService _adsService;
+        [Inject] private BoosterService _boosterService;
 
         [SerializeField] private Button _pauseMenuButton;
         [SerializeField] private Button _settingsButton;
+        [SerializeField] private Button _boosterBalanceButton;
         [SerializeField] private Button _clickArea;
         [SerializeField] private RectTransform _panelBalance;
         [SerializeField] private RectTransform _arrowBalance;
         [SerializeField] private List<Image> _healthImages;
         [SerializeField] private TextMeshProUGUI _textFeedback;
         [SerializeField] private TextMeshProUGUI _textScore;
+        [SerializeField] private Image _backLightBalance;
+
+        private Color _currentBackLightBalanceColor;
         
         protected override void Awake()
         {
@@ -43,11 +49,21 @@ namespace _Project.Scripts.UI.Windows
                     WindowsManager.ShowWindow<PauseWindow>();
                 })
                 .AddTo(Disposables);
+            
             _settingsButton.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
                     _settingsService.PlaySfx(SoundKey.ButtonClick);
                     WindowsManager.ShowWindow<SettingsWindow>();
+                })
+                .AddTo(Disposables);
+            
+            _boosterBalanceButton.OnClickAsObservable()
+                .Subscribe(_ =>
+                {
+                    _settingsService.PlaySfx(SoundKey.ButtonClick);
+                    // _adsService.UseReward();
+                    _boosterService.ResetBalance();
                 })
                 .AddTo(Disposables);
             _clickArea.OnClickAsObservable()
@@ -90,6 +106,8 @@ namespace _Project.Scripts.UI.Windows
 
         public void Reset()
         {
+            _backLightBalance.DOKill();
+            _backLightBalance.color = new Color(1f, 0.92156863f, 0.015686275f, 0f);
             _panelBalance.anchoredPosition = new Vector2(0, -_panelBalance.rect.height);
             _healthImages.ForEach(x => x.sprite = _imagesConfig.HeartFull);
         }
@@ -110,6 +128,42 @@ namespace _Project.Scripts.UI.Windows
         public void ShowBalancePanel()
         {
             _panelBalance.DOAnchorPos(Vector2.zero, 0.5f).SetEase(Ease.OutBack);
+        }
+
+        public async UniTask SetBackLightBalance(bool show, Color color)
+        {
+            if(_currentBackLightBalanceColor == color)
+                return;
+            
+            _currentBackLightBalanceColor = color;
+            
+            if (show)
+            {
+                await _backLightBalance.DOFade(0, 0.5f);
+                _backLightBalance.DOKill();
+                _backLightBalance
+                    .DOFade(1, 0.5f)
+                    .From(0)
+                    .SetEase(Ease.InOutSine)
+                    .SetLoops(-1, LoopType.Yoyo)
+                    .OnStepComplete(() =>
+                    {
+                        var current = _backLightBalance.color;
+                        if (current.a <= 0.01f)
+                        {
+                            current.r = color.r;
+                            current.g = color.g;
+                            current.b = color.b;
+
+                            _backLightBalance.color = current;
+                        }
+                    });
+            }
+            else
+            {
+                _backLightBalance.DOKill();
+                _backLightBalance.DOFade(0, 0.5f);
+            }
         }
     }
 }
