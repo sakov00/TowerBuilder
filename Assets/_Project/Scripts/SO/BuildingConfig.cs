@@ -33,5 +33,8 @@ namespace _Project.Scripts.SO
         
         [field: Header("BlockData")]
         [field:SerializeField] public float BlockHeight { get; private set; } = 1.5f;
+        
+        [field: Header("Tutorial")]
+        [field:SerializeField] public int TutorialBlocksCount { get; private set; } = 5;
     }
 }

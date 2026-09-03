@@ -5,6 +5,7 @@ using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
 using _Project.Scripts.ServicesGameplay;
 using _Project.Scripts.SO;
+using _Project.Scripts.UI.TweenFeature;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
@@ -35,12 +36,18 @@ namespace _Project.Scripts.UI.Windows
         [SerializeField] private TextMeshProUGUI _textFeedback;
         [SerializeField] private TextMeshProUGUI _textScore;
         [SerializeField] private Image _backLightBalance;
+        
+        [Header("Tutorials")]
+        [SerializeField] private HintController _tutorialBlocksStage;
+        [SerializeField] private GameObject _tutorialBalanceStage;
 
         private Color _currentBackLightBalanceColor;
         
         protected override void Awake()
         {
             base.Awake();
+            
+            _tutorialBlocksStage.gameObject.SetActive(!_appData.User.IsTutorialFirstBlockPassed);
             
             _pauseMenuButton.OnClickAsObservable()
                 .Subscribe(_ =>
@@ -101,6 +108,11 @@ namespace _Project.Scripts.UI.Windows
         public override void Initialize()
         {
             base.Initialize();
+        }
+
+        public void TutorialBalancePassed()
+        {
+            _appData.User.IsTutorialBalancePassed = true;
         }
 
         public void Reset()

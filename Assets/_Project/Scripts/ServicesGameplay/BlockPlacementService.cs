@@ -123,6 +123,11 @@ namespace _Project.Scripts.ServicesGameplay
                 return;
             }
             
+            if(_appData.LevelData.PlacedBlocksCount >= _buildingConfig.TutorialBlocksCount)
+                _appData.User.IsTutorialBlocksPassed = true;
+            else
+                _appData.User.IsTutorialFirstBlockPassed = true;
+            
             _multiplyZonesRegistry.GetAll().ForEach(x => x.IsCompletedStage(current));
             _spawn.SpawnNext().Forget();
         }
@@ -137,11 +142,14 @@ namespace _Project.Scripts.ServicesGameplay
             _settingsService.PlaySfx(SoundKey.BlockFailed);
             Debug.Log("Failed");
 
-            _appData.LevelData.Health--;
-            if (_appData.LevelData.Health <= 0)
+            if (_appData.User.IsTutorialBlocksPassed)
             {
-                _gameManager.FailHandle().Forget();
-                return;
+                _appData.LevelData.Health--;
+                if (_appData.LevelData.Health <= 0)
+                {
+                    _gameManager.FailHandle().Forget();
+                    return;
+                }
             }
 
             _spawn.SpawnNext().Forget();

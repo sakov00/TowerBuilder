@@ -45,7 +45,7 @@ MonoBehaviour:
     buildNumber: 84
   Simulation:
     device: 1
-    language: en
+    language: ru
     enableInterAdv: 1
     advIntervalSimulation: 60
     durationAdv: 5

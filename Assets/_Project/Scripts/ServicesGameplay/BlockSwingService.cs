@@ -34,7 +34,7 @@ namespace _Project.Scripts.ServicesGameplay
 
         public void Tick()
         {
-            if(_appData.LevelData.GameDisabled || !_appData.User.IsTutorialBlocksPassed)
+            if(_appData.LevelData.GameDisabled)
                 return;
             
             var block = _liveRegistry.GetAllReactive()
@@ -46,6 +46,12 @@ namespace _Project.Scripts.ServicesGameplay
                 _current = null;
                 return;
             }
+            
+            if (_current != block && !_appData.User.IsTutorialFirstBlockPassed)
+            {
+                SetBlockToCenter(block);
+                return;
+            }
 
             if (_current != block)
             {
@@ -53,6 +59,19 @@ namespace _Project.Scripts.ServicesGameplay
             }
 
             Move(block);
+        }
+        
+        private void SetBlockToCenter(BuildController block)
+        {
+            _current = block;
+            _center = block.transform.position + Vector3.up * _buildingConfig.SwingHeight;
+            block.transform.position = new Vector3(
+                _center.x,
+                _center.y,
+                block.transform.position.z
+            );
+
+            block.transform.rotation = Quaternion.identity;
         }
 
         private void InitBlock(BuildController block)
