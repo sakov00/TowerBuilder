@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
@@ -28,12 +29,15 @@ namespace _Project.Scripts
         private BlocksContainer _blocksContainer;
         private AnalyticService _analyticService;
         private AdsService _adsService;
+        private EnvironmentMovementService _environmentMovementService;
+        private MultiplyZonesRegistry _multiplyZonesRegistry;
         
         [Inject]
         public GameManager(AppData appData, SaveLoadLevelService saveLoadLevelService, SceneCreator sceneCreator,
             WindowsManager windowsManager, SaveRegistry saveRegistry, ApplicationEventsHandler applicationEventsHandler, 
             LiveRegistry liveRegistry, BlocksContainer blocksContainer, BlockSpawnService blockSpawnService, 
-            CameraFollowService cameraFollowService, AnalyticService analyticService, AdsService adsService)
+            CameraFollowService cameraFollowService, AnalyticService analyticService, AdsService adsService,
+            EnvironmentMovementService environmentMovementService, MultiplyZonesRegistry multiplyZonesRegistry)
         {
             _appData = appData;
             _saveLoadLevelService = saveLoadLevelService;
@@ -47,6 +51,8 @@ namespace _Project.Scripts
             _blocksContainer = blocksContainer;
             _analyticService = analyticService;
             _adsService = adsService;
+            _environmentMovementService = environmentMovementService;
+            _multiplyZonesRegistry = multiplyZonesRegistry;
         }
 
         public virtual async UniTask RestartLevel()
@@ -70,7 +76,8 @@ namespace _Project.Scripts
             _applicationEventsHandler.OnApplicationPaused += OnApplicationPause;
 
             Time.timeScale = 1;
-            
+            _multiplyZonesRegistry.GetAll().ForEach(x => x.Reset());
+            _environmentMovementService.Restart();
             await _blockSpawnService.SpawnStartBlock();
             await _blockSpawnService.SpawnNext();
             _appData.LevelData.GameDisabled = false;
@@ -104,6 +111,7 @@ namespace _Project.Scripts
         public async UniTaskVoid FailHandle()
         {
             _analyticService.SendMessage("Fail");
+            _appData.User.ScoreRecord = _appData.LevelData.LevelScore;
             _appData.LevelData.GameDisabled = true;
             foreach (var buildController in _liveRegistry.GetAllReactive().OfType<BuildController>())
             {
@@ -117,23 +125,27 @@ namespace _Project.Scripts
 
         public void Dispose()
         {
+            _appData.User.ScoreRecord = _appData.LevelData.LevelScore;
             _applicationEventsHandler.OnApplicationQuited -= OnApplicationQuit;
             _applicationEventsHandler.OnApplicationPaused -= OnApplicationPause;
             _liveRegistry.GetAllReactive().ToList().ForEach(x => x.Dispose());
             _cameraFollowService.Reset();
             _appData.LevelData.SetData(new LevelData());
             _blocksContainer.Reset();
+            
         }
 
         private void OnApplicationQuit()
         {
+            _appData.User.ScoreRecord = _appData.LevelData.LevelScore;
             // _saveLoadLevelService?.SaveLevelProgress(_appData.User.CurrentLevel).GetAwaiter().GetResult();
         }
 
         private void OnApplicationPause(bool pause)
         {
-            // if (pause)
-            //     _saveLoadLevelService?.SaveLevelProgress(_appData.User.CurrentLevel).GetAwaiter().GetResult();
+            if (pause)
+                _appData.User.ScoreRecord = _appData.LevelData.LevelScore;
+                // _saveLoadLevelService?.SaveLevelProgress(_appData.User.CurrentLevel).GetAwaiter().GetResult();
         }
     }
 }

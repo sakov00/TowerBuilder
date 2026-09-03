@@ -1,10 +1,14 @@
 using System;
+using UnityEngine;
 using YG;
+using YG.Insides;
 
 namespace _Project.Scripts.Services
 {
     public class AdsService
     {
+        public string rewardID;
+        
         public void UseInter(Action action)
         {
             if (YG2.isTimerAdvCompleted && YG2.isSDKEnabled)
@@ -14,6 +18,7 @@ namespace _Project.Scripts.Services
                     YG2.onCloseInterAdvWasShow -= OnClose;
 
                     action.Invoke();
+                    Debug.Log("InterstitialAdvShow");
                 }
                 YG2.onCloseInterAdvWasShow += OnClose;
                 YG2.InterstitialAdvShow();
@@ -26,16 +31,11 @@ namespace _Project.Scripts.Services
         
         public void UseReward(Action action)
         {
-            if (YG2.isTimerAdvCompleted && YG2.isSDKEnabled)
+            if (YG2.isSDKEnabled)
             {
-                void OnClose(bool wasShown)
-                {
-                    YG2.onCloseInterAdvWasShow -= OnClose;
-
-                    action.Invoke();
-                }
-                YG2.onCloseInterAdvWasShow += OnClose;
-                YG2.InterstitialAdvShow();
+                YG2.RewardedAdvShow(rewardID, action);
+                YGInsides.SetTimerInterAdv();
+                Debug.Log("RewardedAdvShow");
             }
             else
             {

@@ -62,8 +62,7 @@ namespace _Project.Scripts.UI.Windows
                 .Subscribe(_ =>
                 {
                     _settingsService.PlaySfx(SoundKey.ButtonClick);
-                    // _adsService.UseReward();
-                    _boosterService.ResetBalance();
+                    _adsService.UseReward(_boosterService.ResetBalance);
                 })
                 .AddTo(Disposables);
             _clickArea.OnClickAsObservable()

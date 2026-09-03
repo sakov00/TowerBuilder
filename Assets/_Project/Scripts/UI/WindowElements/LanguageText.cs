@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using _Project.Scripts._VContainer;
 using TMPro;
@@ -34,12 +35,13 @@ namespace _Project.Scripts.Services
                 };
             }
         }
-        
+
         private CompositeDisposable _disposables;
+        private object[] _arguments = Array.Empty<object>();
 
         private void OnValidate()
         {
-            _text ??= gameObject.GetComponent<TMP_Text>();
+            _text ??= GetComponent<TMP_Text>();
         }
 
         private void Awake()
@@ -50,17 +52,31 @@ namespace _Project.Scripts.Services
         private void OnEnable()
         {
             _disposables = new CompositeDisposable();
+
             _languageService.CurrentLanguage
                 .Subscribe(UpdateText)
                 .AddTo(_disposables);
         }
 
-        private void OnDisable() => _disposables.Clear();
-        private void OnDestroy() => _disposables.Clear();
+        private void OnDisable() => _disposables?.Clear();
+        private void OnDestroy() => _disposables?.Clear();
+
+        public void SetArguments(params object[] arguments)
+        {
+            _arguments = arguments ?? Array.Empty<object>();
+
+            UpdateText(_languageService.CurrentLanguage.Value);
+        }
 
         private void UpdateText(Language language)
         {
-            _text.text = _translation.Get(language);
+            var text = _translation.Get(language);
+
+            if (_arguments.Length > 0)
+                text = string.Format(text, _arguments);
+
+            _text.text = text;
         }
     }
 }
+

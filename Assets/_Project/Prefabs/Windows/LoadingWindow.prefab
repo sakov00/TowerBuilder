@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8398251269578659159}
   - component: {fileID: 7850836831027551440}
   - component: {fileID: 452541200589491553}
-  - component: {fileID: 2929095920592409775}
+  - component: {fileID: 3916201799727522890}
   m_Layer: 0
   m_Name: BG
   m_TagString: Untagged
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a4cf2db34227e5941b59dc13a93356a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2fd787e917165c48924db404c217e83, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2929095920592409775
+--- !u!114 &3916201799727522890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 4
-  m_AspectRatio: 1.3763441
+  m_AspectRatio: 2.3809524
 --- !u!1 &6348516472499966283
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +146,6 @@ MonoBehaviour:
   <WindowType>k__BackingField: 2
   <DestroyAfterHide>k__BackingField: 1
   _loadingText: {fileID: 609856424351594998}
-  _baseText: "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430"
   _interval: 0.3
 --- !u!225 &-1108216509333152265
 CanvasGroup:
@@ -310,8 +309,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279318374
-  m_fontColor: {r: 0.40000004, g: 0.21568629, b: 0.06666667, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

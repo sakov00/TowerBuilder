@@ -1,7 +1,9 @@
+using System.Text.RegularExpressions;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +20,9 @@ namespace _Project.Scripts.UI.Windows
         [Inject] private AdsService _adsService;
         [Inject] private AnalyticService _analyticService;
         
+        [Header("Labels")]
+        [SerializeField] private LanguageText _recordText;
+        
         [Header("Buttons")]
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _restartButton;
@@ -27,6 +32,14 @@ namespace _Project.Scripts.UI.Windows
         public override void Initialize()
         {
             base.Initialize();
+            
+            _appData.User.ScoreRecordReactive
+                .Subscribe(value =>
+                {
+                    _recordText.SetArguments(value);
+                })
+                .AddTo(Disposables);
+            
             _resumeButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _settingsService.PlaySfx(SoundKey.ButtonClick);
@@ -61,6 +74,8 @@ namespace _Project.Scripts.UI.Windows
                 WindowsManager.ShowFastWindow<MainMenuWindow>();
                 WindowsManager.HideWindow<LoadingWindow>();
             }).AddTo(Disposables);
+
+            _appData.User.ScoreRecord = _appData.LevelData.LevelScore;
         }
     }
 }

@@ -6,5 +6,6 @@ namespace _Project.Scripts.Enums
         ButtonClick,
         BlockPlaced,
         BlockFailed,
+        HappyConfettiPop,
     }
 }

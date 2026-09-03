@@ -34,7 +34,7 @@ namespace _Project.Scripts.ServicesGameplay
 
         public void Tick()
         {
-            if(_appData.LevelData.GameDisabled)
+            if(_appData.LevelData.GameDisabled || !_appData.User.IsTutorialBlocksPassed)
                 return;
             
             var block = _liveRegistry.GetAllReactive()

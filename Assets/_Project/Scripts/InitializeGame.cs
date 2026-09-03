@@ -32,14 +32,16 @@ namespace _Project.Scripts
         public void Initialize()
         {
             Application.targetFrameRate = 60;
+            Vibration.Init();
         }
         
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            Vibration.Init();
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellation);
             await _gameManager.StartLevel(0, false);
-            YG2.GameReadyAPI();
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellation);
             _settingsService.PlayMusicAsync(SoundKey.MenuMusic).Forget();
+            YG2.GameReadyAPI();
         }
     }
 }

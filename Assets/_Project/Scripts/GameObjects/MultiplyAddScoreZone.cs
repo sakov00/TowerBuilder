@@ -1,5 +1,8 @@
 using System;
 using _Project.Scripts.AllAppData;
+using _Project.Scripts.Enums;
+using _Project.Scripts.Registries;
+using _Project.Scripts.Services;
 using UnityEngine;
 using VContainer;
 
@@ -7,24 +10,37 @@ namespace _Project.Scripts.GameObjects
 {
     public class MultiplyAddScoreZone : MonoBehaviour
     {
-        [Inject] protected AppData _appData;
+        [Inject] private MultiplyZonesRegistry _multiplyZonesRegistry;
+        [Inject] private SettingsService _settingsService;
+        [Inject] private AppData _appData;
 
-        [SerializeField] private BoxCollider2D _collider;
+        [SerializeField] private ParticleSystem _effect;
 
-        private void OnValidate()
+        private void Awake()
         {
-            _collider ??= GetComponent<BoxCollider2D>();
+            _multiplyZonesRegistry.Register(this);
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public void IsCompletedStage(BuildController placedBlock)
         {
-            Debug.Log(other.name);
-            if (!other.CompareTag("Block"))
+            if(placedBlock.transform.position.y <= transform.position.y || enabled == false)
                 return;
-
+            
+            _effect.Play();
+            _settingsService.PlaySfx(SoundKey.HappyConfettiPop);
             _appData.LevelData.AddScoreValue *= 2;
-            _collider.enabled = false;
             enabled = false;
+        }
+
+        public void Reset()
+        {
+            _effect.Stop();
+            enabled = true;
+        }
+        
+        private void OnDestroy()
+        {
+            _multiplyZonesRegistry.Unregister(this);
         }
     }
 }

@@ -7,11 +7,17 @@ namespace _Project.Scripts.AllAppData
     public class User
     {
         private readonly IntReactiveProperty _crystals = new(15200);
+        private readonly IntReactiveProperty _scoreRecord = new(0);
+        private readonly BoolReactiveProperty _isTutorialBlocksPassed = new(false);
+        private readonly BoolReactiveProperty _isTutorialBalancePassed = new(false);
         private readonly BoolReactiveProperty _soundIsActive = new(true);
         private readonly BoolReactiveProperty _musicIsActive = new(true);
         private readonly BoolReactiveProperty _vibroIsActive = new(true);
 
         public IReactiveProperty<int> CrystalsReactive => _crystals;
+        public IReactiveProperty<int> ScoreRecordReactive => _scoreRecord;
+        public IReactiveProperty<bool> IsTutorialBlocksPassedReactive => _isTutorialBlocksPassed;
+        public IReactiveProperty<bool> IsTutorialBalancePassedReactive => _isTutorialBalancePassed;
         public IReactiveProperty<bool> SoundIsActiveReactive => _soundIsActive;
         public IReactiveProperty<bool> MusicIsActiveReactive => _musicIsActive;
         public IReactiveProperty<bool> VibroIsActiveReactive => _vibroIsActive;
@@ -23,6 +29,42 @@ namespace _Project.Scripts.AllAppData
             {
                 _crystals.Value = value;
                 PlayerPrefs.SetInt(GameConstants.PrefKeys.Crystals, Crystals);
+                PlayerPrefs.Save();
+            }
+        }
+        
+        public int ScoreRecord
+        {
+            get => _scoreRecord.Value;
+            set
+            {
+                if (_scoreRecord.Value >= value)
+                    return;
+                
+                _scoreRecord.Value = value;
+                PlayerPrefs.SetInt(GameConstants.PrefKeys.ScoreRecord, ScoreRecord);
+                PlayerPrefs.Save();
+            }
+        }
+        
+        public bool IsTutorialBlocksPassed
+        {
+            get => _isTutorialBlocksPassed.Value;
+            set
+            {
+                _isTutorialBlocksPassed.Value = value;
+                PlayerPrefs.SetInt(GameConstants.PrefKeys.IsTutorialBlocksPassed, IsTutorialBlocksPassed ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
+        
+        public bool IsTutorialBalancePassed
+        {
+            get => _isTutorialBalancePassed.Value;
+            set
+            {
+                _isTutorialBalancePassed.Value = value;
+                PlayerPrefs.SetInt(GameConstants.PrefKeys.IsTutorialBalancePassed, IsTutorialBalancePassed ? 1 : 0);
                 PlayerPrefs.Save();
             }
         }
@@ -63,6 +105,11 @@ namespace _Project.Scripts.AllAppData
         public User()
         {
             Crystals = PlayerPrefs.GetInt(GameConstants.PrefKeys.Crystals, 0);
+            ScoreRecord = PlayerPrefs.GetInt(GameConstants.PrefKeys.ScoreRecord, 0);
+            
+            IsTutorialBlocksPassed = PlayerPrefs.GetInt(GameConstants.PrefKeys.IsTutorialBlocksPassed, 0) == 1;
+            IsTutorialBalancePassed = PlayerPrefs.GetInt(GameConstants.PrefKeys.IsTutorialBalancePassed, 0) == 1;
+            
             SoundIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.SoundIsActive, 1) == 1;
             MusicIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.MusicIsActive, 1) == 1;
             VibroIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.VibroIsActive, 1) == 1;

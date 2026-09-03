@@ -142,13 +142,13 @@ Material:
     - Color_915234e14bf14936b1378dc25286f6b1: {r: 1, g: 1, b: 1, a: 0}
     - Color_99004139a61f42ba99cb363b9369becd: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BottomColor: {r: 0.49411765, g: 0.4745098, b: 0.23921569, a: 0}
+    - _BottomColor: {r: 1, g: 0.8283543, b: 0.3820755, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0, g: 0, b: 0, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TopColor: {r: 0, g: 0, b: 0, a: 0}
+    - _TopColor: {r: 1, g: 0.94182736, b: 0.25943398, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2155253497208050610

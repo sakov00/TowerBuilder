@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using _Project.Scripts._GlobalLogic;
 using _Project.Scripts.AllAppData;
 using _Project.Scripts.Factories;
@@ -30,6 +31,7 @@ namespace _Project.Scripts._VContainer
         [SerializeField] protected CameraConfig _cameraConfig;
         [SerializeField] protected WindowsConfig _windowsConfig;
         [SerializeField] protected SoundConfig _soundConfig;
+        [SerializeField] protected EnvironmentMovementConfig _environmentMovementConfig;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -66,6 +68,7 @@ namespace _Project.Scripts._VContainer
         private void RegisterRegistries(IContainerBuilder builder)
         {
             builder.Register<LiveRegistry>(Lifetime.Singleton).AsSelf();
+            builder.Register<MultiplyZonesRegistry>(Lifetime.Singleton).AsSelf();
             builder.Register<SaveRegistry>(Lifetime.Singleton).AsSelf();
         }
         
@@ -91,6 +94,7 @@ namespace _Project.Scripts._VContainer
             builder.RegisterInstance(_cameraConfig).AsSelf();
             builder.RegisterInstance(_windowsConfig).AsSelf().As<IInitializable>();
             builder.RegisterInstance(_soundConfig).AsSelf();
+            builder.RegisterInstance(_environmentMovementConfig).AsSelf();
         }
 
         private void RegisterServices(IContainerBuilder builder)
@@ -113,6 +117,7 @@ namespace _Project.Scripts._VContainer
             builder.Register<CameraFollowService>(Lifetime.Singleton).AsSelf();
             builder.Register<GameplayFeedbackService>(Lifetime.Singleton).AsSelf();
             builder.Register<BoosterService>(Lifetime.Singleton).AsSelf();
+            builder.Register<EnvironmentMovementService>(Lifetime.Singleton).AsSelf().As<ITickable>();
                 
             builder.Register<TickScheduler>(Lifetime.Singleton).AsSelf().As<ITickable>();
         }

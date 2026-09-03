@@ -28,12 +28,13 @@ namespace _Project.Scripts.ServicesGameplay
         private readonly LiveRegistry _liveRegistry;
         private readonly GameManager _gameManager;
         private readonly WindowsManager _windowsManager;
+        private MultiplyZonesRegistry _multiplyZonesRegistry;
 
         [Inject]
         public BlockPlacementService(AppData appData, EffectPool effectPool, SettingsService settingsService,
             BlockSpawnService spawn, TowerSwayService towerSway, BuildingConfig buildingConfig,
             BlocksContainer blocksContainer, GameplayFeedbackService feedbackService,
-            LiveRegistry liveRegistry, GameManager gameManager, WindowsManager windowsManager)
+            LiveRegistry liveRegistry, GameManager gameManager, WindowsManager windowsManager, MultiplyZonesRegistry multiplyZonesRegistry)
         {
             _appData = appData;
             _effectPool = effectPool;
@@ -46,6 +47,7 @@ namespace _Project.Scripts.ServicesGameplay
             _liveRegistry = liveRegistry;
             _gameManager = gameManager;
             _windowsManager = windowsManager;
+            _multiplyZonesRegistry = multiplyZonesRegistry;
         }
 
         public async UniTask Resolve(BuildController current)
@@ -120,7 +122,8 @@ namespace _Project.Scripts.ServicesGameplay
                 _gameManager.FailHandle().Forget();
                 return;
             }
-
+            
+            _multiplyZonesRegistry.GetAll().ForEach(x => x.IsCompletedStage(current));
             _spawn.SpawnNext().Forget();
         }
 

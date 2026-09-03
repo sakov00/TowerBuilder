@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12832f67f61c4b1bb802ec8b586485cb, type: 3}
+  m_Name: EnvironmentMovementConfig
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 2717999095872932484, guid: ec0abec0e0bfe4848b6d1769ce508dc9, type: 3}
+  _environmentSprites:
+  - {fileID: 21300000, guid: 258ca62d42de27549b46385176525b93, type: 3}
+  - {fileID: 21300000, guid: c0e9191f3b4a3ba4ca2fcb06c702282d, type: 3}
+  - {fileID: 21300000, guid: 88d6f95888b588348b2496b05c69d4d9, type: 3}
+  - {fileID: 21300000, guid: 3a3f46b1bd2a9a5419ea20a8260bfe7a, type: 3}
+  - {fileID: 21300000, guid: ec7b87bae3fcb5a4db073935a9f01629, type: 3}
+  - {fileID: 21300000, guid: 444d7b4b470b29441bdb0b58500cecbd, type: 3}
+  - {fileID: 21300000, guid: cd372b9d885c35d4ab64388b954572cd, type: 3}
+  - {fileID: 21300000, guid: 17440f6141a6a864cab98d3caf5a48fd, type: 3}
+  - {fileID: 21300000, guid: a5691afa62939484aaa99a3b1949aa88, type: 3}
+  _speed: 0.2
+  _turnOffset: 2.5
+  _elementsCount: 10
+  _spawnXRange: {x: -5, y: 5}
+  _spawnYRange: {x: -3, y: 3}
+  _spawnAboveCamera: 3
+  _despawnBelowCamera: 1
