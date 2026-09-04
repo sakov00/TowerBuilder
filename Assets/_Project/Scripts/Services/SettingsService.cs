@@ -67,7 +67,7 @@ namespace _Project.Scripts.Services
 
             // Fade In
             _musicTween = _musicSource
-                .DOFade(1f, _fadeDuration)
+                .DOFade(music.volume, _fadeDuration)
                 .SetEase(Ease.Linear);
 
             await _musicTween.AsyncWaitForCompletion();
@@ -87,7 +87,7 @@ namespace _Project.Scripts.Services
             var sfx = _soundConfig.SfxClips.Find(x => x.key == key);
 
             if (sfx != null)
-                _sfxSource.PlayOneShot(sfx.clip);
+                _sfxSource.PlayOneShot(sfx.clip, sfx.volume);
             else
                 Debug.LogWarning($"SFX '{key}' не найден.");
         }

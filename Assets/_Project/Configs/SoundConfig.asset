@@ -15,12 +15,17 @@ MonoBehaviour:
   <MusicClips>k__BackingField:
   - key: 0
     clip: {fileID: 8300000, guid: 09da061e1e6dc4c49b3a064901d4f89a, type: 3}
+    volume: 0.5
   <SfxClips>k__BackingField:
   - key: 1
     clip: {fileID: 8300000, guid: 51fe904ea2e3bc24799bdf1e11fa95ec, type: 3}
+    volume: 1
   - key: 2
-    clip: {fileID: 8300000, guid: e32fa1643df8923428f8a693988a3d24, type: 3}
+    clip: {fileID: 8300000, guid: aaf1703486f916c4fa1f22ceba654419, type: 3}
+    volume: 1.5
   - key: 3
     clip: {fileID: 8300000, guid: fa962195fef69bb4ab3d357ec0197df8, type: 3}
+    volume: 1
   - key: 4
     clip: {fileID: 8300000, guid: e7c1dd479e553f64f82b10b4c77bd550, type: 3}
+    volume: 1

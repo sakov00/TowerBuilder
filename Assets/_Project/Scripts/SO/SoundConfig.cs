@@ -18,5 +18,6 @@ namespace _Project.Scripts.SO
     {
         public SoundKey key;
         public AudioClip clip;
+        public float volume = 1f;
     }
 }

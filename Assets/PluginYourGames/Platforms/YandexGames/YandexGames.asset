@@ -30,6 +30,6 @@ MonoBehaviour:
     autoGraphicsAPI: 1
     managedStrippingLevel: 3
     dataCaching: 1
-    colorSpace: 1
+    colorSpace: 0
     archivingBuild: 1
     syncInitSDK: 1
