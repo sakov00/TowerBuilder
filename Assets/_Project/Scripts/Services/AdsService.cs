@@ -8,27 +8,17 @@ namespace _Project.Scripts.Services
     public class AdsService
     {
         public string rewardID;
-        
-        public void UseInter(Action action)
+
+        private Action _interAction;
+
+        public void UseInter()
         {
             if (YG2.isTimerAdvCompleted && YG2.isSDKEnabled)
             {
-                void OnClose(bool wasShown)
-                {
-                    YG2.onCloseInterAdvWasShow -= OnClose;
-
-                    action.Invoke();
-                    Debug.Log("InterstitialAdvShow");
-                }
-                YG2.onCloseInterAdvWasShow += OnClose;
                 YG2.InterstitialAdvShow();
             }
-            else
-            {
-                action.Invoke();
-            }
         }
-        
+
         public void UseReward(Action action)
         {
             if (YG2.isSDKEnabled)
@@ -39,7 +29,7 @@ namespace _Project.Scripts.Services
             }
             else
             {
-                action.Invoke();
+                action?.Invoke();
             }
         }
     }

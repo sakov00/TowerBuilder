@@ -118,7 +118,8 @@ namespace _Project.Scripts
                 buildController.SetKinematicState(RigidbodyType2D.Dynamic);
             }
             await UniTask.Delay(2000);
-            _adsService.UseInter(() => StartLevel(0).Forget());
+            _adsService.UseInter();
+            StartLevel(0).Forget();
             // await _windowsManager.ShowWindow<FailWindow>();
             // _windowsManager.HideFastWindow<GameWindow>();
         }

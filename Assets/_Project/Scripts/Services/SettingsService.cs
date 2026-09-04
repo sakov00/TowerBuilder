@@ -29,7 +29,7 @@ namespace _Project.Scripts.Services
             InjectManager.Inject(this);
         }
 
-        public async UniTask PlayMusicAsync(SoundKey key, bool loop = true)
+        public async UniTaskVoid PlayMusicAsync(SoundKey key, bool loop = true)
         {
             if (_appData.User.MusicIsActive == false)
                 return;

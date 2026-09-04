@@ -10,6 +10,7 @@ namespace _Project.Scripts._GlobalLogic
             public const string IsTutorialFirstBlockPassed = "IsTutorialFirstBlockPassed";
             public const string IsTutorialBlocksPassed = "IsTutorialBlocksPassed";
             public const string IsTutorialBalancePassed = "IsTutorialBalancePassed";
+            public const string IsTutorialBoosterBalancePassed = "IsTutorialBoosterBalancePassed";
             public const string SoundIsActive = "SoundIsActive";
             public const string MusicIsActive = "MusicIsActive";
             public const string VibroIsActive = "VibroIsActive";

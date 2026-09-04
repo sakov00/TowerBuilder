@@ -33,10 +33,18 @@ namespace _Project.Scripts.ServicesGameplay
             _appData.LevelData.TotalSwayImbalance += offset;
             
             var gameWindow = _windowsManager.GetWindow<GameWindow>();
-            if(Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalanceRed)
+            if (Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalanceRed)
+            {
+                if(!_appData.User.IsTutorialBoosterBalancePassed)
+                    gameWindow.ShowTutorialRewardButton();
                 gameWindow.SetBackLightBalance(true, Color.red).Forget();
-            else if(Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalanceYellow)
+            }
+            else if (Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalanceYellow)
+            {
+                if(!_appData.User.IsTutorialBalancePassed)
+                    gameWindow.ShowTutorialBalance();
                 gameWindow.SetBackLightBalance(true, Color.yellow).Forget();
+            }
             else
                 gameWindow.SetBackLightBalance(false, Color.clear).Forget();
         }

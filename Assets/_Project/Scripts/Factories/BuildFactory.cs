@@ -17,8 +17,11 @@ namespace _Project.Scripts.Factories
         {
             var prefab = _buildingConfig.allBuildPrefabs
                 .FirstOrDefault(p => p.Model.BuildType == buildType);
+            
+            var obj = prefab != null ? Object.Instantiate(prefab, position, rotation, parent) : null;
+            _resolver.Inject(obj);
 
-            return prefab != null ? _resolver.Instantiate(prefab, position, rotation, parent) : null;
+            return obj;
         }
     }
 }

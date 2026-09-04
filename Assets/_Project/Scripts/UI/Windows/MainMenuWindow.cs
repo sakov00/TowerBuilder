@@ -35,7 +35,8 @@ namespace _Project.Scripts.UI.Windows
             {
                 _analyticService.SendMessage("PlayClicked");
                 _settingsService.PlaySfx(SoundKey.ButtonClick);
-                _adsService.UseInter(() => _gameManager.StartLevel(0).Forget());
+                _adsService.UseInter();
+                _gameManager.StartLevel(0).Forget();
             }).AddTo(Disposables);
             _upgradeButton.OnClickAsObservable().Subscribe(_ =>
             {

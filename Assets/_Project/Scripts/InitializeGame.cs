@@ -37,9 +37,7 @@ namespace _Project.Scripts
         
         public async UniTask StartAsync(CancellationToken cancellation = default)
         {
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellation);
             await _gameManager.StartLevel(0, false);
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellation);
             _settingsService.PlayMusicAsync(SoundKey.MenuMusic).Forget();
             YG2.GameReadyAPI();
         }

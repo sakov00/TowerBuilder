@@ -38,48 +38,27 @@ namespace _Project.Scripts.UI.Windows
         [SerializeField] private Image _backLightBalance;
         
         [Header("Tutorials")]
-        [SerializeField] private HintController _tutorialBlocksStage;
+        [SerializeField] private HintController _tutorialFirstBlockStage;
         [SerializeField] private GameObject _tutorialBalanceStage;
+        [SerializeField] private GameObject _tutorialBoosterBalanceStage;
 
         private Color _currentBackLightBalanceColor;
-        
-        protected override void Awake()
+        private int _panelBalanceSiblingIndex;
+        private int _boosterBalanceButtonSiblingIndex;
+
+        public override void Initialize()
         {
-            base.Awake();
+            base.Initialize();
             
-            _tutorialBlocksStage.gameObject.SetActive(!_appData.User.IsTutorialFirstBlockPassed);
+            _tutorialFirstBlockStage.gameObject.SetActive(!_appData.User.IsTutorialFirstBlockPassed);
             
-            _pauseMenuButton.OnClickAsObservable()
-                .Subscribe(_ =>
-                {
-                    _settingsService.PlaySfx(SoundKey.ButtonClick);
-                    WindowsManager.ShowWindow<PauseWindow>();
-                })
-                .AddTo(Disposables);
+            _pauseMenuButton.onClick.AddListener(OpenPause);
+            _settingsButton.onClick.AddListener(OpenSettings);
+            _boosterBalanceButton.onClick.AddListener(UseBalanceBooster);
+            _clickArea.onClick.AddListener(DropBlock);
             
-            _settingsButton.OnClickAsObservable()
-                .Subscribe(_ =>
-                {
-                    _settingsService.PlaySfx(SoundKey.ButtonClick);
-                    WindowsManager.ShowWindow<SettingsWindow>();
-                })
-                .AddTo(Disposables);
-            
-            _boosterBalanceButton.OnClickAsObservable()
-                .Subscribe(_ =>
-                {
-                    _settingsService.PlaySfx(SoundKey.ButtonClick);
-                    _adsService.UseReward(_boosterService.ResetBalance);
-                })
-                .AddTo(Disposables);
-            _clickArea.OnClickAsObservable()
-                .Subscribe(_ =>
-                {
-                    _settingsService.PlaySfx(SoundKey.ButtonClick);
-                    _blockDropService.DropBlock();
-                })
-                .AddTo(Disposables);
             _appData.LevelData.LevelScoreReactive
+                .Skip(1)
                 .Subscribe(value =>
                     {
                         _textScore.text = Regex.Replace(_textScore.text, @"\d", "");
@@ -87,6 +66,7 @@ namespace _Project.Scripts.UI.Windows
                     })
                 .AddTo(Disposables);
             _appData.LevelData.HealthReactive
+                .Skip(1)
                 .Subscribe(value =>
                 {
                     for (int i = 0; i < _healthImages.Count; i++)
@@ -94,6 +74,7 @@ namespace _Project.Scripts.UI.Windows
                 })
                 .AddTo(Disposables);
             _appData.LevelData.TotalSwayImbalanceReactive
+                .Skip(1)
                 .Subscribe(value =>
                 {
                     float normalized = value / _buildingConfig.DestroyImbalance;
@@ -104,15 +85,67 @@ namespace _Project.Scripts.UI.Windows
                 })
                 .AddTo(Disposables);
         }
-
-        public override void Initialize()
+        
+        private void OpenPause()
         {
-            base.Initialize();
+            _settingsService.PlaySfx(SoundKey.ButtonClick);
+            WindowsManager.ShowWindow<PauseWindow>();
+        }
+
+        private void OpenSettings()
+        {
+            _settingsService.PlaySfx(SoundKey.ButtonClick);
+            WindowsManager.ShowWindow<SettingsWindow>();
+        }
+
+        private void UseBalanceBooster()
+        {
+            _settingsService.PlaySfx(SoundKey.ButtonClick);
+            _adsService.UseReward(_boosterService.ResetBalance);
+        }
+
+        private void DropBlock()
+        {
+            _settingsService.PlaySfx(SoundKey.ButtonClick);
+            _blockDropService.DropBlock();
+        }
+        
+        public void ShowTutorialBalance()
+        {
+            _panelBalanceSiblingIndex = _panelBalance.transform.GetSiblingIndex();
+
+            _panelBalance.transform.SetAsLastSibling();
+            _tutorialBalanceStage.SetActive(true);
+        }
+        
+        public void ShowTutorialRewardButton()
+        {
+            _boosterBalanceButtonSiblingIndex = _boosterBalanceButton.transform.GetSiblingIndex();
+
+            _boosterBalanceButton.transform.SetAsLastSibling();
+            _tutorialBoosterBalanceStage.SetActive(true);
+        }
+        
+        public void TutorialFirstBlockPassed()
+        {
+            _appData.User.IsTutorialFirstBlockPassed = true;
+            _tutorialFirstBlockStage.Dispose();
+            _tutorialFirstBlockStage.gameObject.SetActive(false);
+            _clickArea.onClick.Invoke();
         }
 
         public void TutorialBalancePassed()
         {
             _appData.User.IsTutorialBalancePassed = true;
+            _panelBalance.transform.SetSiblingIndex(_panelBalanceSiblingIndex);
+            _tutorialBalanceStage.SetActive(false);
+        }
+        
+        public void TutorialRewardButton()
+        {
+            _appData.User.IsTutorialBoosterBalancePassed = true;
+            _boosterBalanceButton.transform.SetSiblingIndex(_boosterBalanceButtonSiblingIndex);
+            _tutorialBoosterBalanceStage.SetActive(false);
         }
 
         public void Reset()
@@ -175,6 +208,15 @@ namespace _Project.Scripts.UI.Windows
                 _backLightBalance.DOKill();
                 _backLightBalance.DOFade(0, 0.5f);
             }
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            _pauseMenuButton.onClick.RemoveListener(OpenPause);
+            _settingsButton.onClick.RemoveListener(OpenSettings);
+            _boosterBalanceButton.onClick.RemoveListener(UseBalanceBooster);
+            _clickArea.onClick.RemoveListener(DropBlock);
         }
     }
 }

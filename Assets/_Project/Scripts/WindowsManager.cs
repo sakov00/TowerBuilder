@@ -37,7 +37,8 @@ namespace _Project.Scripts
             var windowType = _windowsConfig.Windows[typeof(T)].WindowType;
             if (!_cachedWindows.TryGetValue(typeof(T), out var window))
             {
-                window = _resolver.Instantiate(_windowsConfig.Windows[typeof(T)], parent: GetParent(windowType));
+                window = Instantiate(_windowsConfig.Windows[typeof(T)], parent: GetParent(windowType));
+                _resolver.Inject(window);
                 window.Initialize();
                 window.HideFast();
                 _cachedWindows.Add(typeof(T), window);

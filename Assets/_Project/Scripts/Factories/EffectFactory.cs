@@ -17,8 +17,11 @@ namespace _Project.Scripts.Factories
         {
             var prefab = _effectsConfig.allEffectsPrefabs
                 .FirstOrDefault(p => p.EffectType == effectType);
+            
+            var obj = prefab != null ? Object.Instantiate(prefab, position, rotation, parent) : null;
+            _resolver.Inject(obj);
 
-            return prefab != null ? _resolver.Instantiate(prefab, position, rotation, parent) : null;
+            return obj;
         }
     }
 }

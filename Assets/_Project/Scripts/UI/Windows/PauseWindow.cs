@@ -50,12 +50,10 @@ namespace _Project.Scripts.UI.Windows
             {
                 _analyticService.SendMessage("RestartClicked");
                 _settingsService.PlaySfx(SoundKey.ButtonClick);
-                _adsService.UseInter(async () =>
-                {
-                    await WindowsManager.ShowWindow<LoadingWindow>();
-                    WindowsManager.HideFastWindow<PauseWindow>();
-                    _gameManager.RestartLevel().Forget();
-                });
+                _adsService.UseInter();
+                await WindowsManager.ShowWindow<LoadingWindow>();
+                WindowsManager.HideFastWindow<PauseWindow>();
+                _gameManager.RestartLevel().Forget();
             }).AddTo(Disposables);
             
             _settingsButton.OnClickAsObservable().Subscribe(async _ =>

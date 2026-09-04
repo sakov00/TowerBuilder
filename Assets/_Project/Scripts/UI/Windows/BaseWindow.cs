@@ -25,7 +25,6 @@ namespace _Project.Scripts.UI.Windows
         
         protected virtual void Awake()
         {
-            InjectManager.Inject(this);
             Disposables = new CompositeDisposable();
         }
 
@@ -75,8 +74,8 @@ namespace _Project.Scripts.UI.Windows
         {
             TweenHide?.Complete();
             IsShowed = false;
-            gameObject.SetActive(false);
             _canvasGroup.alpha = 0;
+            gameObject.SetActive(false);
         }
         
         public virtual void Dispose()

@@ -53,3 +53,4 @@ MonoBehaviour:
   <StartSwayFrom>k__BackingField: 3
   <MaxSwayFrom>k__BackingField: 500
   <BlockHeight>k__BackingField: 1
+  <TutorialBlocksCount>k__BackingField: 7

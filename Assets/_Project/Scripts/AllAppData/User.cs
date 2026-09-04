@@ -11,6 +11,7 @@ namespace _Project.Scripts.AllAppData
         private readonly BoolReactiveProperty _isTutorialFirstBlockPassed = new(false);
         private readonly BoolReactiveProperty _isTutorialBlocksPassed = new(false);
         private readonly BoolReactiveProperty _isTutorialBalancePassed = new(false);
+        private readonly BoolReactiveProperty _isTutorialBoosterBalancePassed = new(false);
         private readonly BoolReactiveProperty _soundIsActive = new(true);
         private readonly BoolReactiveProperty _musicIsActive = new(true);
         private readonly BoolReactiveProperty _vibroIsActive = new(true);
@@ -20,6 +21,7 @@ namespace _Project.Scripts.AllAppData
         public IReactiveProperty<bool> IsTutorialFirstBlockPassedReactive => _isTutorialFirstBlockPassed;
         public IReactiveProperty<bool> IsTutorialBlocksPassedReactive => _isTutorialBlocksPassed;
         public IReactiveProperty<bool> IsTutorialBalancePassedReactive => _isTutorialBalancePassed;
+        public IReactiveProperty<bool> _isTutorialBoosterBalancePassedReactive => _isTutorialBoosterBalancePassed;
         public IReactiveProperty<bool> SoundIsActiveReactive => _soundIsActive;
         public IReactiveProperty<bool> MusicIsActiveReactive => _musicIsActive;
         public IReactiveProperty<bool> VibroIsActiveReactive => _vibroIsActive;
@@ -91,6 +93,20 @@ namespace _Project.Scripts.AllAppData
             }
         }
         
+        public bool IsTutorialBoosterBalancePassed
+        {
+            get => _isTutorialBoosterBalancePassed.Value;
+            set
+            {
+                if(_isTutorialBoosterBalancePassed.Value)
+                    return;
+                
+                _isTutorialBoosterBalancePassed.Value = value;
+                PlayerPrefs.SetInt(GameConstants.PrefKeys.IsTutorialBoosterBalancePassed, IsTutorialBoosterBalancePassed ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
+        
         public bool SoundIsActive
         {
             get => _soundIsActive.Value;
@@ -132,6 +148,7 @@ namespace _Project.Scripts.AllAppData
             IsTutorialFirstBlockPassed = PlayerPrefs.GetInt(GameConstants.PrefKeys.IsTutorialFirstBlockPassed, 0) == 1;
             IsTutorialBlocksPassed = PlayerPrefs.GetInt(GameConstants.PrefKeys.IsTutorialBlocksPassed, 0) == 1;
             IsTutorialBalancePassed = PlayerPrefs.GetInt(GameConstants.PrefKeys.IsTutorialBalancePassed, 0) == 1;
+            IsTutorialBoosterBalancePassed = PlayerPrefs.GetInt(GameConstants.PrefKeys.IsTutorialBoosterBalancePassed, 0) == 1;
             
             SoundIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.SoundIsActive, 1) == 1;
             MusicIsActive = PlayerPrefs.GetInt(GameConstants.PrefKeys.MusicIsActive, 1) == 1;
