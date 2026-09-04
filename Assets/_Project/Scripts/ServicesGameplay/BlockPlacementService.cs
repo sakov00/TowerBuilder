@@ -150,6 +150,11 @@ namespace _Project.Scripts.ServicesGameplay
                     _gameManager.FailHandle().Forget();
                     return;
                 }
+                else if (_appData.LevelData.Health == 1 && !_appData.User.IsTutorialBoosterBalancePassed)
+                {
+                    var gameWindow = _windowsManager.GetWindow<GameWindow>();
+                    gameWindow.ShowTutorialBoosterBalanceReward();
+                }
             }
 
             _spawn.SpawnNext().Forget();

@@ -36,7 +36,7 @@ namespace _Project.Scripts.ServicesGameplay
             if (Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalanceRed)
             {
                 if(!_appData.User.IsTutorialBoosterBalancePassed)
-                    gameWindow.ShowTutorialRewardButton();
+                    gameWindow.ShowTutorialBoosterBalanceReward();
                 gameWindow.SetBackLightBalance(true, Color.red).Forget();
             }
             else if (Mathf.Abs(_appData.LevelData.TotalSwayImbalance) > _buildingConfig.DestroyImbalanceYellow)

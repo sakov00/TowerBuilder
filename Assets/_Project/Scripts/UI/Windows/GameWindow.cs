@@ -118,7 +118,7 @@ namespace _Project.Scripts.UI.Windows
             _tutorialBalanceStage.SetActive(true);
         }
         
-        public void ShowTutorialRewardButton()
+        public void ShowTutorialBoosterBalanceReward()
         {
             _boosterBalanceButtonSiblingIndex = _boosterBalanceButton.transform.GetSiblingIndex();
 

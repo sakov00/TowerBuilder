@@ -42,10 +42,10 @@ MonoBehaviour:
     loadSceneIfSDKLate: 0
     loadSceneIndex: 0
     initDelaySimulation: 0
-    buildNumber: 84
+    buildNumber: 100
   Simulation:
     device: 1
-    language: ru
+    language: en
     enableInterAdv: 1
     advIntervalSimulation: 60
     durationAdv: 5
@@ -57,17 +57,17 @@ MonoBehaviour:
     backgroundImgFormat: 0
     gradientBackgroundByLoadGame:
       radial: 0
-      angleInclination: 140
-      color1: {r: 1, g: 0.831, b: 0.149, a: 1}
-      color2: {r: 0.36, g: 0.09, b: 1, a: 1}
-    customProgressBar: 0
+      angleInclination: 180
+      color1: {r: 1, g: 0.83137256, b: 0.38431373, a: 1}
+      color2: {r: 0.33333334, g: 0.6117647, b: 1, a: 1}
+    customProgressBar: 1
     progressBarSettigs:
       round: 1
       roundAngle: 10
       width: 30
       height: 24
-      color1: {r: 0.25, g: 0.6392, b: 1, a: 1}
-      color2: {r: 1, g: 0.831, b: 0.149, a: 0.7}
+      color1: {r: 0.9882353, g: 0.91764706, b: 0.81960785, a: 1}
+      color2: {r: 0.38679248, g: 0.26107714, b: 0.1550819, a: 1}
     fixedAspectRatio: 0
     aspectRatio: 16/9
     disableForMobile: 1
